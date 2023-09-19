@@ -63,8 +63,8 @@ public class PlayerMovement : MonoBehaviour
         {
             speed = 10f;
            // anim.SetFloat("Y", 2);
-            cam.SetActive(true);
-            maincam.SetActive(false);
+            cam.SetActive(false);
+            maincam.SetActive(true);
         }
         else
         {
