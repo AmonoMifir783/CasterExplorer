@@ -7,6 +7,7 @@ public class CanvasController : MonoBehaviour
     public bool PauseGame;
     public GameObject Book;
     public GameObject[] elementsToHide;
+    public GameObject playerCamera;
 
     private void Update()
     {
@@ -15,10 +16,14 @@ public class CanvasController : MonoBehaviour
         {
             if (PauseGame)
             {
+                playerCamera.GetComponent<MouseLook>().enabled = true;
+                playerCamera.GetComponent<PlayerMovement>().enabled = true;
                 CloseImage();
             }
             else
             {
+                playerCamera.GetComponent<MouseLook>().enabled = false;
+                playerCamera.GetComponent<PlayerMovement>().enabled = false;
                 OpenImage();
             }
         }

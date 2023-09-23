@@ -8,6 +8,7 @@ public class SpellSystemScript : MonoBehaviour
 {
     public bool PauseGame;
     public GameObject SpellSystemMenu;
+    public GameObject playerCamera;
 
     void Update()
     {
@@ -15,10 +16,16 @@ public class SpellSystemScript : MonoBehaviour
         {
             if (!PauseGame)
             {
+                playerCamera.GetComponent<MouseLook>().enabled = false;
+                playerCamera.GetComponent<PlayerMovement>().enabled = false;
+                Cursor.lockState = CursorLockMode.None;
                 InventoryOn();
             }
             else
             {
+                playerCamera.GetComponent<MouseLook>().enabled = true;
+                playerCamera.GetComponent<PlayerMovement>().enabled = true;
+                Cursor.lockState = CursorLockMode.Locked;
                 InventoryOff();
             }
         }
@@ -29,7 +36,7 @@ public class SpellSystemScript : MonoBehaviour
         SpellSystemMenu.SetActive(true);
         Time.timeScale = 0f;
         PauseGame = true;
-
+        
         Cursor.visible = true;
 
         if (GetComponent<Rigidbody>())
@@ -42,6 +49,7 @@ public class SpellSystemScript : MonoBehaviour
         Time.timeScale = 1f;
         PauseGame = false;
 
+        
         Cursor.visible = false;
 
         if (GetComponent<Rigidbody>())

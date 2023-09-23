@@ -1,70 +1,75 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterController))]
+
 public class PlayerMovement : MonoBehaviour
 {
+    public float walkingSpeed = 7.5f;
+    public float runningSpeed = 11.5f;
+    public float jumpSpeed = 8.0f;
+    public float gravity = 20.0f;
+    public Camera playerCamera;
+    public float lookSpeed = 2.0f;
+    public float lookXLimit = 45.0f;
 
-    public CharacterController controller;
-    public Transform GroundCheck;
-    public LayerMask groundMask;
-    public float speed = 5f;
-    public float gravity = 9.8f;
+    CharacterController characterController;
+    Vector3 moveDirection = Vector3.zero;
+    float rotationX = 0;
 
-    public float jumpHeight = 3f;
-    public float groundDistance = 0.4f;
-    //public Animator anim;
-    public GameObject cam;
-    public GameObject maincam;
-    Vector3 velocity;
+    [HideInInspector]
+    public bool canMove = true;
 
-    bool isGrounded;
-    
+    void Start()
+    {
+        characterController = GetComponent<CharacterController>();
+
+        // Lock cursor
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
     void Update()
     {
-        if (controller.isGrounded)
-        {
-            //anim.SetFloat("X", Input.GetAxis("Horizontal"));
-           // anim.SetFloat("Y", Input.GetAxis("Vertical"));
+        // We are grounded, so recalculate move direction based on axes
+        Vector3 forward = transform.TransformDirection(Vector3.forward);
+        Vector3 right = transform.TransformDirection(Vector3.right);
+        // Press Left Shift to run
+        bool isRunning = Input.GetKey(KeyCode.LeftShift);
+        float curSpeedX = canMove ? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Vertical") : 0;
+        float curSpeedY = canMove ? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Horizontal") : 0;
+        float movementDirectionY = moveDirection.y;
+        moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
-        }
-        isGrounded = Physics.CheckSphere(GroundCheck.position, groundDistance, groundMask);
-        if (isGrounded && velocity.y < 0)
+        if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
         {
-            velocity.y = -2f;
-        }
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * gravity);
-          //  anim.SetTrigger("Jump");
-        }
-        Vector3 move = transform.right * x + transform.forward * z;
-        controller.Move(move * speed * Time.deltaTime);
-        velocity.y -= gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
-        if (Input.GetKey("c"))
-        {
-            controller.height = 1f;
+            moveDirection.y = jumpSpeed;
         }
         else
         {
-            controller.height = 1.79f;
+            moveDirection.y = movementDirectionY;
         }
-        if (Input.GetKey("left shift"))
+
+        // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
+        // when the moveDirection is multiplied by deltaTime). This is because gravity should be applied
+        // as an acceleration (ms^-2)
+        if (!characterController.isGrounded)
         {
-            speed = 10f;
-           // anim.SetFloat("Y", 2);
-            cam.SetActive(false);
-            maincam.SetActive(true);
+            moveDirection.y -= gravity * Time.deltaTime;
         }
-        else
+
+        // Move the controller
+        characterController.Move(moveDirection * Time.deltaTime);
+
+        // Player and Camera rotation
+        if (canMove)
         {
-            speed = 5f;
-            cam.SetActive(false);
-            maincam.SetActive(true);
+            rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
+            rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
+            playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+            transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
     }
 }
