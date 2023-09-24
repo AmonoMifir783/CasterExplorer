@@ -36,11 +36,10 @@ public class SpellSystemScript : MonoBehaviour
         SpellSystemMenu.SetActive(true);
         Time.timeScale = 0f;
         PauseGame = true;
-        
         Cursor.visible = true;
 
-        if (GetComponent<Rigidbody>())
-            GetComponent<Rigidbody>().freezeRotation = true;
+        // if (GetComponent<Rigidbody>())
+        //     GetComponent<Rigidbody>().freezeRotation = true;
     }
 
     public void InventoryOff()
@@ -48,11 +47,9 @@ public class SpellSystemScript : MonoBehaviour
         SpellSystemMenu.SetActive(false);
         Time.timeScale = 1f;
         PauseGame = false;
-
-        
         Cursor.visible = false;
 
-        if (GetComponent<Rigidbody>())
-            GetComponent<Rigidbody>().freezeRotation = false;
+        // if (GetComponent<Rigidbody>())
+        //     GetComponent<Rigidbody>().freezeRotation = false;
     }
 }

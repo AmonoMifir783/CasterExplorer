@@ -18,12 +18,14 @@ public class CanvasController : MonoBehaviour
             {
                 playerCamera.GetComponent<MouseLook>().enabled = true;
                 playerCamera.GetComponent<PlayerMovement>().enabled = true;
+                Cursor.lockState = CursorLockMode.Locked;
                 CloseImage();
             }
             else
             {
                 playerCamera.GetComponent<MouseLook>().enabled = false;
                 playerCamera.GetComponent<PlayerMovement>().enabled = false;
+                Cursor.lockState = CursorLockMode.None;
                 OpenImage();
             }
         }
@@ -39,8 +41,10 @@ public class CanvasController : MonoBehaviour
         {
             elementsToHide[i].SetActive(false);
         }
+
         Time.timeScale = 0f;
         PauseGame = true;
+        Cursor.visible = true;
     }
 
     public void CloseImage()
@@ -56,6 +60,6 @@ public class CanvasController : MonoBehaviour
 
         Time.timeScale = 1f;
         PauseGame = false;
-        
+        Cursor.visible = false;
     }
 }
