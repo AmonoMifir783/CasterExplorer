@@ -16,14 +16,12 @@ public class LivingArmorAI : MonoBehaviour
     public float rotationSpeed = 5f;
     public float attackRange = 1f;
 
-    
-
-
-
     private Transform player; // Ссылка на игрока
     private int currentPatrolIndex; // Индекс текущей точки патрулирования
     private float patrolTimer; // Таймер ожидания при патрулировании
     private bool isChasing; // Флаг преследования игрока
+
+
 
     private void Start()
     {
@@ -31,12 +29,11 @@ public class LivingArmorAI : MonoBehaviour
         currentPatrolIndex = 0; // Устанавливаем начальный индекс патрулирования
         patrolTimer = 0f; // Обнуляем таймер ожидания
         isChasing = false; // Инициализируем флаг преследования
+       
     }
-
     private void Update()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position); // Расстояние до игрока
-
         // Проверяем нахождение игрока в области обзора противника
         if (distanceToPlayer <= chaseRange)
         {
@@ -54,7 +51,6 @@ public class LivingArmorAI : MonoBehaviour
                 Attack();
 
             }
-
         }
         else
         {
@@ -64,7 +60,6 @@ public class LivingArmorAI : MonoBehaviour
             Patrol();
         }
     }
-
     private void Patrol()
     {
         // Если противник достиг текущей точки патрулирования, устанавливаем следующую точку и сбрасываем таймер ожидания
@@ -79,7 +74,6 @@ public class LivingArmorAI : MonoBehaviour
                 currentPatrolIndex = 0;
             }
         }
-
         // Поворачиваем противника в направлении следующей точки патрулирования
         Vector3 direction = (patrolPoints[currentPatrolIndex].position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
@@ -96,14 +90,12 @@ public class LivingArmorAI : MonoBehaviour
 
         }
     }
-
     private void RotateTowardsPlayer()
     {
         Vector3 direction = (player.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
     }
-
     private void Attack()
     {
         PlayerHealth playerHealthScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
@@ -120,7 +112,4 @@ public class LivingArmorAI : MonoBehaviour
         }
         // Проводим атаку на игрока
     }
-
-
-
 }
