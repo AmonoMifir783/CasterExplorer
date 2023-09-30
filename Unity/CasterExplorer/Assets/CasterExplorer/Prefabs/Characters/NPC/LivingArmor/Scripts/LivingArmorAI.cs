@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class EnemyAI : MonoBehaviour
+public class LivingArmorAI : MonoBehaviour
 {
     public float patrolSpeed = 2f; // Скорость патрулирования
     public float chaseSpeed = 5f; // Скорость преследования
@@ -15,6 +15,8 @@ public class EnemyAI : MonoBehaviour
     private float attackTimer = 0f;
     public float rotationSpeed = 5f;
     public float attackRange = 1f;
+
+    
 
 
 
