@@ -1,86 +1,100 @@
 ﻿using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class EnemyAI : MonoBehaviour
 {
-    public Transform patrolPoint1; // Первая точка патрулирования
-    public Transform patrolPoint2; // Вторая точка патрулирования
     public float patrolSpeed = 2f; // Скорость патрулирования
     public float chaseSpeed = 5f; // Скорость преследования
-    public float attackRange = 1f; // Расстояние для атаки
-    public float detectionRange = 10f; // Расстояние, на котором противник замечает игрока
+    public float chaseRange = 10f; // Расстояние обнаружения игрока
+    public float patrolWaitTime = 2f; // Время ожидания при патрулировании
+    public Transform[] patrolPoints; // Массив точек патрулирования
+
     private float nextDamageTime = 0f;
     public float attackCooldown = 0.5f;
     public int damageAmount = 25;
     private float attackTimer = 0f;
     public float rotationSpeed = 5f;
+    public float attackRange = 1f;
 
-    private Transform target;
-    private Transform player;
-    private Vector3 startPosition;
-    private Quaternion startRotation;
-    private bool isChasing;
+
+
+    private Transform player; // Ссылка на игрока
+    private int currentPatrolIndex; // Индекс текущей точки патрулирования
+    private float patrolTimer; // Таймер ожидания при патрулировании
+    private bool isChasing; // Флаг преследования игрока
 
     private void Start()
     {
-        // Начинаем с патрулирования к первой точке
-        target = patrolPoint1;
-        isChasing = false;
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        startPosition = transform.position;
-        startRotation = transform.rotation;
+        player = GameObject.FindGameObjectWithTag("Player").transform; // Находим игрока по тегу
+        currentPatrolIndex = 0; // Устанавливаем начальный индекс патрулирования
+        patrolTimer = 0f; // Обнуляем таймер ожидания
+        isChasing = false; // Инициализируем флаг преследования
     }
 
     private void Update()
     {
-        // Проверяем, находится ли игрок в зоне видимости
-        if (Vector3.Distance(transform.position, player.position) >= detectionRange)
-        {
-            // Начинаем преследование игрока
-            isChasing = true;
-            target = GameObject.FindGameObjectWithTag("Player").transform;
-        }
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position); // Расстояние до игрока
 
-        // Если противник преследует игрока
-        if (isChasing)
+        // Проверяем нахождение игрока в области обзора противника
+        if (distanceToPlayer <= chaseRange)
         {
-            // Проверяем расстояние между противником и игроком для атаки
-            if (Vector3.Distance(transform.position, target.position) <= attackRange && Time.time >= nextDamageTime)
+            isChasing = true; // Включаем режим преследования
+            RotateTowardsPlayer();
+
+            // Прыгаем на игрока
+            if (distanceToPlayer > 1f)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, player.position, chaseSpeed * Time.deltaTime);
+            }
+            if (Vector3.Distance(transform.position, player.position) <= attackRange && Time.time >= nextDamageTime)
             {
                 // Атакуем игрока
                 Attack();
 
             }
-            else
-            {
-                // Преследуем игрока
-                Chase();
-                RotateTowardsPlayer();
-            }
+
         }
         else
         {
-            // Продолжаем патрулирование между заданными точками
+            isChasing = false; // Выключаем режим преследования
+
+            // Продолжаем патрулирование
             Patrol();
         }
     }
 
     private void Patrol()
     {
-        // Двигаемся к текущей целевой точке патрулирования
-        transform.position = Vector3.MoveTowards(transform.position, target.position, patrolSpeed * Time.deltaTime);
-
-        // Если достигли текущей целевой точки, меняем ее на следующую
-        if (Vector3.Distance(transform.position, target.position) <= 0.1f)
+        // Если противник достиг текущей точки патрулирования, устанавливаем следующую точку и сбрасываем таймер ожидания
+        if (transform.position == patrolPoints[currentPatrolIndex].position)
         {
-            target = (target == patrolPoint1) ? patrolPoint2 : patrolPoint1;
+            currentPatrolIndex++;
+            patrolTimer = 0f;
+
+            // Если достигли последней точки, возвращаемся к первой
+            if (currentPatrolIndex >= patrolPoints.Length)
+            {
+                currentPatrolIndex = 0;
+            }
+        }
+
+        // Поворачиваем противника в направлении следующей точки патрулирования
+        Vector3 direction = (patrolPoints[currentPatrolIndex].position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+
+        // Если таймер ожидания достиг нужного значения, перемещаемся к следующей точке патрулирования
+        if (patrolTimer >= patrolWaitTime)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, patrolPoints[currentPatrolIndex].position, patrolSpeed * Time.deltaTime);
+        }
+        else
+        {
+            patrolTimer += Time.deltaTime; // Увеличиваем таймер ожидания
+
         }
     }
 
-    private void Chase()
-    {
-        // Двигаемся к игроку с увеличенной скоростью
-        transform.position = Vector3.MoveTowards(transform.position, target.position, chaseSpeed * Time.deltaTime);
-    }
     private void RotateTowardsPlayer()
     {
         Vector3 direction = (player.position - transform.position).normalized;
@@ -93,7 +107,7 @@ public class EnemyAI : MonoBehaviour
         PlayerHealth playerHealthScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         playerHealthScript.TakeDamage(damageAmount);
 
-        // ������������� ����� ����� ���������� ��������� ����� � ������ �������� � 5 ������
+        // 5
         nextDamageTime = Time.time + 2f;
         attackCooldown = Time.time + 0f;
         attackTimer += Time.deltaTime;
@@ -105,19 +119,6 @@ public class EnemyAI : MonoBehaviour
         // Проводим атаку на игрока
     }
 
-    // Метод для вызова, когда игрок покидает зону видимости противника
-    public void LoseTarget()
-    {
-        isChasing = false;
-        target = patrolPoint1;
-    }
+
+
 }
-
-
-
-
-
-
-
-
-

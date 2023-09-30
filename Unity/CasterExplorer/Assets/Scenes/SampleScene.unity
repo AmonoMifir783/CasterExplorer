@@ -1928,15 +1928,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f40768d364751c74f8d6af5ee293336b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrolPoint1: {fileID: 2023471870}
-  patrolPoint2: {fileID: 252136553}
   patrolSpeed: 2
-  chaseSpeed: 5
-  attackRange: 1
-  detectionRange: 10
+  chaseSpeed: 8
+  chaseRange: 25
+  patrolWaitTime: 2
+  patrolPoints:
+  - {fileID: 2023471870}
+  - {fileID: 252136553}
   attackCooldown: 0.5
   damageAmount: 25
   rotationSpeed: 5
+  attackRange: 1
 --- !u!65 &372204439
 BoxCollider:
   m_ObjectHideFlags: 0
