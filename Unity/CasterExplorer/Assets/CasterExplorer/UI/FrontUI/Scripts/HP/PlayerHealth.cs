@@ -35,6 +35,22 @@ public class PlayerHealth : MonoBehaviour, IDataPersistence
         UpdateHealthUI(); // ќбновление полоски здоровь€ после получени€ урона
     }
 
+    public void TakeHeal(int healthToAdd)
+    {
+        currentHealth += healthToAdd; // ¬ычитаем из текущего здоровь€ полученный урон
+        if (currentHealth > 100)
+        {
+            currentHealth = 100;
+        }
+        //if (currentHealth <= 0)
+        //{
+        //    currentHealth = 100; // «апрещаем отрицательное здоровье
+        //    Die(); // ≈сли здоровье стало меньше или равно нулю, персонаж умирает
+        //}
+
+        UpdateHealthUI(); // ќбновление полоски здоровь€ после получени€ урона
+    }
+
     private void UpdateHealthUI()
     {
         float fillAmount = (float)currentHealth / maxHealth;
