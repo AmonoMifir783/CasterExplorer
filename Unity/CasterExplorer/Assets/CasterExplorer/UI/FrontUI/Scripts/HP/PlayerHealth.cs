@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : MonoBehaviour, IDataPersistence
 {
     public int maxHealth = 100; // ћаксимальное здоровье персонажа
-    private int currentHealth; // “екущее здоровье персонажа
+    public int currentHealth; // “екущее здоровье персонажа ЅџЋќ private
     public GameObject gameOverPanel; // ссылка на панель "игра окончена"
 
     public GameObject Player;
@@ -47,7 +47,6 @@ public class PlayerHealth : MonoBehaviour
         gameOverPanel.SetActive(false); // деактивируем панель "игра окончена"
                                         // isGameOver = false;
     }
-
     public void MainMenu()
     {
         SceneManager.LoadScene("Menu"); // загружаем главное меню
@@ -61,6 +60,17 @@ public class PlayerHealth : MonoBehaviour
     //        MainMenu(); // загружаем главное меню
     //    }
     //}
+
+    public void LoadData(GameData data)
+    {
+        this.currentHealth = data.currentHealth;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.currentHealth = this.currentHealth;
+    }
+
 
     void Die()
     {
@@ -76,5 +86,7 @@ public class PlayerHealth : MonoBehaviour
         // ћожно добавить здесь логику дл€ обработки смерти персонажа,
         // например, перезагрузку уровн€ или активацию анимации смерти.
     }
+
+    
 }
 

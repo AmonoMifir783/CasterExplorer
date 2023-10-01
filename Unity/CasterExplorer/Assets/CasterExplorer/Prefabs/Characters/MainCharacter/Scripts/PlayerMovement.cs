@@ -5,7 +5,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IDataPersistence
 {
     public float walkingSpeed = 7.5f;
     public float runningSpeed = 11.5f;
@@ -71,5 +71,13 @@ public class PlayerMovement : MonoBehaviour
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
+    }
+    public void LoadData(GameData data)
+    {
+        this.transform.position = data.playerPosition;
+    }
+    public void SaveData (ref GameData data)
+    {
+        data.playerPosition = this.transform.position;
     }
 }
