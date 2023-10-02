@@ -42,6 +42,7 @@ public class PlayerHealth : MonoBehaviour, IDataPersistence
         {
             currentHealth = 100;
         }
+
         //if (currentHealth <= 0)
         //{
         //    currentHealth = 100; // Запрещаем отрицательное здоровье

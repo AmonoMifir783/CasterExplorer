@@ -1,11 +1,14 @@
+
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class MagisteriyaFruitUse : MonoBehaviour
 {
     public int healthToAdd = 25;
     private MagisteriyaFruitPickUp magisteriyaPickUpScript;
+    public TextMeshProUGUI MagisteriyaCount;
 
     private void Start()
     {
@@ -31,9 +34,21 @@ public class MagisteriyaFruitUse : MonoBehaviour
             int inventoryCount = magisteriyaPickUpScript.inventoryCount;
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                ApplyItem(inventoryCount);
+                if (inventoryCount >= 0)
+                {
+                    //ApplyItem(inventoryCount);
+                    GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+                    PlayerHealth playerHealthScript = playerObject.GetComponent<PlayerHealth>();
+                    if (inventoryCount > 0 && playerHealthScript.currentHealth != 100)
+                    {
+                        MagisteriyaCount.text = (inventoryCount - 1).ToString();
+                    }
+                    ApplyItem(inventoryCount);
+                }
+                
             }
         }
+
     }
 
     private void ApplyItem(int count)
@@ -47,7 +62,17 @@ public class MagisteriyaFruitUse : MonoBehaviour
                 PlayerHealth playerHealthScript = playerObject.GetComponent<PlayerHealth>();
                 if (playerHealthScript != null)
                 {
-                    playerHealthScript.TakeHeal(healthToAdd);
+                    if (playerHealthScript.currentHealth < 100) // Check if the player's current health is less than 100
+                    {
+                        playerHealthScript.TakeHeal(healthToAdd);
+                        magisteriyaPickUpScript.inventoryCount = count;
+                        Debug.Log("Item applied! Current inventory count: " + count);
+                        // Add additional code for using the item or modifying player health here.
+                    }
+                    else
+                    {
+                        Debug.Log("Cannot use item. Player's health is already at maximum.");
+                    }
                 }
                 else
                 {
@@ -58,10 +83,6 @@ public class MagisteriyaFruitUse : MonoBehaviour
             {
                 Debug.LogError("Player object not found with tag 'Player'.");
             }
-
-            magisteriyaPickUpScript.inventoryCount = count;
-            Debug.Log("Item applied! Current inventory count: " + count);
-            // Add additional code for using the item or modifying player health here.
         }
     }
 }
