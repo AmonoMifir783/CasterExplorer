@@ -9,9 +9,13 @@ public class GameData
 
     public Vector3 playerPosition;
 
+    public SerializableDictionary<string, bool> magisteriyaCollected;
+
     public GameData()
     { 
         this.currentHealth = 100;
         playerPosition = Vector3.zero;
+        magisteriyaCollected = new SerializableDictionary<string, bool>();
+
     }
 }
