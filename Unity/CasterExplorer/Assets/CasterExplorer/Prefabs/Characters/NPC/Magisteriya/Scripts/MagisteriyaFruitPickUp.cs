@@ -134,7 +134,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 
-public class MagisteriyaFruitPickUp : MonoBehaviour
+public class MagisteriyaFruitPickUp : MonoBehaviour, IDataPersistence
 {
     public int inventoryCount = 0;
     public TextMeshProUGUI MagisteriyaCount;
@@ -143,6 +143,7 @@ public class MagisteriyaFruitPickUp : MonoBehaviour
     private GameObject pickedUpFruit; // Reference to the fruit object being picked up
     private GameObject lastPickedUpFruit; // Reference to the last picked up fruit object
     private List<GameObject> pickedUpFruits = new List<GameObject>(); // List to keep track of picked up fruits
+    public bool fruitPicked;
 
     private void Update()
     {
@@ -170,7 +171,9 @@ public class MagisteriyaFruitPickUp : MonoBehaviour
         }
     }
 
-    private void PickUpItem()
+
+    //было private void PickUpItem()
+    public void PickUpItem()
     {
         if (canPickUp && inventoryCount < 10)
         {
@@ -187,16 +190,36 @@ public class MagisteriyaFruitPickUp : MonoBehaviour
             isPickingUp = true; // Set the flag to indicate that the player is in the process of picking up an item
             lastPickedUpFruit = pickedUpFruit; // Update the reference to the last picked up fruit
             StartCoroutine(ResetPickUpFlag()); // Start a coroutine to reset the flag after a certain delay
+                    fruitPicked = true;
         }
         else if (!canPickUp)
         {
             Debug.Log("Cannot pick up item. Move closer to the item.");
+            fruitPicked = false;
         }
         else
         {
             Debug.Log("Inventory is full! Cannot pick up item.");
+            fruitPicked = false;
         }
     }
+
+
+
+    public void LoadData(GameData data)
+    {
+        this.inventoryCount = data.inventoryCount;
+        this.MagisteriyaCount.text = data.MagisteriyaCount;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.inventoryCount = this.inventoryCount;
+        data.MagisteriyaCount = this.MagisteriyaCount.text;
+    }
+
+
+
 
     private IEnumerator ResetPickUpFlag()
     {

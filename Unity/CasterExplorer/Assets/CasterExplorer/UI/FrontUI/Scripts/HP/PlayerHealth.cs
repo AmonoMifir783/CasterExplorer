@@ -81,11 +81,13 @@ public class PlayerHealth : MonoBehaviour, IDataPersistence
     public void LoadData(GameData data)
     {
         this.currentHealth = data.currentHealth;
+        playerHealthFront.fillAmount = data.playerHealthFillAmount;
     }
 
     public void SaveData(ref GameData data)
     {
         data.currentHealth = this.currentHealth;
+        data.playerHealthFillAmount = playerHealthFront.fillAmount;
     }
 
 
