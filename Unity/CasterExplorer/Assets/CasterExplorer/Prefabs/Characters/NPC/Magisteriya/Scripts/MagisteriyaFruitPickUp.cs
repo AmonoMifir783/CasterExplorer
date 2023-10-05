@@ -143,7 +143,7 @@ public class MagisteriyaFruitPickUp : MonoBehaviour, IDataPersistence
     private GameObject pickedUpFruit; // Reference to the fruit object being picked up
     private GameObject lastPickedUpFruit; // Reference to the last picked up fruit object
     private List<GameObject> pickedUpFruits = new List<GameObject>(); // List to keep track of picked up fruits
-    public bool fruitPicked;
+    public bool fruitPicked = false;
 
     private void Update()
     {

@@ -7,7 +7,7 @@ public class MagisteriyaCollected : MonoBehaviour, IDataPersistence
 {
     private MagisteriyaFruitPickUp magisteriyaPickUpScript;
     private GameObject pickedUpFruit;
-    private bool collected;
+    private bool collected = false;
     private GameObject visual;
 
     [SerializeField] private string id;
@@ -29,6 +29,14 @@ public class MagisteriyaCollected : MonoBehaviour, IDataPersistence
             if (collected)
             {
                 visual.gameObject.SetActive(false);
+            }
+        }
+        if (magisteriyaPickUpScript != null && magisteriyaPickUpScript.fruitPicked)
+        {
+            data.magisteriyaCollected.TryGetValue(id, out collected);
+            if (!collected)
+            {
+                visual.gameObject.SetActive(true);
             }
         }
     }
