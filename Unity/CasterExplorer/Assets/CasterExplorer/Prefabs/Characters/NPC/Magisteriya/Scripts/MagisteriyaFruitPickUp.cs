@@ -138,12 +138,13 @@ public class MagisteriyaFruitPickUp : MonoBehaviour, IDataPersistence
 {
     public int inventoryCount = 0;
     public TextMeshProUGUI MagisteriyaCount;
-    private bool canPickUp = false;
+    private bool canPickUp = false; // bil private
     private bool isPickingUp = false; // Flag to track if the player is in the process of picking up an item
     private GameObject pickedUpFruit; // Reference to the fruit object being picked up
     private GameObject lastPickedUpFruit; // Reference to the last picked up fruit object
     private List<GameObject> pickedUpFruits = new List<GameObject>(); // List to keep track of picked up fruits
-    public bool fruitPicked = false;
+    private bool fruitPicked = true;
+    //public MagisteriyaCollected magisteriyaCollectedScript;
 
     private void Update()
     {
@@ -190,17 +191,17 @@ public class MagisteriyaFruitPickUp : MonoBehaviour, IDataPersistence
             isPickingUp = true; // Set the flag to indicate that the player is in the process of picking up an item
             lastPickedUpFruit = pickedUpFruit; // Update the reference to the last picked up fruit
             StartCoroutine(ResetPickUpFlag()); // Start a coroutine to reset the flag after a certain delay
-                    fruitPicked = true;
+                    fruitPicked = false;
         }
         else if (!canPickUp)
         {
             Debug.Log("Cannot pick up item. Move closer to the item.");
-            fruitPicked = false;
+            fruitPicked = true;
         }
         else
         {
             Debug.Log("Inventory is full! Cannot pick up item.");
-            fruitPicked = false;
+            fruitPicked = true;
         }
     }
 
@@ -210,12 +211,16 @@ public class MagisteriyaFruitPickUp : MonoBehaviour, IDataPersistence
     {
         this.inventoryCount = data.inventoryCount;
         this.MagisteriyaCount.text = data.MagisteriyaCount;
+
+      
     }
 
-    public void SaveData(ref GameData data)
+    public void SaveData(GameData data)
     {
         data.inventoryCount = this.inventoryCount;
         data.MagisteriyaCount = this.MagisteriyaCount.text;
+
+    
     }
 
 

@@ -7,10 +7,13 @@ public class MagisteriyaCollected : MonoBehaviour, IDataPersistence
 {
     private MagisteriyaFruitPickUp magisteriyaPickUpScript;
     private GameObject pickedUpFruit;
-    private bool collected = false;
+   // private bool collected = false;
     private GameObject visual;
+    public bool fruitPicked = false;
 
-    [SerializeField] private string id;
+
+    [SerializeField] private GameObject Magisteriya;
+    [SerializeField] public string id; //bilo private
     [ContextMenu("Generate guid for id")]
 
 
@@ -21,42 +24,50 @@ public class MagisteriyaCollected : MonoBehaviour, IDataPersistence
         id = System.Guid.NewGuid().ToString();
     }
 
+    private void Start()
+    {
+        magisteriyaPickUpScript = GetComponent<MagisteriyaFruitPickUp>();
+        visual = Magisteriya;
+    }
+
+
+
     public void LoadData(GameData data)
     {
-        if (magisteriyaPickUpScript != null && magisteriyaPickUpScript.fruitPicked)
+        if (magisteriyaPickUpScript != null)
         {
-            data.magisteriyaCollected.TryGetValue(id, out collected);
-            if (collected)
+            if (data.magisteriyaCollected.TryGetValue(id, out fruitPicked))
             {
-                visual.gameObject.SetActive(false);
+                if (fruitPicked)
+                {
+                    Magisteriya.gameObject.SetActive(false);
+                }
+                else
+                {
+                    Magisteriya.gameObject.SetActive(true);
+                }
             }
-        }
-        if (magisteriyaPickUpScript != null && magisteriyaPickUpScript.fruitPicked)
-        {
-            data.magisteriyaCollected.TryGetValue(id, out collected);
-            if (!collected)
+            else
             {
-                visual.gameObject.SetActive(true);
+                if (!fruitPicked)
+                {
+                    Magisteriya.gameObject.SetActive(true);
+                }
             }
         }
     }
 
-    public void SaveData(ref GameData data)
+    public void SaveData(GameData data)
     {
-        if (data.magisteriyaCollected.ContainsKey(id))
+        if (magisteriyaPickUpScript != null)
         {
-            data.magisteriyaCollected.Remove(id);
+            data.magisteriyaCollected[id] = fruitPicked;
         }
-        data.magisteriyaCollected.Add(id, collected);
     }
 
 
 
     // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()
