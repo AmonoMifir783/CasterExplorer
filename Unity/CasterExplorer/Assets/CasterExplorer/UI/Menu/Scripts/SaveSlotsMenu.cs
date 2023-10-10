@@ -9,6 +9,7 @@ public class SaveSlotsMenu : Menu
     // Start is called before the first frame update
     [Header("Menu Navigation")]
     [SerializeField] private MainMenu mainMenu;
+    [SerializeField] private PauseMenu pauseMenu;
     [Header("Menu Buttons")]
     [SerializeField] private Button backButton;
     [Header("Confirmation Popup")]
@@ -23,7 +24,7 @@ public class SaveSlotsMenu : Menu
 
     public void onSaveSlotClicked(SaveSlot saveSlot)
     {
-        DisableMenuButtons();
+        //DisableMenuButtons();
 
         if (isLoadingGame)
         {
@@ -52,6 +53,7 @@ public class SaveSlotsMenu : Menu
             DataPersistenceManager.instance.NewGame();
             SaveGameAndLoadScene();
         }
+        Time.timeScale = 1f;
     }
 
     private void SaveGameAndLoadScene()
@@ -63,7 +65,7 @@ public class SaveSlotsMenu : Menu
 
     public void OnClearClicked(SaveSlot saveSlot)
     {
-        DisableMenuButtons();
+       // DisableMenuButtons();
         confirmationPopupMenu.ActivateMenu(
             "Are you sure you want to delete this saved data?",
             () => {
@@ -80,6 +82,13 @@ public class SaveSlotsMenu : Menu
     {
         mainMenu.ActivateMenu();
         this.DeactivateMenu();
+    }
+
+    public void onBackPauseClicked()
+    {
+        pauseMenu.ActivateMenu();
+        this.DeactivateMenu();
+        
     }
 
 

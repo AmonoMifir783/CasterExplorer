@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,15 +24,20 @@ public class GameData
         this.inventoryCount = 0;
         this.MagisteriyaCount = inventoryCount.ToString();
         this.playerHealthFillAmount = 1f;
-        this.currentHealth = 100;
+        this.currentHealth = 0;
         magisteriyaCollected = new SerializableDictionary<string, bool>();
     }
 
     public int GetLevelInfo() // информация которая будет находиться в слоте сохранения
     {
         int sceneNumber = SceneManager.GetActiveScene().buildIndex;
-        Debug.Log("Current scene number: " + sceneNumber);
+        PlayerPrefs.SetInt("SceneNumber", sceneNumber);
         return sceneNumber;
     }
+    //public int GetTimeInfo() // информация которая будет находиться в слоте сохранения
+    //{
+    //    //DateTime currentDateTime = DateTime.Now;
+        
+    //}
 
 }

@@ -44,7 +44,7 @@ public class SaveSlot : MonoBehaviour
             clearButton.gameObject.SetActive(true);
 
             saveLevelInfoText.text = data.GetLevelInfo() + "";
-            saveTimeInfoText.text = DateTime.Now.ToString();
+            //saveTimeInfoText.text =  data.GetTimeInfo().ToString();
         }
     }
 

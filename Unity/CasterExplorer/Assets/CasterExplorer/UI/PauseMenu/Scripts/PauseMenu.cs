@@ -3,7 +3,10 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
+
 {
+    [SerializeField] private SaveSlotsMenu saveSlotsMenu;
+    [SerializeField] private PauseMenu pauseMenu;
     public GameObject pauseMenuUI;
 
     bool isPaused = false;
@@ -52,9 +55,30 @@ public class PauseMenu : MonoBehaviour
         
     }
 
-    public void Load()
+    public void OnLoadGameClicked()
     {
-        // ��� �������� ����� ��� ���������� ����
+        saveSlotsMenu.ActivateMenu(true);
+        //this.DeactivateMenu();
+    }
+
+    public void ActivateMenu()
+    {
+        this.gameObject.SetActive(true);
+        DisableButtonsDependingOnData();
+    }
+
+    private void DisableButtonsDependingOnData()
+    {
+        if (!DataPersistenceManager.instance.HasGameData())
+        {
+            //continueGameButton.interactable = false;
+            //loadGameButton.interactable = false;
+        }
+    }
+
+    public void DeactivateMenu()
+    {
+        this.gameObject.SetActive(false);
     }
 
     public void Settings()
@@ -67,4 +91,6 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene("Menu");
         isPaused = false;
     }
+
+
 }

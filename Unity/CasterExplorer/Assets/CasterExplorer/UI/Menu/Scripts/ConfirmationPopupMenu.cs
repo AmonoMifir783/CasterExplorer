@@ -31,7 +31,7 @@ public class ConfirmationPopupMenu : Menu
         cancelButton.onClick.AddListener(() =>
         {
             DeactivateMenu();
-            confirmAction();
+            cancelAction();
         });
     }
     public void DeactivateMenu()
