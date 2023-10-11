@@ -5,16 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class DeathScreen : MonoBehaviour
 {
-    public void LoadGame()
+    [SerializeField] private SaveSlotsMenu saveSlotsMenu;
+    bool isPaused = false;
+    public void NewGame()
     {
         SceneManager.LoadScene("SampleScene"); // ��������� ����� � ����� ������
         Time.timeScale = 1f;
         Cursor.visible = false;
     }
 
+    public void LoadGame()
+    {
+        saveSlotsMenu.ActivateMenu(true);
+    }
+
+
     public void MainMenu()
     {
-        SceneManager.LoadScene("Menu"); // ��������� ������� ����
+        SceneManager.LoadScene("Menu");
+        isPaused = false;
     }
 
     

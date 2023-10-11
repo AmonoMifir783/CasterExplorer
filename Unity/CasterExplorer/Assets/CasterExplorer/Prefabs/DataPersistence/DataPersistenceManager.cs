@@ -112,7 +112,7 @@ public class DataPersistenceManager : MonoBehaviour
         {
             dataPersistenceObj.LoadData(gameData);
         }
-        
+
     }
 
     public void SaveGame()
@@ -141,6 +141,12 @@ public class DataPersistenceManager : MonoBehaviour
     {
         SaveGame();
     }
+
+    public void OnSaveGameClicked()
+    {
+        SaveGame();
+    }
+
 
     private List<IDataPersistence> FindAllDataPersistenceObjects()
     {

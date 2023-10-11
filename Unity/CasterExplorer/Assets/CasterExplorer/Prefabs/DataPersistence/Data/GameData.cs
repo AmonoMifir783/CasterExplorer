@@ -15,6 +15,7 @@ public class GameData
     public string MagisteriyaCount;
     public Vector3 playerPosition;
     public MagisteriyaFruitPickUp MagisterutaFruitPickUp;
+    public DateTime currentDateTime;
 
     public SerializableDictionary<string, bool> magisteriyaCollected;
 
@@ -23,21 +24,24 @@ public class GameData
         playerPosition = Vector3.zero;
         this.inventoryCount = 0;
         this.MagisteriyaCount = inventoryCount.ToString();
-        this.playerHealthFillAmount = 1f;
+        this.playerHealthFillAmount = 0f;
         this.currentHealth = 0;
         magisteriyaCollected = new SerializableDictionary<string, bool>();
+        currentDateTime = DateTime.Now;
     }
 
     public int GetLevelInfo() // информация которая будет находиться в слоте сохранения
     {
+
         int sceneNumber = SceneManager.GetActiveScene().buildIndex;
         PlayerPrefs.SetInt("SceneNumber", sceneNumber);
         return sceneNumber;
     }
-    //public int GetTimeInfo() // информация которая будет находиться в слоте сохранения
-    //{
-    //    //DateTime currentDateTime = DateTime.Now;
-        
-    //}
+    public int GetTimeInfo() // информация, которая будет находиться в слоте сохранения
+    {
+        DateTime currentDateTime = DateTime.Now;
+        int unixTimestamp = (int)currentDateTime.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+        return unixTimestamp;
+    }
 
 }
