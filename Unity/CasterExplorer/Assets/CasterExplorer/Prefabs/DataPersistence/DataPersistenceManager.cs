@@ -112,7 +112,7 @@ public class DataPersistenceManager : MonoBehaviour
         {
             dataPersistenceObj.LoadData(gameData);
         }
-
+        Debug.Log("Loaded health = " + gameData.currentHealth);
     }
 
     public void SaveGame()
@@ -137,14 +137,37 @@ public class DataPersistenceManager : MonoBehaviour
         dataHandler.Save(gameData, selectedProfileId);
     }
 
+    public void SavePauseGame()
+    {
+        //if (disableDataPersistence)
+        //{
+        //    return;
+        //}
+
+        //if (this.gameData == null)
+        //{
+        //    Debug.LogWarning("No data was found. A New Game needs to be started before data can be saved");
+        //    return;
+        //}
+
+        foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
+        {
+            dataPersistenceObj.SaveData(gameData);
+        }
+
+        //gameData.lastUpdated = System.DateTime.Now.ToBinary();
+        //dataHandler.Save(gameData, selectedProfileId);
+    }
+
+
     private void OnApplicationQuit()
     {
-        SaveGame();
+        //SaveGame();
     }
 
     public void OnSaveGameClicked()
     {
-        SaveGame();
+        SavePauseGame();
     }
 
 

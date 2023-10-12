@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
+using System;
 
 public class PlayerHealth : MonoBehaviour, IDataPersistence
 {
     public int maxHealth = 100; // Максимальное здоровье персонажа
-    public int currentHealth; // Текущее здоровье персонажа БЫЛО private
+    public int currentHealth = 100; // Текущее здоровье персонажа БЫЛО private
     public GameObject gameOverPanel; // ссылка на панель "игра окончена"
 
     public GameObject Player;
@@ -18,7 +20,11 @@ public class PlayerHealth : MonoBehaviour, IDataPersistence
 
     void Start()
     {
-        currentHealth = maxHealth; // Установка начального здоровья
+        if (currentHealth == 0)
+        {
+            currentHealth = 100;
+        }
+        //currentHealth = maxHealth; // Установка начального здоровья
         UpdateHealthUI(); // Обновление полоски здоровья при старте
     }
 
@@ -58,12 +64,12 @@ public class PlayerHealth : MonoBehaviour, IDataPersistence
         playerHealthFront.fillAmount = fillAmount; // Устанавливаем заполнение полоски здоровья в соответствии с текущим здоровьем
     }
 
-    public void LoadGame()
-    {
-        SceneManager.LoadScene("SampleScene"); // загружаем сцену с игрой заново
-        gameOverPanel.SetActive(false); // деактивируем панель "игра окончена"
-                                        // isGameOver = false;
-    }
+    //public void LoadGame()
+    //{
+    //    SceneManager.LoadScene("SampleScene"); // загружаем сцену с игрой заново
+    //    gameOverPanel.SetActive(false); // деактивируем панель "игра окончена"
+    //                                    // isGameOver = false;
+    //}
     public void MainMenu()
     {
         SceneManager.LoadScene("Menu"); // загружаем главное меню
@@ -80,12 +86,14 @@ public class PlayerHealth : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
+        this.maxHealth = data.maxHealth;
         this.currentHealth = data.currentHealth;
         playerHealthFront.fillAmount = data.playerHealthFillAmount;
     }
 
     public void SaveData(GameData data)
     {
+        data.maxHealth = this.maxHealth;
         data.currentHealth = this.currentHealth;
         data.playerHealthFillAmount = playerHealthFront.fillAmount;
     }

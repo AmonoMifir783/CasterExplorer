@@ -16,11 +16,13 @@ public class GameData
     public Vector3 playerPosition;
     public MagisteriyaFruitPickUp MagisterutaFruitPickUp;
     public DateTime currentDateTime;
+    public int maxHealth;
 
     public SerializableDictionary<string, bool> magisteriyaCollected;
 
     public GameData()
     {
+        this.maxHealth = 100;
         playerPosition = Vector3.zero;
         this.inventoryCount = 0;
         this.MagisteriyaCount = inventoryCount.ToString();

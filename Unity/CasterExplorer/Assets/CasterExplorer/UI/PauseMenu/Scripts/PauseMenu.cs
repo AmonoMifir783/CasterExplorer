@@ -6,6 +6,7 @@ public class PauseMenu : MonoBehaviour
 
 {
     [SerializeField] private SaveSlotsMenu saveSlotsMenu;
+    [SerializeField] private SaveSlotsPauseSave saveSlotsPauseSave;
     [SerializeField] private PauseMenu pauseMenu;
     public GameObject pauseMenuUI;
 
@@ -54,6 +55,15 @@ public class PauseMenu : MonoBehaviour
         isPaused = true;
         
     }
+
+
+    public void OnSaveGameClicked()
+    {
+        saveSlotsPauseSave.ActivateMenu(false);
+        //this.DeactivateMenu();
+    }
+
+
 
     public void OnLoadGameClicked()
     {
