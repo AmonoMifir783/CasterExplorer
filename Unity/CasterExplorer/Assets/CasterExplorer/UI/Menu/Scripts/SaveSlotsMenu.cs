@@ -15,6 +15,7 @@ public class SaveSlotsMenu : Menu
     [Header("Confirmation Popup")]
     [SerializeField] private ConfirmationPopupMenu confirmationPopupMenu;
 
+
     private SaveSlot[] saveSlots;
     private bool isLoadingGame = false;
     private void Awake()

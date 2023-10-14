@@ -27,7 +27,6 @@ public class MagisteriyaCollected : MonoBehaviour, IDataPersistence
     private void Awake()
     {
         magisteriyaPickUpScript = GetComponent<MagisteriyaFruitPickUp>();
-        
     }
 
 

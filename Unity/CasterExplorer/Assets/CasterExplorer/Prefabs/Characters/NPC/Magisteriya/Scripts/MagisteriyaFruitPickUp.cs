@@ -192,7 +192,7 @@ public class MagisteriyaFruitPickUp : MonoBehaviour, IDataPersistence
             isPickingUp = true; // Set the flag to indicate that the player is in the process of picking up an item
             lastPickedUpFruit = pickedUpFruit; // Update the reference to the last picked up fruit
             StartCoroutine(ResetPickUpFlag()); // Start a coroutine to reset the flag after a certain delay
-                    
+            fruitPicked = true;       
         }
         else if (!canPickUp)
         {
@@ -213,15 +213,39 @@ public class MagisteriyaFruitPickUp : MonoBehaviour, IDataPersistence
         this.inventoryCount = data.inventoryCount;
         this.MagisteriyaCount.text = data.MagisteriyaCount;
 
-      
+        // Clear the list of picked up fruits before loading
+        pickedUpFruits.Clear();
+
+        foreach (string fruitName in data.magisteriyaCollected.Keys)
+        {
+            bool isPickedUp = data.magisteriyaCollected[fruitName];
+
+            if (isPickedUp)
+            {
+                GameObject fruit = GameObject.Find(fruitName);
+                if (fruit != null)
+                {
+                    pickedUpFruits.Add(fruit);
+                    fruit.SetActive(false); // Disable the fruit object to prevent it from appearing in the game
+                }
+            }
+        }
     }
 
     public void SaveData(GameData data)
     {
         data.inventoryCount = this.inventoryCount;
         data.MagisteriyaCount = this.MagisteriyaCount.text;
+        data.magisteriyaCollected = new SerializableDictionary<string, bool>();
 
-    
+        foreach (GameObject fruit in pickedUpFruits)
+        {
+            if (fruit != null && !data.magisteriyaCollected.ContainsKey(fruit.name))
+            {
+                data.magisteriyaCollected.Add(fruit.name, true);
+                fruit.SetActive(false);
+            }
+        }
     }
 
 
@@ -229,7 +253,7 @@ public class MagisteriyaFruitPickUp : MonoBehaviour, IDataPersistence
 
     private IEnumerator ResetPickUpFlag()
     {
-        yield return new WaitForSecondsRealtime(1f); // Adjust the delay as needed
+        yield return new WaitForSecondsRealtime(0f); // Adjust the delay as needed
         isPickingUp = false; // Reset the flag after the delay
         pickedUpFruit = null; // Reset the reference to the fruit object being picked up
     }

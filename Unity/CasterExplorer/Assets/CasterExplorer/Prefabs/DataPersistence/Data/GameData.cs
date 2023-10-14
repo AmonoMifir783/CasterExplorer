@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,6 +18,8 @@ public class GameData
     public MagisteriyaFruitPickUp MagisterutaFruitPickUp;
     public DateTime currentDateTime;
     public int maxHealth;
+ 
+
 
     public SerializableDictionary<string, bool> magisteriyaCollected;
 
@@ -29,7 +32,6 @@ public class GameData
         this.playerHealthFillAmount = 0f;
         this.currentHealth = 0;
         magisteriyaCollected = new SerializableDictionary<string, bool>();
-        currentDateTime = DateTime.Now;
     }
 
     public int GetLevelInfo() // информация которая будет находиться в слоте сохранения
@@ -39,11 +41,10 @@ public class GameData
         PlayerPrefs.SetInt("SceneNumber", sceneNumber);
         return sceneNumber;
     }
-    public int GetTimeInfo() // информация, которая будет находиться в слоте сохранения
+    public DateTime GetTimeInfo() // информация, которая будет находиться в слоте сохранения
     {
         DateTime currentDateTime = DateTime.Now;
-        int unixTimestamp = (int)currentDateTime.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
-        return unixTimestamp;
+        return currentDateTime;
     }
 
 }

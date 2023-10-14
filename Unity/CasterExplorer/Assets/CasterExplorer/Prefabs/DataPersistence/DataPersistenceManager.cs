@@ -112,7 +112,6 @@ public class DataPersistenceManager : MonoBehaviour
         {
             dataPersistenceObj.LoadData(gameData);
         }
-        Debug.Log("Loaded health = " + gameData.currentHealth);
     }
 
     public void SaveGame()
