@@ -16,10 +16,10 @@ public class MagisteriyaFruitUse : MonoBehaviour
         if (playerObject != null)
         {
             magisteriyaPickUpScript = playerObject.GetComponent<MagisteriyaFruitPickUp>();
-            if (magisteriyaPickUpScript == null)
-            {
-                Debug.LogError("MagisteriyaFruitPickUp script not found on Player object.");
-            }
+            // if (magisteriyaPickUpScript == null)
+            // {
+            //     Debug.LogError("MagisteriyaFruitPickUp script not found on Player object.");
+            // }
         }
         else
         {

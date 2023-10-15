@@ -9,6 +9,13 @@ public class SpellSystemScript : MonoBehaviour
     public bool PauseGame;
     public GameObject SpellSystemMenu;
     public GameObject playerCamera;
+    public GameObject FastSlots;
+    public MurrorFastSlots MurrorFastSlots;
+
+    private void Start() 
+    {
+        MurrorFastSlots = FastSlots.GetComponent<MurrorFastSlots>(); 
+    }
 
     void Update()
     {
@@ -38,6 +45,8 @@ public class SpellSystemScript : MonoBehaviour
         PauseGame = true;
         Cursor.visible = true;
 
+        
+
         // if (GetComponent<Rigidbody>())
         //     GetComponent<Rigidbody>().freezeRotation = true;
     }
@@ -48,6 +57,8 @@ public class SpellSystemScript : MonoBehaviour
         Time.timeScale = 1f;
         PauseGame = false;
         Cursor.visible = false;
+
+        MurrorFastSlots.CloseInventory();
 
         // if (GetComponent<Rigidbody>())
         //     GetComponent<Rigidbody>().freezeRotation = false;

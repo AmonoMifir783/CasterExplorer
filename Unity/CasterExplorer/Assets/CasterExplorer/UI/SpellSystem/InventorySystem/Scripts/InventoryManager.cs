@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Transform InventoryPanel;
+    public List<InventorySlots> Slots = new List<InventorySlots>();
 
-    // Update is called once per frame
-    void Update()
+    public int i = 0;
+
+    public void Inicialization()
     {
-        
+        while (i < InventoryPanel.childCount)
+        {
+            if (InventoryPanel.GetChild(i).GetComponent<InventorySlots>() != null)
+            {
+                Slots.Add(InventoryPanel.GetChild(i).GetComponent<InventorySlots>());
+                i++;
+            }
+        }
     }
+    
+
 }

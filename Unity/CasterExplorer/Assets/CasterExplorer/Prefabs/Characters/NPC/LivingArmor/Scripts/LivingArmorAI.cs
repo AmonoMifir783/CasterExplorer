@@ -100,7 +100,7 @@ public class LivingArmorAI : MonoBehaviour
     {
         PlayerHealth playerHealthScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         playerHealthScript.TakeDamage(damageAmount);
-
+        
         // 5
         nextDamageTime = Time.time + 2f;
         attackCooldown = Time.time + 0f;
