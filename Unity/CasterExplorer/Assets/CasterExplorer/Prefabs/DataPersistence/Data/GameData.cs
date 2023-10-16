@@ -26,7 +26,7 @@ public class GameData
     public GameData()
     {
         this.maxHealth = 100;
-        playerPosition = Vector3.zero;
+        playerPosition = Vector3.one;
         this.inventoryCount = 0;
         this.MagisteriyaCount = inventoryCount.ToString();
         this.playerHealthFillAmount = 0f;

@@ -17,7 +17,7 @@ public class SpellReaction : MonoBehaviour
         ObjectCollider = GetComponent<Collider>();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Spell"))
         {
@@ -28,6 +28,7 @@ public class SpellReaction : MonoBehaviour
             Amperage = SpellObject.Amperage;
             Gravity = SpellObject.Gravity;
             Light = SpellObject.Light;
+            //Debug.Log("2");
         }  
     }
 }

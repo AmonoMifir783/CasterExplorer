@@ -21,6 +21,9 @@ public class LivingArmorAI : MonoBehaviour
     private float patrolTimer; // Таймер ожидания при патрулировании
     private bool isChasing; // Флаг преследования игрока
 
+    private LivingArmorSR livingArmorSr;
+    private SpellReaction spellReaction;
+
 
 
     private void Start()
@@ -29,7 +32,10 @@ public class LivingArmorAI : MonoBehaviour
         currentPatrolIndex = 0; // Устанавливаем начальный индекс патрулирования
         patrolTimer = 0f; // Обнуляем таймер ожидания
         isChasing = false; // Инициализируем флаг преследования
-       
+
+        livingArmorSr = GetComponent<LivingArmorSR>(); 
+        spellReaction = GetComponent<SpellReaction>();
+
     }
     private void Update()
     {
@@ -45,11 +51,15 @@ public class LivingArmorAI : MonoBehaviour
             {
                 transform.position = Vector3.MoveTowards(transform.position, player.position, chaseSpeed * Time.deltaTime);
             }
-            if (Vector3.Distance(transform.position, player.position) <= attackRange && Time.time >= nextDamageTime)
+            if (Vector3.Distance(transform.position, player.position) <= attackRange && Time.time >= nextDamageTime && !livingArmorSr.isElectric)
             {
                 // Атакуем игрока
                 Attack();
-
+            }
+            if (Vector3.Distance(transform.position, player.position) <= attackRange && Time.time >= nextDamageTime && livingArmorSr.isElectric)
+            {
+                // Атакуем игрока
+                ElectroAttack();
             }
         }
         else
@@ -111,5 +121,19 @@ public class LivingArmorAI : MonoBehaviour
             attackCooldown = Time.time + 0f;
         }
         // Проводим атаку на игрока
+    }
+    private void ElectroAttack()
+    {
+        PlayerHealth playerHealthScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+        playerHealthScript.TakeDamage(livingArmorSr.electroDamage);
+
+        nextDamageTime = Time.time + 2f;
+        attackCooldown = Time.time + 0f;
+        attackTimer += Time.deltaTime;
+        if (attackTimer >= attackCooldown)
+        {
+            nextDamageTime = Time.time + 2f;
+            attackCooldown = Time.time + 0f;
+        }
     }
 }
