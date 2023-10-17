@@ -10,7 +10,7 @@ public class LivingArmorSR : MonoBehaviour
     public int mobHealth = 300; 
     public int maxTemp = 1000;
     public int minTemp = 10;
-    public int maxCurrent = 1000;
+    public int maxCurrent = 10000;
     public int minCurrent = 10;
     private int tempering;
     public int electroDamage;
@@ -44,6 +44,11 @@ public class LivingArmorSR : MonoBehaviour
 
             if (isFirstSpellHit && spellReaction.Temperature < 0)
             {
+                if (T1 > maxTemp)
+                {
+                    T1 = maxTemp;       
+                }
+
                 tempering = 1 + ((T1 * 100) / maxTemp);
                 Debug.Log("2");
                 TakeDamage(Mathf.Sqrt(spellReaction.Force) * tempering);
@@ -92,6 +97,12 @@ public class LivingArmorSR : MonoBehaviour
         if (isElectric)
         {
             K1 = spellReaction.Amperage;
+            
+            if (K1 > maxCurrent)
+            {
+                K1 = maxCurrent;       
+            }
+
             electroDamage = 1 + ((K1 * 100) / maxCurrent);
             additionalDamage = true;
         }
