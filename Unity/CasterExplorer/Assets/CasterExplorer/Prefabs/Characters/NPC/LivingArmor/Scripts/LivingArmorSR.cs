@@ -14,6 +14,7 @@ public class LivingArmorSR : MonoBehaviour
     public int minCurrent = 10;
     private int tempering;
     public int electroDamage;
+    public int additionalElectroDamage;
     private bool isFirstSpellHit = false;
     private bool isTempering = false;
     public bool isElectric = false;
@@ -25,6 +26,7 @@ public class LivingArmorSR : MonoBehaviour
     {
         objectCollider = GetComponent<Collider>();
         spellReaction = GetComponent<SpellReaction>();
+        livingArmorAi = GetComponent<LivingArmorAI>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -103,8 +105,9 @@ public class LivingArmorSR : MonoBehaviour
                 K1 = maxCurrent;       
             }
 
-            electroDamage = 1 + ((K1 * 100) / maxCurrent);
+            additionalElectroDamage = 1 + ((K1 * 100) / maxCurrent);
             additionalDamage = true;
+            electroDamage = (int)(Mathf.Sqrt(livingArmorAi.damageAmount) * additionalElectroDamage);
         }
     }
 
