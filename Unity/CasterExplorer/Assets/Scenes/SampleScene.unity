@@ -4936,6 +4936,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1009641066}
   m_CullTransparentMesh: 1
+--- !u!1001 &1019583071
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 542e49620b75b8d4d91d36aeba52248c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12.23
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 542e49620b75b8d4d91d36aeba52248c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.148
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 542e49620b75b8d4d91d36aeba52248c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -34.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 542e49620b75b8d4d91d36aeba52248c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 542e49620b75b8d4d91d36aeba52248c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 542e49620b75b8d4d91d36aeba52248c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 542e49620b75b8d4d91d36aeba52248c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 542e49620b75b8d4d91d36aeba52248c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 542e49620b75b8d4d91d36aeba52248c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 542e49620b75b8d4d91d36aeba52248c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 542e49620b75b8d4d91d36aeba52248c, type: 3}
+      propertyPath: m_Name
+      value: TreeMagisteriaHighPoly
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 542e49620b75b8d4d91d36aeba52248c, type: 3}
 --- !u!1 &1065231952
 GameObject:
   m_ObjectHideFlags: 0
@@ -10078,6 +10135,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622aef455f451224b9f3e1702f8545b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mobHealth: 300
+  maxTemp: 1000
+  minTemp: 10
+  maxCurrent: 10000
+  minCurrent: 10
+  electroDamage: 0
+  additionalElectroDamage: 0
+  isElectric: 0
+  additionalDamage: 0
+  T1: 0
+  K1: 0
 --- !u!1 &1868129060
 GameObject:
   m_ObjectHideFlags: 0
@@ -11809,3 +11877,4 @@ SceneRoots:
   - {fileID: 800999275}
   - {fileID: 1478598321}
   - {fileID: 1687702699}
+  - {fileID: 1019583071}
