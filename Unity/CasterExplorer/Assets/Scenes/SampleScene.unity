@@ -249,6 +249,63 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1437658957978940986, guid: 2ca732b00ab710b45b7013906129c509, type: 3}
   m_PrefabInstance: {fileID: 63994156}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &73909081
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.789
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.029
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -30.75555
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3378770080233426777, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_Name
+      value: FruitMagisteria (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
 --- !u!1 &76041817
 GameObject:
   m_ObjectHideFlags: 0
@@ -4263,6 +4320,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Magisteriya (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2506503465384928252, guid: 8440c407500e41b4db3c3da13f45517b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9132173777696899555, guid: 8440c407500e41b4db3c3da13f45517b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.760382
@@ -4991,8 +5052,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 542e49620b75b8d4d91d36aeba52248c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1019583073}
   m_SourcePrefab: {fileID: 100100000, guid: 542e49620b75b8d4d91d36aeba52248c, type: 3}
+--- !u!1 &1019583072 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 542e49620b75b8d4d91d36aeba52248c, type: 3}
+  m_PrefabInstance: {fileID: 1019583071}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1019583073
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019583072}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 7, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1065231952
 GameObject:
   m_ObjectHideFlags: 0
@@ -8296,6 +8386,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Magisteriya (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2506503465384928252, guid: 8440c407500e41b4db3c3da13f45517b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9132173777696899555, guid: 8440c407500e41b4db3c3da13f45517b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.45201
@@ -9465,6 +9559,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746526294}
   m_CullTransparentMesh: 1
+--- !u!1001 &1761652331
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.395
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.029
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -30.75555
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3378770080233426777, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_Name
+      value: FruitMagisteria (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
 --- !u!1001 &1773589570
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10344,6 +10495,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1887911418}
   m_CullTransparentMesh: 1
+--- !u!1001 &1894382826
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.271
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.029
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -30.75555
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3378770080233426777, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_Name
+      value: FruitMagisteria (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
 --- !u!1001 &1920679517
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11482,6 +11690,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Magisteriya (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2506503465384928252, guid: 8440c407500e41b4db3c3da13f45517b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9132173777696899555, guid: 8440c407500e41b4db3c3da13f45517b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.87
@@ -11741,13 +11953,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Magisteriya
       objectReference: {fileID: 0}
+    - target: {fileID: 2506503465384928252, guid: 8440c407500e41b4db3c3da13f45517b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9132173777696899555, guid: 8440c407500e41b4db3c3da13f45517b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -24.43
       objectReference: {fileID: 0}
     - target: {fileID: 9132173777696899555, guid: 8440c407500e41b4db3c3da13f45517b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.204
+      value: -0.005
       objectReference: {fileID: 0}
     - target: {fileID: 9132173777696899555, guid: 8440c407500e41b4db3c3da13f45517b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11854,6 +12070,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa2ded8dd8aedfc4381dcfe9a5a2c5c2, type: 3}
+--- !u!1001 &5742618548351673269
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.514177
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.029
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -30.75555
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713451554961642979, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3378770080233426777, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
+      propertyPath: m_Name
+      value: FruitMagisteria
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f4274504c72ed734c84bac90cbb3583c, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -11878,3 +12151,7 @@ SceneRoots:
   - {fileID: 1478598321}
   - {fileID: 1687702699}
   - {fileID: 1019583071}
+  - {fileID: 5742618548351673269}
+  - {fileID: 1894382826}
+  - {fileID: 1761652331}
+  - {fileID: 73909081}
