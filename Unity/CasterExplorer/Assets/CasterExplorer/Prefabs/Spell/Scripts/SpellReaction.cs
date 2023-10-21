@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpellReaction : MonoBehaviour
 {
-    private Collider ObjectCollider;
+   
     
     public int Temperature;
     public int Force;
@@ -12,10 +12,7 @@ public class SpellReaction : MonoBehaviour
     public int Gravity;
     public int Light;
     
-    void Start()
-    {
-        ObjectCollider = GetComponent<Collider>();
-    }
+    
 
     public void OnCollisionEnter(Collision collision)
     {
