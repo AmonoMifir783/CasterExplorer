@@ -18,14 +18,12 @@ public class PlayerHealth : MonoBehaviour, IDataPersistence
     public GameObject gameOverPanel;
     public GameObject Player;
     public Image playerHealthFront;
-    private CameraShake cameraShake;
     private PlayerMovement playerMovement;
     Quaternion initialRotation;
     private bool isCharacterDead = false;
 
     void Start()
     {
-        cameraShake = GetComponent<CameraShake>();
         playerMovement = Player.GetComponent<PlayerMovement>();
         if (currentHealth == 0)
         {
