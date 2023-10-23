@@ -8,81 +8,86 @@ using System;
 
 public class PlayerHealth : MonoBehaviour, IDataPersistence
 {
-    public int maxHealth = 100; // ������������ �������� ���������
-    public int currentHealth = 100; // ������� �������� ��������� ���� private
-    public GameObject gameOverPanel; // ������ �� ������ "���� ��������"
-
+    public int maxHealth = 100;
+    public int currentHealth = 100;
+    public float shakeDuration = 0.1f;
+    public float shakeMagnitude = 0.1f;
+    private float currentShakeDuration = 0f;
+    private float currentShakeMagnitude = 0f;
+    private Vector3 originalPosition;
+    public GameObject gameOverPanel;
     public GameObject Player;
-
-    //private bool isGameOver = false; // ����, ����������� �� ��, ��� ���� ��������
-
-    public Image playerHealthFront; // ������� �������� ������������
+    public Image playerHealthFront;
+    private CameraShake cameraShake;
+    private PlayerMovement playerMovement;
+    Quaternion initialRotation;
+    private bool isCharacterDead = false;
 
     void Start()
     {
+        cameraShake = GetComponent<CameraShake>();
+        playerMovement = Player.GetComponent<PlayerMovement>();
         if (currentHealth == 0)
         {
             currentHealth = 100;
         }
-        //currentHealth = maxHealth; // ��������� ���������� ��������
-        UpdateHealthUI(); // ���������� ������� �������� ��� ������
+        UpdateHealthUI();
+    }
+
+    void Update()
+    {
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            Die();
+        }
+        else
+        {
+            if (currentShakeDuration > 0)
+            {
+                Vector3 randomOffset = UnityEngine.Random.insideUnitSphere * currentShakeMagnitude;
+
+                // Apply the random offset to the camera position
+                transform.rotation = transform.rotation * Quaternion.Euler(randomOffset);
+
+                // Reduce the shake duration over time
+                currentShakeDuration -= Time.deltaTime;
+            }
+        }
     }
 
     public void TakeDamage(int damageAmount)
     {
-        currentHealth -= damageAmount; // �������� �� �������� �������� ���������� ����
-
+        currentHealth -= damageAmount;
+        ShakeCamera();
         if (currentHealth <= 0)
         {
-            currentHealth = 0; // ��������� ������������� ��������
-            Die(); // ���� �������� ����� ������ ��� ����� ����, �������� �������
+            currentHealth = 0;
+            Die();
         }
-
-        UpdateHealthUI(); // ���������� ������� �������� ����� ��������� �����
+        UpdateHealthUI();
     }
 
     public void TakeHeal(int healthToAdd)
     {
-        currentHealth += healthToAdd; // �������� �� �������� �������� ���������� ����
+        currentHealth += healthToAdd;
         if (currentHealth > 100)
         {
             currentHealth = 100;
         }
-
-        //if (currentHealth <= 0)
-        //{
-        //    currentHealth = 100; // ��������� ������������� ��������
-        //    Die(); // ���� �������� ����� ������ ��� ����� ����, �������� �������
-        //}
-
-        UpdateHealthUI(); // ���������� ������� �������� ����� ��������� �����
+        UpdateHealthUI();
     }
 
     private void UpdateHealthUI()
     {
         float fillAmount = (float)currentHealth / maxHealth;
-        playerHealthFront.fillAmount = fillAmount; // ������������� ���������� ������� �������� � ������������ � ������� ���������
+        playerHealthFront.fillAmount = fillAmount;
     }
 
-    //public void LoadGame()
-    //{
-    //    SceneManager.LoadScene("SampleScene"); // ��������� ����� � ����� ������
-    //    gameOverPanel.SetActive(false); // ������������ ������ "���� ��������"
-    //                                    // isGameOver = false;
-    //}
     public void MainMenu()
     {
-        SceneManager.LoadScene("Menu"); // ��������� ������� ����
+        SceneManager.LoadScene("Menu");
     }
-
-    //private void Update()
-    //{
-    //    // ���������, ���� ���� �������� � ������ ������ ������
-    //    if (isGameOver && Input.GetKeyDown(KeyCode.Escape))
-    //    {
-    //        MainMenu(); // ��������� ������� ����
-    //    }
-    //}
 
     public void LoadData(GameData data)
     {
@@ -98,22 +103,26 @@ public class PlayerHealth : MonoBehaviour, IDataPersistence
         data.playerHealthFillAmount = playerHealthFront.fillAmount;
     }
 
-
     void Die()
     {
-        // isGameOver = true;
         Player.GetComponent<MouseLook>().enabled = false;
         Player.GetComponent<PlayerMovement>().enabled = false;
+        playerMovement.enabled = false;
         gameOverPanel.SetActive(true);
         Time.timeScale = 0f;
-
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         Debug.Log("Character has died.");
-        // ����� �������� ����� ������ ��� ��������� ������ ���������,
-        // ��������, ������������ ������ ��� ��������� �������� ������.
+        isCharacterDead = true;
     }
 
-    
+    public void ShakeCamera()
+    {
+        if (isCharacterDead)
+        {
+            return;
+        }
+        currentShakeDuration = shakeDuration;
+        currentShakeMagnitude = shakeMagnitude;
+    }
 }
-

@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
 
+
     [HideInInspector]
     public bool canMove = true;
 
@@ -71,6 +72,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
+        
     }
     public void LoadData(GameData data)
     {
@@ -80,4 +82,5 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     {
         data.playerPosition = this.transform.position;
     }
+   
 }
