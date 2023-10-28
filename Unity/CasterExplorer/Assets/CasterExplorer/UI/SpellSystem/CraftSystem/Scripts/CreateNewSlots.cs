@@ -107,7 +107,7 @@ public class CreateNewSlots : MonoBehaviour
 
         SpellItem spellItem = ScriptableObject.CreateInstance<SpellItem>();
 
-        // Настройка свойств SpellItem
+        // Настройка свойств SpellItem 
         spellItem.Temperature = Temperature_Slot1 + Temperature_Slot2 - Temperature_Slot3;
         spellItem.Force = Force_Slot1 + Force_Slot2 - Force_Slot3;
         spellItem.Amperage = Amperage_Slot1 + Amperage_Slot2 - Amperage_Slot3;
@@ -121,6 +121,7 @@ public class CreateNewSlots : MonoBehaviour
             CountSpell++;
 
             spellItem.Icon = GenerateTexture();
+            spellItem.ItemName = CountSpell;
 
             string targetPath = "Assets/CasterExplorer/UI/SpellSystem/InventorySystem/Items" + "/" + CountSpell + ".asset";
 
@@ -131,7 +132,7 @@ public class CreateNewSlots : MonoBehaviour
 
             inventoryManager.Inicialization();
 
-            Instantiate(prefab, contentPanel); // Создаем префаб как дочерний элемент панели Content
+            //Instantiate(prefab, contentPanel); // Создаем префаб как дочерний элемент панели Content
             AddItem(spellItem);
         }
     }      
@@ -213,6 +214,7 @@ public class CreateNewSlots : MonoBehaviour
 
     public void AddItem(ItemScriptableObject _item)
     {
+        Instantiate(prefab, contentPanel); // Создаем префаб как дочерний элемент панели Content
         foreach (InventorySlots slot in inventoryManager.Slots)
         {
             if (slot.isEmpty)

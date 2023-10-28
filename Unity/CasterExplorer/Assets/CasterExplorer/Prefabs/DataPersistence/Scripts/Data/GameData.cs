@@ -18,11 +18,12 @@ public class GameData
     public MagisteriyaFruitPickUp MagisterutaFruitPickUp;
     public DateTime currentDateTime;
     public int maxHealth;
- 
-
+    public List<int> Slots;
+    
+    
 
     public SerializableDictionary<string, bool> magisteriyaCollected;
-
+    
     public GameData()
     {
         this.maxHealth = 100;
@@ -32,6 +33,8 @@ public class GameData
         this.playerHealthFillAmount = 0f;
         this.currentHealth = 0;
         magisteriyaCollected = new SerializableDictionary<string, bool>();
+        Slots = new List<int>();
+        
     }
 
     public int GetLevelInfo() // информация которая будет находиться в слоте сохранения
