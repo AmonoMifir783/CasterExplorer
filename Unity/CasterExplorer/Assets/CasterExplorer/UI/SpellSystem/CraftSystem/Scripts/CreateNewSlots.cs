@@ -65,7 +65,7 @@ public class CreateNewSlots : MonoBehaviour
         ItemScriptableObject ItemSlot2 = slot2Script.Item;
         ItemScriptableObject ItemSlot3 = slot3Script.Item;
 
-        Debug.Log("пупупу");
+        //Debug.Log("пупупу");
 
         if (!isEmptySlot1 && !isEmptySlot2 && !isEmptySlot3) // если все слоты заполнены
         {

@@ -31,7 +31,7 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
             if (InventoryPanel.GetChild(i).GetComponent<InventorySlots>() != null)
             {
                 Slots.Add(InventoryPanel.GetChild(i).GetComponent<InventorySlots>());
-                Debug.Log("Slots =" +  Slots[i].Item);
+                //Debug.Log("Slots =" +  Slots[i].Item);
                 i++;
             }
         }
@@ -41,7 +41,7 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
         for (int i = 1; i < data.Slots.Count; i++)
         {
             ItemScriptableObject[] items = Resources.LoadAll<ItemScriptableObject>("SpellSystem/InventorySystem/Items");
-            Debug.Log("dasdas" + items[i]);
+            //Debug.Log("dasdas" + items[i]);
 
             // Iterate through the loaded items
             foreach (ItemScriptableObject item in items)
@@ -50,7 +50,7 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
                 {
                     CreateNewSlots createNewSlotsScript = GetComponent<CreateNewSlots>();
                     createNewSlotsScript.AddItem(item);
-                    Debug.Log(item);
+                    //Debug.Log(item);
                 }
             }
         }
