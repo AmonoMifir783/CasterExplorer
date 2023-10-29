@@ -18,7 +18,7 @@ public class GameData
     public MagisteriyaFruitPickUp MagisterutaFruitPickUp;
     public DateTime currentDateTime;
     public int maxHealth;
-    public List<int> Slots;
+    public List<int> SlotsSave;
     
     
 
@@ -33,7 +33,7 @@ public class GameData
         this.playerHealthFillAmount = 0f;
         this.currentHealth = 0;
         magisteriyaCollected = new SerializableDictionary<string, bool>();
-        Slots = new List<int>();
+        SlotsSave = new List<int>();
         
     }
 
