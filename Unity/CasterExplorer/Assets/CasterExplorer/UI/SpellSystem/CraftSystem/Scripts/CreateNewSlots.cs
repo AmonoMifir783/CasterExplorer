@@ -27,10 +27,13 @@ public class CreateNewSlots : MonoBehaviour
     public Transform InventoryPanel;
     public InventoryManager inventoryManager;
 
+    public ChestPickUp chestPickUp;
+
 
     private void Start()
     {
         inventoryManager = FindObjectOfType<InventoryManager>();
+        chestPickUp = FindObjectOfType<ChestPickUp>();
 
         //ImaheOnScenTest = GetComponent<Image>();
 
@@ -116,9 +119,11 @@ public class CreateNewSlots : MonoBehaviour
 
 
 
-        if(!CheckInventory(spellItem))
+        if(!CheckInventory(spellItem) && chestPickUp.scrollCount > 0)
         {
             CountSpell++;
+            chestPickUp.scrollCount--;
+            chestPickUp.UpdateScrollCountUI();
 
             spellItem.Icon = GenerateTexture();
             spellItem.ItemName = CountSpell;
@@ -134,6 +139,10 @@ public class CreateNewSlots : MonoBehaviour
 
             //Instantiate(prefab, contentPanel); // Создаем префаб как дочерний элемент панели Content
             AddItem(spellItem);
+        }
+        else
+        {
+            Debug.Log("I dont have enough scrolls!");
         }
     }      
 

@@ -59,13 +59,16 @@ public class ChestPickUp : MonoBehaviour, IDataPersistence
         {
             int randomScrolls = UnityEngine.Random.Range(1, 4); // Generate a random number between 1 and 3
             scrollCount += randomScrolls;
+
             int remainingFruitCapacity = 10 - magisteriyaFruitPickUp.inventoryCount;
-            int randomFruits = UnityEngine.Random.Range(1, remainingFruitCapacity + 1); // Generate a random number between 1 and the remaining fruit capacity
-            int totalFruits = magisteriyaFruitPickUp.inventoryCount + randomFruits;
-            int pickedUpFruits = totalFruits <= 10 ? randomFruits : remainingFruitCapacity;
+            int randomFruits = UnityEngine.Random.Range(1, 4); // Generate a random number between 1 and 3
+            int pickedUpFruits = Mathf.Min(randomFruits, remainingFruitCapacity);
+
             magisteriyaFruitPickUp.inventoryCount += pickedUpFruits;
             magisteriyaFruitPickUp.MagisteriyaCount.text = magisteriyaFruitPickUp.inventoryCount.ToString();
+
             Debug.Log("Item picked up! Current inventory count: " + scrollCount);
+
             if (pickedUpChest.CompareTag("Chest"))
             {
                 Destroy(pickedUpChest.GetComponent<Collider>());
@@ -73,6 +76,7 @@ public class ChestPickUp : MonoBehaviour, IDataPersistence
                 Destroy(pickedUpChest, 1f);
                 pickedUpChests.Add(pickedUpChest);
             }
+
             UpdateScrollCountUI();
             isPickingUp = true;
             lastPickedUpChest = pickedUpChest;
@@ -89,7 +93,7 @@ public class ChestPickUp : MonoBehaviour, IDataPersistence
         }
     }
 
-    private void UpdateScrollCountUI()
+    public void UpdateScrollCountUI()
     {
         ScrollCount.text = scrollCount.ToString();
     }
