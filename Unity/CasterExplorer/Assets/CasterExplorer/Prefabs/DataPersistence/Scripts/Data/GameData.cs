@@ -19,7 +19,8 @@ public class GameData
     public DateTime currentDateTime;
     public int maxHealth;
     public List<int> SlotsSave;
-    
+    public int scrollCount;
+    public string ScrollCount;
     
 
     public SerializableDictionary<string, bool> magisteriyaCollected;
@@ -30,6 +31,8 @@ public class GameData
         playerPosition = Vector3.one;
         this.inventoryCount = 0;
         this.MagisteriyaCount = inventoryCount.ToString();
+        this.scrollCount = 5;
+        this.ScrollCount = scrollCount.ToString();
         this.playerHealthFillAmount = 0f;
         this.currentHealth = 0;
         magisteriyaCollected = new SerializableDictionary<string, bool>();
