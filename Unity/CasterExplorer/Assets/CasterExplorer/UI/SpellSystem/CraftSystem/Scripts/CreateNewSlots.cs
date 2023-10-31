@@ -137,7 +137,7 @@ public class CreateNewSlots : MonoBehaviour
 
             inventoryManager.Inicialization();
 
-            //Instantiate(prefab, contentPanel); // Создаем префаб как дочерний элемент панели Content
+            Instantiate(prefab, contentPanel); // Создаем префаб как дочерний элемент панели Content
             AddItem(spellItem);
         }
         else
@@ -223,7 +223,7 @@ public class CreateNewSlots : MonoBehaviour
 
     public void AddItem(ItemScriptableObject _item)
     {
-        Instantiate(prefab, contentPanel); // Создаем префаб как дочерний элемент панели Content
+        //Instantiate(prefab, contentPanel); // Создаем префаб как дочерний элемент панели Content
         foreach (InventorySlots slot in inventoryManager.Slots)
         {
             if (slot.isEmpty)

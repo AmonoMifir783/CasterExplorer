@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SpellSystemScript : MonoBehaviour
 {
@@ -12,9 +13,16 @@ public class SpellSystemScript : MonoBehaviour
     public GameObject FastSlots;
     public MurrorFastSlots MurrorFastSlots;
 
+    public GameObject CraftSlot1;
+    public GameObject CraftSlot2;
+    public GameObject CraftSlot3;
+
+    public InventoryManager inventoryManager;
+
     private void Start() 
     {
         MurrorFastSlots = FastSlots.GetComponent<MurrorFastSlots>(); 
+        inventoryManager = FindObjectOfType<InventoryManager>();
     }
 
     void Update()
@@ -53,6 +61,19 @@ public class SpellSystemScript : MonoBehaviour
 
     public void InventoryOff()
     {
+        if(!CraftSlot1.GetComponent<InventorySlots>().isEmpty)
+        {
+            ClearCreateSlots(CraftSlot1);
+        }
+        if(!CraftSlot2.GetComponent<InventorySlots>().isEmpty)
+        {
+            ClearCreateSlots(CraftSlot2);
+        }
+        if(!CraftSlot3.GetComponent<InventorySlots>().isEmpty)
+        {
+            ClearCreateSlots(CraftSlot3);
+        }
+
         SpellSystemMenu.SetActive(false);
         Time.timeScale = 1f;
         PauseGame = false;
@@ -60,7 +81,18 @@ public class SpellSystemScript : MonoBehaviour
 
         MurrorFastSlots.CloseInventory();
 
-        // if (GetComponent<Rigidbody>())
-        //     GetComponent<Rigidbody>().freezeRotation = false;
+    }
+
+    void ClearCreateSlots(GameObject CraftSlot)
+    {
+            CreateNewSlots createNewSlots = FindObjectOfType<CreateNewSlots>();
+            createNewSlots.AddItem(CraftSlot.GetComponent<InventorySlots>().Item);
+
+            CraftSlot.GetComponent<InventorySlots>().Icon.GetComponent<Image>().color = Color.clear;
+            CraftSlot.GetComponent<InventorySlots>().Icon.GetComponent<Image>().sprite = null;
+            CraftSlot.GetComponent<InventorySlots>().Item = null;
+            CraftSlot.GetComponent<InventorySlots>().isEmpty = true;
+            CraftSlot.GetComponent<InventorySlots>().isHighlighting = false;
+            inventoryManager.Inicialization();
     }
 }
