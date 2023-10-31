@@ -107,7 +107,7 @@ public class LivingArmorSR : MonoBehaviour
 
             additionalElectroDamage = 1 + ((K1 * 100) / maxCurrent);
             additionalDamage = true;
-            electroDamage = (int)(Mathf.Sqrt(livingArmorAi.damageAmount) * additionalElectroDamage);
+            electroDamage = (int)((Mathf.Sqrt(livingArmorAi.damageAmount)) * additionalElectroDamage);
         }
     }
 

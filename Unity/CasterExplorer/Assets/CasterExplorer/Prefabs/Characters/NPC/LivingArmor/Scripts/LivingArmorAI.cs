@@ -55,7 +55,7 @@ public class LivingArmorAI : MonoBehaviour
             {
                 // Атакуем игрока
                 Attack();
-                Debug.Log((int)(Mathf.Sqrt(damageAmount) * 5));
+                Debug.Log((int)(Mathf.Sqrt(damageAmount)));
             }
             if (Vector3.Distance(transform.position, player.position) <= attackRange && Time.time >= nextDamageTime && livingArmorSr.isElectric)
             {
@@ -111,7 +111,7 @@ public class LivingArmorAI : MonoBehaviour
     private void Attack()
     {
         PlayerHealth playerHealthScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
-        playerHealthScript.TakeDamage((int)(Mathf.Sqrt(damageAmount) * 5));
+        playerHealthScript.TakeDamage((int)(Mathf.Sqrt(damageAmount)));
         
         // 5
         nextDamageTime = Time.time + 2f;

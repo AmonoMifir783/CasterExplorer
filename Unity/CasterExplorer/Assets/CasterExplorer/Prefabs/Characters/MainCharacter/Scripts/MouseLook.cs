@@ -120,8 +120,8 @@ public class MouseLook : MonoBehaviour
     public float sensitivityY = 15F;
     public float minimumX = -360F;
     public float maximumX = 360F;
-    public float minimumY = -60F;
-    public float maximumY = 60F;
+    public float minimumY = -35F;
+    public float maximumY = 35F;
     public float smoothTime = 0.1f;
     private Vector2 currentRotation;
     private Vector2 targetRotation;
