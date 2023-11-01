@@ -22,11 +22,7 @@ public class ProjectileCollision : MonoBehaviour
             {
                 playerHealthScript.TakeDamage(damageAmount);
             }
-            //if (playerHealthScript && !salamandraSr.isBurning)
-            //{
-            //    playerHealthScript.TakeDamage(damageAmount);
-            //}
-            //if (playerHealthScript && salamandraSr.isBurning)
+            //if (playerHealthScript != null && salamandraSr != null && salamandraSr.isBurning)
             //{
             //    playerHealthScript.TakeDamage(salamandraSr.FireDamage);
             //}

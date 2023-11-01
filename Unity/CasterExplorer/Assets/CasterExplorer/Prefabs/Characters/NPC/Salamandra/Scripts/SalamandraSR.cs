@@ -36,24 +36,23 @@ public class SalamandraSR : MonoBehaviour
 
             if (spellReaction.Temperature < 0)
             {
-                isFrozen = true;
-                k = 1 + (T1 / minTemp);
+                k = 1 + (spellReaction.Temperature / minTemp);
                 TakeDamage(Mathf.Sqrt(spellReaction.Force) * k);
-                Debug.Log("1");
+                Debug.Log("FrozenDamage:" + Mathf.Sqrt(spellReaction.Force) * k);
             }
 
 
             if (spellReaction.Force > 0)
             {
                 TakeDamage(Mathf.Sqrt(spellReaction.Force));
-                Debug.Log("2");
+                //Debug.Log("2");
             }
             //на миро больше 500
             if (spellReaction.Temperature > 20)
             {
                 isBurning = true;
                 TakeDamage(Mathf.Sqrt(spellReaction.Force));
-                Debug.Log("3");
+                //Debug.Log("3");
             }
 
 
@@ -64,6 +63,7 @@ public class SalamandraSR : MonoBehaviour
             additionalFireDamage = 1 + (K1 / maxTemp);
             additionalDamage = true;
             FireDamage = projectileCollision.damageAmount * additionalFireDamage;
+            Debug.Log("Fire Damage:" + FireDamage);
         }
     }
 
