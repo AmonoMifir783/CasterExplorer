@@ -19,10 +19,14 @@ public class SpellSystemScript : MonoBehaviour
 
     public InventoryManager inventoryManager;
 
+    public PauseMenu pauseMenu;
+    public bool inventoryon = false;
+
     private void Start() 
     {
         MurrorFastSlots = FastSlots.GetComponent<MurrorFastSlots>(); 
         inventoryManager = FindObjectOfType<InventoryManager>();
+        pauseMenu = GetComponent<PauseMenu>();
     }
 
     void Update()
@@ -48,12 +52,18 @@ public class SpellSystemScript : MonoBehaviour
 
     public void InventoryOn()
     {
-        SpellSystemMenu.SetActive(true);
-        Time.timeScale = 0f;
-        PauseGame = true;
-        Cursor.visible = true;
-
-        
+        if (!pauseMenu.isPaused)
+        {
+            SpellSystemMenu.SetActive(true);
+            Time.timeScale = 0f;
+            if (Time.timeScale == 0f)
+            {
+                Time.timeScale = 0f;
+            }
+            PauseGame = true;
+            inventoryon = true;
+            Cursor.visible = true;
+        }
 
         // if (GetComponent<Rigidbody>())
         //     GetComponent<Rigidbody>().freezeRotation = true;
@@ -78,6 +88,7 @@ public class SpellSystemScript : MonoBehaviour
         Time.timeScale = 1f;
         PauseGame = false;
         Cursor.visible = false;
+        inventoryon = false;
 
         MurrorFastSlots.CloseInventory();
 

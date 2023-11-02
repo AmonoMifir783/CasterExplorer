@@ -15,7 +15,7 @@ C:/GitHub/CasterExplorer/Unity/CasterExplorer
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-50120
+50226
 Successfully changed project path to: C:/GitHub/CasterExplorer/Unity/CasterExplorer
 C:/GitHub/CasterExplorer/Unity/CasterExplorer
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -49,12 +49,12 @@ C:/GitHub/CasterExplorer/Unity/CasterExplorer
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [16172] Host "[IP] 192.168.1.45 [Port] 0 [Flags] 2 [Guid] 2293880870 [EditorId] 2293880870 [Version] 1048832 [Id] WindowsEditor(7,Koordinata) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [3172] Host "[IP] 192.168.1.45 [Port] 0 [Flags] 2 [Guid] 3891594134 [EditorId] 3891594134 [Version] 1048832 [Id] WindowsEditor(7,Koordinata) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [16172] Host "[IP] 192.168.1.45 [Port] 0 [Flags] 2 [Guid] 2293880870 [EditorId] 2293880870 [Version] 1048832 [Id] WindowsEditor(7,Koordinata) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [3172] Host "[IP] 192.168.1.45 [Port] 0 [Flags] 2 [Guid] 3891594134 [EditorId] 3891594134 [Version] 1048832 [Id] WindowsEditor(7,Koordinata) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
 [Physics::Module] Initialized MultithreadedJobDispatcher with 15 workers.
-Refreshing native plugins compatible for Editor in 5.17 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 7.09 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.3.9f1 (ea401c316338)
 [Subsystems] Discovering subsystems at path C:/Unity/2022.3.9f1/Editor/Data/Resources/UnitySubsystems
@@ -70,46 +70,46 @@ Initialize mono
 Mono path[0] = 'C:/Unity/2022.3.9f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Unity/2022.3.9f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Unity/2022.3.9f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56712
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56420
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Unity/2022.3.9f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
 Register platform support module: C:/Unity/2022.3.9f1/Editor/Data/PlaybackEngines/MetroSupport/UnityEditor.UWP.Extensions.dll
-Registered in 0.004697 seconds.
-- Loaded All Assemblies, in  0.264 seconds
+Registered in 0.005443 seconds.
+- Loaded All Assemblies, in  0.300 seconds
 Native extension for UWP target not found
 Native extension for WindowsStandalone target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.195 seconds
-Domain Reload Profiling: 459ms
-	BeginReloadAssembly (81ms)
+- Finished resetting the current domain, in  0.204 seconds
+Domain Reload Profiling: 503ms
+	BeginReloadAssembly (94ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (28ms)
-	RebuildNativeTypeToScriptingClass (8ms)
-	initialDomainReloadingComplete (41ms)
-	LoadAllAssembliesAndSetupDomain (105ms)
-		LoadAssemblies (79ms)
+	RebuildCommonClasses (34ms)
+	RebuildNativeTypeToScriptingClass (9ms)
+	initialDomainReloadingComplete (45ms)
+	LoadAllAssembliesAndSetupDomain (117ms)
+		LoadAssemblies (92ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (104ms)
-			TypeCache.Refresh (102ms)
-				TypeCache.ScanAssembly (92ms)
+		AnalyzeDomain (115ms)
+			TypeCache.Refresh (114ms)
+				TypeCache.ScanAssembly (103ms)
 			ScanForSourceGeneratedMonoScriptInfo (0ms)
 			ResolveRequiredComponents (0ms)
-	FinalizeReload (196ms)
+	FinalizeReload (204ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (150ms)
+		SetupLoadedEditorAssemblies (156ms)
 			LogAssemblyErrors (0ms)
 			InitializePlatformSupportModulesInManaged (7ms)
 			SetLoadedEditorAssemblies (4ms)
 			RefreshPlugins (0ms)
 			BeforeProcessingInitializeOnLoad (2ms)
-			ProcessInitializeOnLoadAttributes (98ms)
-			ProcessInitializeOnLoadMethodAttributes (39ms)
+			ProcessInitializeOnLoadAttributes (103ms)
+			ProcessInitializeOnLoadMethodAttributes (40ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -117,8 +117,8 @@ Domain Reload Profiling: 459ms
 ========================================================================
 Worker process is ready to serve import requests
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  0.572 seconds
-Refreshing native plugins compatible for Editor in 3.48 ms, found 3 plugins.
+- Loaded All Assemblies, in  0.504 seconds
+Refreshing native plugins compatible for Editor in 2.81 ms, found 3 plugins.
 Native extension for UWP target not found
 Native extension for WindowsStandalone target not found
 Package Manager log level set to [2]
@@ -126,89 +126,171 @@ Package Manager log level set to [2]
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.701 seconds
-Domain Reload Profiling: 1271ms
-	BeginReloadAssembly (125ms)
+- Finished resetting the current domain, in  0.452 seconds
+Domain Reload Profiling: 955ms
+	BeginReloadAssembly (121ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (5ms)
+		DisableScriptedObjects (4ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (20ms)
-	RebuildCommonClasses (40ms)
-	RebuildNativeTypeToScriptingClass (9ms)
-	initialDomainReloadingComplete (35ms)
-	LoadAllAssembliesAndSetupDomain (362ms)
-		LoadAssemblies (235ms)
+		CreateAndSetChildDomain (19ms)
+	RebuildCommonClasses (28ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (33ms)
+	LoadAllAssembliesAndSetupDomain (312ms)
+		LoadAssemblies (232ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (195ms)
-			TypeCache.Refresh (170ms)
-				TypeCache.ScanAssembly (153ms)
-			ScanForSourceGeneratedMonoScriptInfo (19ms)
-			ResolveRequiredComponents (5ms)
-	FinalizeReload (701ms)
+		AnalyzeDomain (149ms)
+			TypeCache.Refresh (129ms)
+				TypeCache.ScanAssembly (114ms)
+			ScanForSourceGeneratedMonoScriptInfo (14ms)
+			ResolveRequiredComponents (3ms)
+	FinalizeReload (453ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (527ms)
+		SetupLoadedEditorAssemblies (332ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (8ms)
-			SetLoadedEditorAssemblies (5ms)
+			InitializePlatformSupportModulesInManaged (5ms)
+			SetLoadedEditorAssemblies (4ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (87ms)
-			ProcessInitializeOnLoadAttributes (396ms)
-			ProcessInitializeOnLoadMethodAttributes (23ms)
-			AfterProcessingInitializeOnLoad (8ms)
+			BeforeProcessingInitializeOnLoad (50ms)
+			ProcessInitializeOnLoadAttributes (253ms)
+			ProcessInitializeOnLoadMethodAttributes (15ms)
+			AfterProcessingInitializeOnLoad (6ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (8ms)
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
-Refreshing native plugins compatible for Editor in 5.42 ms, found 3 plugins.
+		AwakeInstancesAfterBackupRestoration (6ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
+Refreshing native plugins compatible for Editor in 4.68 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 3505 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 36 unused Assets / (98.4 KB). Loaded Objects now: 3988.
 Memory consumption went from 143.4 MB to 143.3 MB.
-Total: 6.811500 ms (FindLiveObjects: 0.524700 ms CreateObjectMapping: 0.445400 ms MarkObjects: 5.485300 ms  DeleteObjects: 0.353200 ms)
+Total: 4.803300 ms (FindLiveObjects: 0.454100 ms CreateObjectMapping: 0.249400 ms MarkObjects: 3.794600 ms  DeleteObjects: 0.302900 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
   custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
   custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
   custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
   custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 357.596629 seconds.
-  path: Assets/New Terrain.asset
-  artifactKey: Guid(732429efa25b57f4a8c891248fcabf29) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/New Terrain.asset using Guid(732429efa25b57f4a8c891248fcabf29) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd9d7e8f40bdc8be3cd628a8f83303321') in 0.152107 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 4
-========================================================================
-Received Import Request.
-  Time since last request: 36.125966 seconds.
-  path: Assets/CasterExplorer/Prefabs/Objects/Chest/Chest.fbx
-  artifactKey: Guid(5e8ba6784678e8f469bc1a0ebe573b7c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CasterExplorer/Prefabs/Objects/Chest/Chest.fbx using Guid(5e8ba6784678e8f469bc1a0ebe573b7c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '23e4364a1b8df008f69e6a77e10abf12') in 0.105744 seconds
+  Time since last request: 582.379147 seconds.
+  path: Assets/CasterExplorer/Prefabs/Objects/Cylinder/Object/CylinderDegrees.fbx
+  artifactKey: Guid(47a4a49721078d04db26b7bb941d61c4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CasterExplorer/Prefabs/Objects/Cylinder/Object/CylinderDegrees.fbx using Guid(47a4a49721078d04db26b7bb941d61c4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bf2a8118b4916b3c8e5dd91e2ce26943') in 0.171056 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 9
 ========================================================================
 Received Import Request.
-  Time since last request: 2.424360 seconds.
-  path: Assets/CasterExplorer/Prefabs/Objects/Cylinder/Object
-  artifactKey: Guid(934c0839b6079a9489202039f9c96027) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CasterExplorer/Prefabs/Objects/Cylinder/Object using Guid(934c0839b6079a9489202039f9c96027) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '24f50728c064d8a2984d04fedf1479f5') in 0.000566 seconds
+  Time since last request: 1629.909105 seconds.
+  path: Assets/CasterExplorer/Prefabs/Objects/Cylinder/Object/cYLINDER_001.png
+  artifactKey: Guid(668958ece45e0744fbaefd5b9dcba464) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CasterExplorer/Prefabs/Objects/Cylinder/Object/cYLINDER_001.png using Guid(668958ece45e0744fbaefd5b9dcba464) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '342366726f65e62da47a716a94fc79c7') in 0.030199 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 8.196416 seconds.
+  path: Assets/CasterExplorer/Prefabs/Objects/Cylinder/Object/cYLINDER_002.png
+  artifactKey: Guid(b4e346eced395d7408d13be79cf88f96) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CasterExplorer/Prefabs/Objects/Cylinder/Object/cYLINDER_002.png using Guid(b4e346eced395d7408d13be79cf88f96) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '02d1d47f3053fd051974aec2a44868e9') in 0.014915 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 32.123705 seconds.
+  path: Assets/CasterExplorer/Prefabs/Objects/Cylinder/Object/Materials
+  artifactKey: Guid(6a7cc44151790cb47a7d6e16e9ee3206) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CasterExplorer/Prefabs/Objects/Cylinder/Object/Materials using Guid(6a7cc44151790cb47a7d6e16e9ee3206) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c7d94fc2c903a5b44a06f1c7175ea37f') in 0.000628 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 0
 ========================================================================
 Received Import Request.
-  Time since last request: 0.066164 seconds.
-  path: Assets/CasterExplorer/Prefabs/Objects/Cylinder/Object/cYLINDER.png
-  artifactKey: Guid(dfbfe1005af45f848b5eac4e8ba127b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CasterExplorer/Prefabs/Objects/Cylinder/Object/cYLINDER.png using Guid(dfbfe1005af45f848b5eac4e8ba127b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9470c872cfbae6dfdfc12364ae56457a') in 0.020640 seconds
+  Time since last request: 0.115103 seconds.
+  path: Assets/CasterExplorer/Prefabs/Objects/Cylinder/Object/Materials/cYLINDER_001.mat
+  artifactKey: Guid(40ca381b987a1f04c9efabce9fc8eaca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CasterExplorer/Prefabs/Objects/Cylinder/Object/Materials/cYLINDER_001.mat using Guid(40ca381b987a1f04c9efabce9fc8eaca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '26df91271d63ca7bf73e743748dcb9b2') in 0.014802 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 83.462683 seconds.
+  path: Assets/CasterExplorer/Prefabs/Objects/Cylinder/Object/cYLINDER_CLEAR.png
+  artifactKey: Guid(6bb3a36e3f4ab8d4f93bcf8d423b4d5d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CasterExplorer/Prefabs/Objects/Cylinder/Object/cYLINDER_CLEAR.png using Guid(6bb3a36e3f4ab8d4f93bcf8d423b4d5d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd295817be5e1fa22a7263a32c92a9be6') in 0.017756 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 213.254893 seconds.
+  path: Assets/CasterExplorer/Prefabs/Objects/Cylinder/Object/CylinderClear.fbx
+  artifactKey: Guid(693f998e8e36899419177ce26fc83832) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CasterExplorer/Prefabs/Objects/Cylinder/Object/CylinderClear.fbx using Guid(693f998e8e36899419177ce26fc83832) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c5dd05c8a4ab4bcac22d91ac7e010319') in 0.029749 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 13.408893 seconds.
+  path: Assets/CasterExplorer/Prefabs/Objects/Cylinder/Object/Texture
+  artifactKey: Guid(67415c3456b2fb143bef4e121344a3b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CasterExplorer/Prefabs/Objects/Cylinder/Object/Texture using Guid(67415c3456b2fb143bef4e121344a3b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'af89319f429e62f061127add65f212d5') in 0.000647 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 27.882560 seconds.
+  path: Assets/CasterExplorer/Prefabs/Objects/Cylinder/Object/CylinderClear.fbx
+  artifactKey: Guid(693f998e8e36899419177ce26fc83832) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CasterExplorer/Prefabs/Objects/Cylinder/Object/CylinderClear.fbx using Guid(693f998e8e36899419177ce26fc83832) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eb3e08e53e07212ce2be88f709ec6ac9') in 0.019251 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 13.256236 seconds.
+  path: Assets/CasterExplorer/Prefabs/Objects/Cylinder/Object/Object
+  artifactKey: Guid(34de9957ff7f2c048814f82d24448b41) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CasterExplorer/Prefabs/Objects/Cylinder/Object/Object using Guid(34de9957ff7f2c048814f82d24448b41) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '68be1bddbbc9a4a3cbd4498743b106d7') in 0.000656 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 20.694794 seconds.
+  path: Assets/CasterExplorer/Prefabs/Objects/Cylinder/Object/Texture/Materials
+  artifactKey: Guid(f0742346d9f747344916706f49b4757e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CasterExplorer/Prefabs/Objects/Cylinder/Object/Texture/Materials using Guid(f0742346d9f747344916706f49b4757e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '57e8e071f350c6f03c211ab72f8fc60c') in 0.000506 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.114796 seconds.
+  path: Assets/CasterExplorer/Prefabs/Objects/Cylinder/Object/Texture/Materials/cYLINDER.mat
+  artifactKey: Guid(61abfdd92d9c85a468c6f4f7d593f884) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CasterExplorer/Prefabs/Objects/Cylinder/Object/Texture/Materials/cYLINDER.mat using Guid(61abfdd92d9c85a468c6f4f7d593f884) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '11dfda011e698a703edc194ef1376f6f') in 0.012570 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/CasterExplorer/Prefabs/Objects/Cylinder/Object/Texture/Materials/cYLINDER_002.mat
+  artifactKey: Guid(6be58818bd7b72f49bc056a466155c1d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CasterExplorer/Prefabs/Objects/Cylinder/Object/Texture/Materials/cYLINDER_002.mat using Guid(6be58818bd7b72f49bc056a466155c1d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cdfd9f77a3f4d1e18a8e8725139480fb') in 0.015051 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 19.659506 seconds.
+  path: Assets/CasterExplorer/Prefabs/Objects/Cylinder/Object/Assets
+  artifactKey: Guid(67415c3456b2fb143bef4e121344a3b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CasterExplorer/Prefabs/Objects/Cylinder/Object/Assets using Guid(67415c3456b2fb143bef4e121344a3b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f900d9c1a2e35611d2a03112c4e7cfd8') in 0.000549 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0

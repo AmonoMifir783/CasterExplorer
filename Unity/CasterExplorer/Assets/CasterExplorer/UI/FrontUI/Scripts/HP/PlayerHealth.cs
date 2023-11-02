@@ -32,7 +32,7 @@ public class PlayerHealth : MonoBehaviour, IDataPersistence
         UpdateHealthUI();
     }
 
-    void Update()
+    void LateUpdate()
     {
         if (currentHealth <= 0)
         {
@@ -49,7 +49,7 @@ public class PlayerHealth : MonoBehaviour, IDataPersistence
                 transform.rotation = transform.rotation * Quaternion.Euler(randomOffset);
 
                 // Reduce the shake duration over time
-                currentShakeDuration -= Time.deltaTime;
+                currentShakeDuration -= Time.unscaledDeltaTime;
             }
         }
     }

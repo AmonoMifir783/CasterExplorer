@@ -10,11 +10,9 @@ public class BardSR : MonoBehaviour
     private bool isBardAiDisabled = false;
     private float disableDuration = 5f;
     private float disableTimer = 0f;
-
     public int mobHealth = 200;
     public bool isElectric = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         objectCollider = GetComponent<Collider>();
@@ -22,20 +20,25 @@ public class BardSR : MonoBehaviour
         bardAi = GetComponent<BardAI>();
     }
 
-    // Update is called once per frame
     private void Update()
     {
-        GetComponent<BardAI>().enabled = true;
-        if (isBardAiDisabled)
+        if (isElectric)
         {
+            isBardAiDisabled = true;
+            bardAi.enabled = false;
+
             disableTimer += Time.deltaTime;
             if (disableTimer >= disableDuration)
             {
-                GetComponent<BardAI>().enabled = false;
+                isElectric = false;
                 isBardAiDisabled = false;
                 disableTimer = 0f;
-                bardAi.enabled = true; // Re-enable the BardAI script
+                bardAi.enabled = true;
             }
+        }
+        if (!isElectric)
+        {
+            bardAi.enabled = true;
         }
     }
 
@@ -49,17 +52,15 @@ public class BardSR : MonoBehaviour
         if (spellReaction.Amperage > 20)
         {
             isElectric = true;
-            isBardAiDisabled = true;
-            bardAi.enabled = false; // Disable the BardAI script
         }
     }
 
     private void TakeDamage(float damageAmount)
     {
-        mobHealth -= (int)damageAmount; // Convert float to int and subtract damage from mob's health
+        mobHealth -= (int)damageAmount;
         if (mobHealth <= 0)
         {
-            Destroy(gameObject); // Destroy the mob if health reaches 0 or below
+            Destroy(gameObject);
         }
     }
 }
