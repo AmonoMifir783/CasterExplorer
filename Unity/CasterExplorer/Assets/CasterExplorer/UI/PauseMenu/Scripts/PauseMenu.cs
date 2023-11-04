@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private SaveSlotsPauseSave saveSlotsPauseSave;
     [SerializeField] private PauseMenu pauseMenu;
     public SpellSystemScript spellSystemScript;
+    public CanvasController openBestiary;
     public GameObject pauseMenuUI;
     public OptionsOpen optionsOpen;
     public ConfirmationPopupMenu confirmationPopupMenu;
@@ -23,6 +24,7 @@ public class PauseMenu : MonoBehaviour
         //saveSlotsPauseSave = GetComponent<SaveSlotsPauseSave>();
         //saveSlotsMenu = GetComponent<SaveSlotsMenu>();
         optionsOpen = GetComponent<OptionsOpen>();
+        openBestiary = GetComponent<CanvasController>();
     }
 
     void Update()
@@ -32,7 +34,14 @@ public class PauseMenu : MonoBehaviour
             if (spellSystemScript.inventoryon)
             {
                 spellSystemScript.InventoryOff();
-                //pauseMenuUI.SetActive(false);
+                // pauseMenuUI.SetActive(false);
+                Player.GetComponent<MouseLook>().enabled = true;
+                Player.GetComponent<PlayerMovement>().enabled = true;
+            }
+            else if (openBestiary.isOpened)
+            {
+                openBestiary.CloseImage();
+                // pauseMenuUI.SetActive(false);
                 Player.GetComponent<MouseLook>().enabled = true;
                 Player.GetComponent<PlayerMovement>().enabled = true;
             }
@@ -61,6 +70,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         isPaused = false;
         spellSystemScript.enabled = true;
+        openBestiary.enabled = true;
     }
 
     void Pause()
@@ -71,6 +81,7 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         pauseMenuUI.SetActive(true);
         spellSystemScript.InventoryOff();
+        openBestiary.CloseImage();
         Cursor.visible = true;
         Time.timeScale = 0f;
         //if (Time.timeScale == 0f)
@@ -78,6 +89,7 @@ public class PauseMenu : MonoBehaviour
         //    Time.timeScale = 0f;
         //}
         isPaused = true;
+        openBestiary.enabled = false;
     }
 
 

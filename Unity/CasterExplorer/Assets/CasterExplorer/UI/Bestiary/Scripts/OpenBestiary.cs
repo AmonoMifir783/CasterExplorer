@@ -8,6 +8,7 @@ public class CanvasController : MonoBehaviour
     public GameObject Book;
     public GameObject[] elementsToHide;
     public GameObject playerCamera;
+    public bool isOpened = false;
 
     private void Update()
     {
@@ -45,6 +46,7 @@ public class CanvasController : MonoBehaviour
         Time.timeScale = 0f;
         PauseGame = true;
         Cursor.visible = true;
+        isOpened = true;
     }
 
     public void CloseImage()
@@ -61,5 +63,6 @@ public class CanvasController : MonoBehaviour
         Time.timeScale = 1f;
         PauseGame = false;
         Cursor.visible = false;
+        isOpened = false;
     }
 }
