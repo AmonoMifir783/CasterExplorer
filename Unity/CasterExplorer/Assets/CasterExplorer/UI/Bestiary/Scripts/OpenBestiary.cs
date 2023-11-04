@@ -1,15 +1,22 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CanvasController : MonoBehaviour
+public class OpenBestiary : MonoBehaviour
 {
     
     public bool PauseGame;
     public GameObject Book;
     public GameObject[] elementsToHide;
     public GameObject playerCamera;
+    public GameObject FrontUI;
     public bool isOpened = false;
+    public SpellSystemScript spellSystemScript;
 
+
+    private void Start()
+    {
+        spellSystemScript = GetComponent<SpellSystemScript>();
+    }
     private void Update()
     {
         // ����������/�������� ������� ���������� ��� ������� ������� "B"
@@ -47,6 +54,8 @@ public class CanvasController : MonoBehaviour
         PauseGame = true;
         Cursor.visible = true;
         isOpened = true;
+        spellSystemScript.enabled = false;
+        FrontUI.SetActive(false);
     }
 
     public void CloseImage()
@@ -64,5 +73,7 @@ public class CanvasController : MonoBehaviour
         PauseGame = false;
         Cursor.visible = false;
         isOpened = false;
+        spellSystemScript.enabled = true;
+        FrontUI.SetActive(true);
     }
 }

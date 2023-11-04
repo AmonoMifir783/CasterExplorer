@@ -11,6 +11,7 @@ public class SpellSystemScript : MonoBehaviour
     public GameObject SpellSystemMenu;
     public GameObject playerCamera;
     public GameObject FastSlots;
+    public GameObject FrontUI;
     public MurrorFastSlots MurrorFastSlots;
 
     public GameObject CraftSlot1;
@@ -20,6 +21,7 @@ public class SpellSystemScript : MonoBehaviour
     public InventoryManager inventoryManager;
 
     public PauseMenu pauseMenu;
+    public OpenBestiary openBestiary;
     public bool inventoryon = false;
 
     private void Start() 
@@ -27,6 +29,7 @@ public class SpellSystemScript : MonoBehaviour
         MurrorFastSlots = FastSlots.GetComponent<MurrorFastSlots>(); 
         inventoryManager = FindObjectOfType<InventoryManager>();
         pauseMenu = GetComponent<PauseMenu>();
+        openBestiary = GetComponent<OpenBestiary>();
     }
 
     void Update()
@@ -63,6 +66,8 @@ public class SpellSystemScript : MonoBehaviour
             PauseGame = true;
             inventoryon = true;
             Cursor.visible = true;
+            openBestiary.enabled = false;
+            FrontUI.SetActive(false);
         }
 
         // if (GetComponent<Rigidbody>())
@@ -91,7 +96,8 @@ public class SpellSystemScript : MonoBehaviour
         inventoryon = false;
 
         MurrorFastSlots.CloseInventory();
-
+        openBestiary.enabled=true;
+        FrontUI.SetActive(true);
     }
 
     void ClearCreateSlots(GameObject CraftSlot)

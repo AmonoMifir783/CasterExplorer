@@ -9,7 +9,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private SaveSlotsPauseSave saveSlotsPauseSave;
     [SerializeField] private PauseMenu pauseMenu;
     public SpellSystemScript spellSystemScript;
-    public CanvasController openBestiary;
+    public OpenBestiary openBestiary;
     public GameObject pauseMenuUI;
     public OptionsOpen optionsOpen;
     public ConfirmationPopupMenu confirmationPopupMenu;
@@ -24,7 +24,7 @@ public class PauseMenu : MonoBehaviour
         //saveSlotsPauseSave = GetComponent<SaveSlotsPauseSave>();
         //saveSlotsMenu = GetComponent<SaveSlotsMenu>();
         optionsOpen = GetComponent<OptionsOpen>();
-        openBestiary = GetComponent<CanvasController>();
+        openBestiary = GetComponent<OpenBestiary>();
     }
 
     void Update()

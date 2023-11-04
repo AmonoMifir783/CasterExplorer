@@ -15,13 +15,18 @@ public class SettingsMenu : MonoBehaviour
     Resolution[] resolutions;
     public GameObject OptionsMenu;
 
+    public MouseLook mouseLookScript; // Ссылка на скрипт MouseLook
+
+    public Slider sensitivitySliderX; // Ссылка на слайдер чувствительности мыши по оси X
+    public Slider sensitivitySliderY; // Ссылка на слайдер чувствительности мыши по оси Y
+
     void Start()
     {
+        mouseLookScript = GetComponent<MouseLook>();
         //resolutionDropdown.ClearOptions();
         List<string> options = new List<string>();
         resolutions = Screen.resolutions;
         int currentResolutionIndex = 0;
-
         for (int i = 0; i < resolutions.Length; i++)
         {
             string option = resolutions[i].width + "x" + resolutions[i].height + " " + resolutions[i].refreshRateRatio + "Hz";
@@ -30,7 +35,6 @@ public class SettingsMenu : MonoBehaviour
                   && resolutions[i].height == Screen.currentResolution.height)
                 currentResolutionIndex = i;
         }
-
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.RefreshShownValue();
         LoadSettings(currentResolutionIndex);
@@ -41,6 +45,7 @@ public class SettingsMenu : MonoBehaviour
     //    audioMixer.SetFloat("Volume", volume);
     //    currentVolume = volume;
     //}
+
     public void SetFullscreen(bool isFullscreen)
     {
         Screen.fullScreen = isFullscreen;
@@ -53,12 +58,9 @@ public class SettingsMenu : MonoBehaviour
                   resolution.height, Screen.fullScreen);
     }
 
-
     public void SetQuality(int qualityIndex)
     {
-
         QualitySettings.SetQualityLevel(qualityIndex);
-
     }
 
     public void ExitSettings()
@@ -76,6 +78,10 @@ public class SettingsMenu : MonoBehaviour
                    System.Convert.ToInt32(Screen.fullScreen));
         //PlayerPrefs.SetFloat("VolumePreference",
         //           currentVolume);
+
+        // Сохраняем настройки чувствительности мыши
+        //PlayerPrefs.SetFloat("MouseSensitivityX", mouseLookScript.sensitivityX);
+        //PlayerPrefs.SetFloat("MouseSensitivityY", mouseLookScript.sensitivityY);
     }
 
     public void LoadSettings(int currentResolutionIndex)
@@ -101,5 +107,27 @@ public class SettingsMenu : MonoBehaviour
         //else
         //    volumeSlider.value =
         //                PlayerPrefs.GetFloat("VolumePreference");
+
+        // Загружаем настройки чувствительности мыши
+        if (PlayerPrefs.HasKey("MouseSensitivityX"))
+        {
+            mouseLookScript.sensitivityX = PlayerPrefs.GetFloat("MouseSensitivityX");
+            sensitivitySliderX.value = mouseLookScript.sensitivityX;
+        }
+        if (PlayerPrefs.HasKey("MouseSensitivityY"))
+        {
+            mouseLookScript.sensitivityY = PlayerPrefs.GetFloat("MouseSensitivityY");
+            sensitivitySliderY.value = mouseLookScript.sensitivityY;
+        }
+    }
+
+    public void SetMouseSensitivityX(float sensitivity)
+    {
+        mouseLookScript.sensitivityX = sensitivity;
+    }
+
+    public void SetMouseSensitivityY(float sensitivity)
+    {
+        mouseLookScript.sensitivityY = sensitivity;
     }
 }
