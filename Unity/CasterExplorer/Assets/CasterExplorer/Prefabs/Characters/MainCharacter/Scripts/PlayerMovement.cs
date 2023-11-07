@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public Camera playerCamera;
     public float lookSpeed = 2.0f;
     public float lookXLimit = 45.0f;
+    public AudioClip[] jumpSounds;
+    public AudioSource audioSource;
+    private float lastJumpTime = 0f;
 
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
@@ -44,9 +47,18 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         float movementDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
-        if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
+        if (Input.GetButton("Jump") && canMove && characterController.isGrounded && Time.time - lastJumpTime >= 0.5f)
         {
             moveDirection.y = jumpSpeed;
+            lastJumpTime = Time.time;
+
+            // Play a random jump sound
+            if (jumpSounds.Length > 0 && audioSource != null)
+            {
+                int randomIndex = UnityEngine.Random.Range(0, jumpSounds.Length);
+                audioSource.clip = jumpSounds[randomIndex];
+                audioSource.Play();
+            }
         }
         else
         {
