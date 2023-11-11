@@ -13,6 +13,9 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     public OptionsOpen optionsOpen;
     public ConfirmationPopupMenu confirmationPopupMenu;
+    public MagisteriyaFruitPickUp magisteriyaFruitPickUp;
+    public MagisteriyaFruitUse magisteriyaFruitUse;
+    public ChestPickUp chestPickUp;
 
     public bool isPaused = false;
     public GameObject Player;
@@ -25,6 +28,9 @@ public class PauseMenu : MonoBehaviour
         //saveSlotsMenu = GetComponent<SaveSlotsMenu>();
         optionsOpen = GetComponent<OptionsOpen>();
         openBestiary = GetComponent<OpenBestiary>();
+        magisteriyaFruitPickUp = GetComponent<MagisteriyaFruitPickUp>();
+        magisteriyaFruitUse = GetComponent<MagisteriyaFruitUse>();
+        chestPickUp = GetComponent<ChestPickUp>();
     }
 
     void Update()
@@ -63,6 +69,9 @@ public class PauseMenu : MonoBehaviour
     {
         Player.GetComponent<MouseLook>().enabled = true;
         Player.GetComponent<PlayerMovement>().enabled = true;
+        Player.GetComponent<MagisteriyaFruitPickUp>().enabled = true;
+        Player.GetComponent<MagisteriyaFruitUse>().enabled = true;
+        Player.GetComponent<ChestPickUp>().enabled = true;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         pauseMenuUI.SetActive(false);
@@ -77,6 +86,9 @@ public class PauseMenu : MonoBehaviour
     {
         Player.GetComponent<MouseLook>().enabled = false;
         Player.GetComponent<PlayerMovement>().enabled = false;
+        Player.GetComponent<MagisteriyaFruitPickUp>().enabled = false;
+        Player.GetComponent<MagisteriyaFruitUse>().enabled = false;
+        Player.GetComponent<ChestPickUp>().enabled = false;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         pauseMenuUI.SetActive(true);

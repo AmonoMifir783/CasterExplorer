@@ -9,14 +9,15 @@ public class MimkAI : MonoBehaviour
     public float attackDistance = 15f;
     public float movementSpeed = 5f;
     public float rotationSpeed = 5f;
-
     public bool isOpen = false;
     private bool isAttacking = false;
+    public AudioClip[] openSounds;
+    public AudioClip[] closeSounds;
+    public AudioSource audioSource;
 
     void Update()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-
         if (!isOpen && distanceToPlayer <= detectionDistance)
         {
             Open();
@@ -25,7 +26,6 @@ public class MimkAI : MonoBehaviour
         {
             Close();
         }
-
         if (isAttacking)
         {
             Attack();
@@ -37,8 +37,15 @@ public class MimkAI : MonoBehaviour
     {
         isOpen = true;
         isAttacking = true;
-        // Добавьте здесь код для открытия визуального состояния моба
+        // Add code here to open the visual state of the mob
+
+        if (openSounds.Length > 0)
+        {
+            int randomIndex = Random.Range(0, openSounds.Length);
+            audioSource.PlayOneShot(openSounds[randomIndex]);
+        }
     }
+
     private void RotateTowardsPlayer()
     {
         Vector3 direction = (player.position - transform.position).normalized;
@@ -50,13 +57,19 @@ public class MimkAI : MonoBehaviour
     {
         isOpen = false;
         isAttacking = false;
-        // Добавьте здесь код для закрытия визуального состояния моба
+        // Add code here to close the visual state of the mob
+
+        if (closeSounds.Length > 0)
+        {
+            int randomIndex = Random.Range(0, closeSounds.Length);
+            audioSource.PlayOneShot(closeSounds[randomIndex]);
+        }
     }
 
     void Attack()
     {
         //transform.LookAt(player);
         transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
-        // Добавьте здесь код для атаки игрока
+        // Add code here to attack the player
     }
 }

@@ -9,6 +9,8 @@ public class MagisteriyaFruitUse : MonoBehaviour
     public int healthToAdd = 25;
     private MagisteriyaFruitPickUp magisteriyaPickUpScript;
     public TextMeshProUGUI MagisteriyaCount;
+    public AudioClip[] eatSounds; // Array of eat sounds
+    public AudioSource audioSource;
 
     private void Start()
     {
@@ -68,6 +70,13 @@ public class MagisteriyaFruitUse : MonoBehaviour
                         magisteriyaPickUpScript.inventoryCount = count;
                         Debug.Log("Item applied! Current inventory count: " + count);
                         // Add additional code for using the item or modifying player health here.
+
+                        // Play one of the eat sounds randomly
+                        if (eatSounds.Length > 0)
+                        {
+                            int randomIndex = Random.Range(0, eatSounds.Length);
+                            audioSource.PlayOneShot(eatSounds[randomIndex]);
+                        }
                     }
                     else
                     {

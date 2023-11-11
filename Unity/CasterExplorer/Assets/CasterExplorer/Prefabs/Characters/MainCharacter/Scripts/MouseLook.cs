@@ -126,12 +126,19 @@ public class MouseLook : MonoBehaviour
     private Vector2 currentRotation;
     private Vector2 targetRotation;
     private Vector2 rotationVelocity;
+    private GameObject cameraPlayer; // Reference to the CameraPlayer GameObject
+    private Quaternion originalRotation; // Store the original rotation of the character body
+    public GameObject staff; // Reference to the Staff GameObject
 
     void Start()
     {
         Cursor.visible = false;
         if (GetComponent<Rigidbody>())
             GetComponent<Rigidbody>().freezeRotation = true;
+        // Find the CameraPlayer GameObject in the scene and assign it to the cameraPlayer variable
+        cameraPlayer = GameObject.Find("CameraPlayer");
+        // Store the original rotation of the character body
+        originalRotation = transform.localRotation;
     }
 
     void Update()
@@ -143,17 +150,22 @@ public class MouseLook : MonoBehaviour
             targetRotation.y = Mathf.Clamp(targetRotation.y, minimumY, maximumY);
             // Smoothly interpolate the current rotation to the target rotation
             currentRotation = Vector2.SmoothDamp(currentRotation, targetRotation, ref rotationVelocity, smoothTime);
-            transform.localRotation = Quaternion.Euler(-currentRotation.y, currentRotation.x, 0);
+            transform.localRotation = Quaternion.Euler(0, currentRotation.x, 0);
+            cameraPlayer.transform.localRotation = Quaternion.Euler(-currentRotation.y, 0, 0);
         }
         else if (axes == RotationAxes.MouseX)
         {
             transform.Rotate(0, Input.GetAxis("Mouse X") * sensitivityX, 0);
+            cameraPlayer.transform.localRotation = Quaternion.Euler(-transform.localEulerAngles.x, 0, 0);
         }
         else
         {
             targetRotation.y -= Input.GetAxis("Mouse Y") * sensitivityY;
             targetRotation.y = Mathf.Clamp(targetRotation.y, minimumY, maximumY);
-            transform.localRotation = Quaternion.Euler(-targetRotation.y, transform.localEulerAngles.y, 0);
+            cameraPlayer.transform.localRotation = Quaternion.Euler(-targetRotation.y, 0, 0);
         }
+
+        // Rotate the Staff GameObject along with the camera
+        staff.transform.rotation = cameraPlayer.transform.rotation;
     }
 }

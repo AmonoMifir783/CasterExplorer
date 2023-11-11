@@ -8,6 +8,7 @@ public class OpenBestiary : MonoBehaviour
     public GameObject Book;
     public GameObject[] elementsToHide;
     public GameObject playerCamera;
+    public GameObject Player;
     public GameObject FrontUI;
     public bool isOpened = false;
     public SpellSystemScript spellSystemScript;
@@ -26,6 +27,9 @@ public class OpenBestiary : MonoBehaviour
             {
                 playerCamera.GetComponent<MouseLook>().enabled = true;
                 playerCamera.GetComponent<PlayerMovement>().enabled = true;
+                Player.GetComponent<MagisteriyaFruitPickUp>().enabled = true;
+                Player.GetComponent<MagisteriyaFruitUse>().enabled = true;
+                Player.GetComponent<ChestPickUp>().enabled = true;
                 Cursor.lockState = CursorLockMode.Locked;
                 CloseImage();
             }
@@ -33,6 +37,9 @@ public class OpenBestiary : MonoBehaviour
             {
                 playerCamera.GetComponent<MouseLook>().enabled = false;
                 playerCamera.GetComponent<PlayerMovement>().enabled = false;
+                Player.GetComponent<MagisteriyaFruitPickUp>().enabled = false;
+                Player.GetComponent<MagisteriyaFruitUse>().enabled = false;
+                Player.GetComponent<ChestPickUp>().enabled = false;
                 Cursor.lockState = CursorLockMode.None;
                 OpenImage();
             }

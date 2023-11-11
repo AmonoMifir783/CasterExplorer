@@ -10,6 +10,7 @@ public class SpellSystemScript : MonoBehaviour
     public bool PauseGame;
     public GameObject SpellSystemMenu;
     public GameObject playerCamera;
+    public GameObject Player;
     public GameObject FastSlots;
     public GameObject FrontUI;
     public MurrorFastSlots MurrorFastSlots;
@@ -40,6 +41,9 @@ public class SpellSystemScript : MonoBehaviour
             {
                 playerCamera.GetComponent<MouseLook>().enabled = false;
                 playerCamera.GetComponent<PlayerMovement>().enabled = false;
+                Player.GetComponent<MagisteriyaFruitPickUp>().enabled = false;
+                Player.GetComponent<MagisteriyaFruitUse>().enabled = false;
+                Player.GetComponent<ChestPickUp>().enabled = false;
                 Cursor.lockState = CursorLockMode.None;
                 InventoryOn();
             }
@@ -47,6 +51,9 @@ public class SpellSystemScript : MonoBehaviour
             {
                 playerCamera.GetComponent<MouseLook>().enabled = true;
                 playerCamera.GetComponent<PlayerMovement>().enabled = true;
+                Player.GetComponent<MagisteriyaFruitPickUp>().enabled = true;
+                Player.GetComponent<MagisteriyaFruitUse>().enabled = true;
+                Player.GetComponent<ChestPickUp>().enabled = true;
                 Cursor.lockState = CursorLockMode.Locked;
                 InventoryOff();
             }

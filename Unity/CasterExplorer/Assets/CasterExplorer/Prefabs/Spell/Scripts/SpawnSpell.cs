@@ -8,6 +8,8 @@ public class ShootSpell : MonoBehaviour
     public Transform MagicWand;
     public Camera mainCamera;
     public float Force = 1000;
+    public AudioSource audioSource; // Reference to the AudioSource component
+    public AudioClip[] shootSounds;
 
 
     public void Shoot(int Temperature, int Force, int Amperage, int Gravity, int Light)
@@ -41,6 +43,8 @@ public class ShootSpell : MonoBehaviour
         gradient.SetKeys(
             new GradientColorKey[] { new GradientColorKey(newColor1, 0.0f), new GradientColorKey(newColor2, 1.0f) },
             new GradientAlphaKey[] { new GradientAlphaKey(1.0f, 0.0f), new GradientAlphaKey(1.0f, 1.0f) }
+
+
         );
         colorModule.color = gradient;
     
@@ -55,5 +59,10 @@ public class ShootSpell : MonoBehaviour
         GameObject currentSpell = Instantiate(Spell, MagicWand.position, Quaternion.identity);
         currentSpell.transform.forward = dirWithoutSpread.normalized;
         currentSpell.GetComponent<Rigidbody>().AddForce(dirWithoutSpread.normalized * Force, ForceMode.Impulse);
+        if (shootSounds.Length > 0)
+        {
+            int randomIndex = Random.Range(0, shootSounds.Length);
+            audioSource.PlayOneShot(shootSounds[randomIndex]);
+        }
     }
 }
