@@ -13,6 +13,8 @@ public class MainMenu : Menu
     [SerializeField] private Button newGameButton;
     [SerializeField] private Button continueGameButton;
     [SerializeField] private Button loadGameButton;
+    public AudioSource audioSource;
+    public AudioClip buttonClickSound;
     private void Start()
     {
         DisableButtonsDependingOnData();
@@ -70,5 +72,9 @@ public class MainMenu : Menu
     public void ExitGame()
     {
         Application.Quit();
+    }
+    public void PlayButtonClickSound()
+    {
+        audioSource.PlayOneShot(buttonClickSound);
     }
 }

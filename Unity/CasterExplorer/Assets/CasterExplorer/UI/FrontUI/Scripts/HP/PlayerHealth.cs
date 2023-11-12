@@ -22,7 +22,7 @@ public class PlayerHealth : MonoBehaviour, IDataPersistence
     Quaternion initialRotation;
     private bool isCharacterDead = false;
     public AudioClip[] damageSounds; // массив звуков получения урона
-    public AudioClip deathSound;
+    public AudioClip[] deathSound;
     public AudioSource audioSource;
     //public AudioSource deathAudioSource;
 
@@ -70,7 +70,7 @@ public class PlayerHealth : MonoBehaviour, IDataPersistence
         }
 
         // Play a random damage sound
-        if (damageSounds.Length > 0 && audioSource != null)
+        if (damageSounds.Length > 0 && audioSource != null && currentHealth > 1)
         {
             int randomIndex = UnityEngine.Random.Range(0, damageSounds.Length);
             audioSource.clip = damageSounds[randomIndex];
@@ -127,13 +127,6 @@ public class PlayerHealth : MonoBehaviour, IDataPersistence
         Cursor.lockState = CursorLockMode.None;
         Debug.Log("Character has died.");
         isCharacterDead = true;
-
-        // Play the death sound
-        //if (deathSound != null && deathAudioSource != null)
-        //{
-        //    deathAudioSource.clip = deathSound;
-        //    deathAudioSource.Play();
-        //}
     }
 
     public void ShakeCamera()

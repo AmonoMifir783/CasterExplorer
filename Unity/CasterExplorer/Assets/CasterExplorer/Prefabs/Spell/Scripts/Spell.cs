@@ -9,6 +9,9 @@ public class Spell : MonoBehaviour
     private Collider spellCollider;
     bool checkOnCollisionEnter = false;
 
+    public AudioSource audioSource; // Reference to the AudioSource component
+    public AudioClip[] explosionSounds;
+
 
     public int Temperature;
     public int Force;
@@ -47,6 +50,11 @@ public class Spell : MonoBehaviour
                 Destroy(gameObject, 1.5f);
 
                 checkOnCollisionEnter = true;
+                if (explosionSounds.Length > 0)
+                {
+                    int randomIndex = Random.Range(0, explosionSounds.Length);
+                    audioSource.PlayOneShot(explosionSounds[randomIndex]);
+                }
             }
         }
     }

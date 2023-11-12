@@ -25,6 +25,10 @@ public class SalamdraAI : MonoBehaviour
     private bool isRunningAway; // Флаг убегания от игрока
     private Vector3 runAwayPosition; // Позиция, в которую нужно убежать
     private SpellReaction spellReaction;
+    public AudioClip[] seePlayerSounds;
+    public AudioClip[] spitSounds;
+    public AudioClip[] fearSounds;
+    public AudioSource audioSource;
 
     private void Start()
     {
@@ -45,7 +49,6 @@ public class SalamdraAI : MonoBehaviour
         {
             isChasing = true; // Включаем режим преследования
             RotateTowardsPlayer();
-
             // Проверяем, если игрок находится в пределах атаки
             if (distanceToPlayer <= attackRange)
             {
@@ -76,6 +79,11 @@ public class SalamdraAI : MonoBehaviour
         if (distanceToPlayer < runRange)
         {
             RunAwayFromPlayer();
+            if (fearSounds.Length > 0)
+            {
+                int randomIndex = Random.Range(0, fearSounds.Length);
+                audioSource.PlayOneShot(fearSounds[randomIndex]);
+            }
         }
     }
 
@@ -115,10 +123,21 @@ public class SalamdraAI : MonoBehaviour
         Vector3 direction = (player.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+        if (seePlayerSounds.Length > 0 && audioSource != null)
+        {
+            int randomIndex = Random.Range(0, seePlayerSounds.Length);
+            //audioSource.volume = 0.01f; // Set the volume to a lower value (e.g., 0.5f for 50% volume)
+            audioSource.PlayOneShot(seePlayerSounds[randomIndex]);
+        }
     }
 
     private void LaunchProjectile()
     {
+        if (spitSounds.Length > 0)
+        {
+            int randomIndex = Random.Range(0, spitSounds.Length);
+            audioSource.PlayOneShot(spitSounds[randomIndex]);
+        }
         // Создаем экземпляр плевка
         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
         Rigidbody projectileRigidbody = projectile.GetComponent<Rigidbody>();
@@ -144,6 +163,7 @@ public class SalamdraAI : MonoBehaviour
 
     private void RunAwayFromPlayer()
     {
+       
         // Устанавливаем позицию, в которую нужно убежать
         runAwayPosition = transform.position + (transform.position - player.position).normalized;
 

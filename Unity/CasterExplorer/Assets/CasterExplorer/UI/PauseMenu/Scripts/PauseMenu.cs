@@ -20,6 +20,9 @@ public class PauseMenu : MonoBehaviour
     public bool isPaused = false;
     public GameObject Player;
 
+    public AudioSource audioSource;
+    public AudioClip buttonClickSound;
+
     void Start()
     {
         pauseMenuUI.SetActive(false);
@@ -149,6 +152,9 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene("Menu");
         isPaused = false;
     }
-
+    public void PlayButtonClickSound()
+    {
+        audioSource.PlayOneShot(buttonClickSound);
+    }
 
 }

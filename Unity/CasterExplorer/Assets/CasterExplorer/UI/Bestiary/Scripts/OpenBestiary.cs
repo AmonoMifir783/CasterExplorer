@@ -12,6 +12,8 @@ public class OpenBestiary : MonoBehaviour
     public GameObject FrontUI;
     public bool isOpened = false;
     public SpellSystemScript spellSystemScript;
+    public AudioSource audioSource; // Reference to the AudioSource component
+    public AudioClip[] pageSounds;
 
 
     private void Start()
@@ -32,6 +34,11 @@ public class OpenBestiary : MonoBehaviour
                 Player.GetComponent<ChestPickUp>().enabled = true;
                 Cursor.lockState = CursorLockMode.Locked;
                 CloseImage();
+                if (pageSounds.Length > 0)
+                {
+                    int randomIndex = Random.Range(0, pageSounds.Length);
+                    audioSource.PlayOneShot(pageSounds[randomIndex]);
+                }
             }
             else
             {
@@ -63,6 +70,11 @@ public class OpenBestiary : MonoBehaviour
         isOpened = true;
         spellSystemScript.enabled = false;
         FrontUI.SetActive(false);
+        if (pageSounds.Length > 0)
+        {
+            int randomIndex = Random.Range(0, pageSounds.Length);
+            audioSource.PlayOneShot(pageSounds[randomIndex]);
+        }
     }
 
     public void CloseImage()

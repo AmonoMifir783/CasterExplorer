@@ -109,25 +109,25 @@ public class SettingsMenu : MonoBehaviour
         //                PlayerPrefs.GetFloat("VolumePreference");
 
         // Загружаем настройки чувствительности мыши
-        if (PlayerPrefs.HasKey("MouseSensitivityX"))
-        {
-            mouseLookScript.sensitivityX = PlayerPrefs.GetFloat("MouseSensitivityX");
-            sensitivitySliderX.value = mouseLookScript.sensitivityX;
-        }
-        if (PlayerPrefs.HasKey("MouseSensitivityY"))
-        {
-            mouseLookScript.sensitivityY = PlayerPrefs.GetFloat("MouseSensitivityY");
-            sensitivitySliderY.value = mouseLookScript.sensitivityY;
-        }
+        //if (PlayerPrefs.HasKey("MouseSensitivityX"))
+        //{
+        //    mouseLookScript.sensitivityX = PlayerPrefs.GetFloat("MouseSensitivityX");
+        //    sensitivitySliderX.value = mouseLookScript.sensitivityX;
+        //}
+        //if (PlayerPrefs.HasKey("MouseSensitivityY"))
+        //{
+        //    mouseLookScript.sensitivityY = PlayerPrefs.GetFloat("MouseSensitivityY");
+        //    sensitivitySliderY.value = mouseLookScript.sensitivityY;
+        //}
     }
 
-    public void SetMouseSensitivityX(float sensitivity)
-    {
-        mouseLookScript.sensitivityX = sensitivity;
-    }
+    //public void SetMouseSensitivityX(float sensitivity)
+    //{
+    //    mouseLookScript.sensitivityX = sensitivity;
+    //}
 
-    public void SetMouseSensitivityY(float sensitivity)
-    {
-        mouseLookScript.sensitivityY = sensitivity;
-    }
+    //public void SetMouseSensitivityY(float sensitivity)
+    //{
+    //    mouseLookScript.sensitivityY = sensitivity;
+    //}
 }

@@ -28,6 +28,8 @@ public class CreateNewSlots : MonoBehaviour
     public InventoryManager inventoryManager;
 
     public ChestPickUp chestPickUp;
+    public AudioClip[] craftSounds;
+    public AudioSource audioSource;
 
 
     private void Start()
@@ -136,6 +138,12 @@ public class CreateNewSlots : MonoBehaviour
             #endif
 
             inventoryManager.Inicialization();
+
+            if (craftSounds.Length > 0)
+            {
+                int randomIndex = Random.Range(0, craftSounds.Length);
+                audioSource.PlayOneShot(craftSounds[randomIndex]);
+            }
 
             Instantiate(prefab, contentPanel); // Создаем префаб как дочерний элемент панели Content
             AddItem(spellItem);

@@ -22,6 +22,9 @@ public class SalamandraSR : MonoBehaviour
     public int T1;
     public int K1;
     public int k;
+    public AudioClip[] damageSounds;
+    public AudioClip[] deathSounds;
+    public AudioSource audioSource;
     // Start is called before the first frame update
     private void Start()
     {
@@ -72,11 +75,21 @@ public class SalamandraSR : MonoBehaviour
         // Update is called once per frame
     private void TakeDamage(float damageAmount)
     {
+        if (damageSounds.Length > 0)
+        {
+            int randomIndex = Random.Range(0, damageSounds.Length);
+            audioSource.PlayOneShot(damageSounds[randomIndex]);
+        }
         mobHealth -= (int)damageAmount; // Convert float to int and subtract damage from mob's health
 
         if (mobHealth <= 0)
         {
-        Destroy(gameObject); // Destroy the mob if health reaches 0 or below
+            if (deathSounds.Length > 0)
+            {
+                int randomIndex = Random.Range(0, deathSounds.Length);
+                audioSource.PlayOneShot(deathSounds[randomIndex]);
+            }
+            Destroy(gameObject); // Destroy the mob if health reaches 0 or below
         }
     }
 }
