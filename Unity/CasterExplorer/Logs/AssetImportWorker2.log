@@ -15,7 +15,7 @@ C:/GitHub/CasterExplorer/Unity/CasterExplorer
 -logFile
 Logs/AssetImportWorker2.log
 -srvPort
-49923
+58241
 Successfully changed project path to: C:/GitHub/CasterExplorer/Unity/CasterExplorer
 C:/GitHub/CasterExplorer/Unity/CasterExplorer
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -49,12 +49,12 @@ C:/GitHub/CasterExplorer/Unity/CasterExplorer
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [1504] Host "[IP] 192.168.1.48 [Port] 0 [Flags] 2 [Guid] 2997266233 [EditorId] 2997266233 [Version] 1048832 [Id] WindowsEditor(7,Koordinata) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [9392] Host "[IP] 192.168.1.48 [Port] 0 [Flags] 2 [Guid] 2832881947 [EditorId] 2832881947 [Version] 1048832 [Id] WindowsEditor(7,Koordinata) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [1504] Host "[IP] 192.168.1.48 [Port] 0 [Flags] 2 [Guid] 2997266233 [EditorId] 2997266233 [Version] 1048832 [Id] WindowsEditor(7,Koordinata) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [9392] Host "[IP] 192.168.1.48 [Port] 0 [Flags] 2 [Guid] 2832881947 [EditorId] 2832881947 [Version] 1048832 [Id] WindowsEditor(7,Koordinata) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
 [Physics::Module] Initialized MultithreadedJobDispatcher with 15 workers.
-Refreshing native plugins compatible for Editor in 12.03 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 6.89 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.3.9f1 (ea401c316338)
 [Subsystems] Discovering subsystems at path C:/Unity/2022.3.9f1/Editor/Data/Resources/UnitySubsystems
@@ -70,46 +70,46 @@ Initialize mono
 Mono path[0] = 'C:/Unity/2022.3.9f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Unity/2022.3.9f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Unity/2022.3.9f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56248
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56520
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Unity/2022.3.9f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
 Register platform support module: C:/Unity/2022.3.9f1/Editor/Data/PlaybackEngines/MetroSupport/UnityEditor.UWP.Extensions.dll
-Registered in 0.005848 seconds.
-- Loaded All Assemblies, in  0.347 seconds
+Registered in 0.005721 seconds.
+- Loaded All Assemblies, in  0.269 seconds
 Native extension for UWP target not found
 Native extension for WindowsStandalone target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.233 seconds
-Domain Reload Profiling: 579ms
-	BeginReloadAssembly (105ms)
+- Finished resetting the current domain, in  0.195 seconds
+Domain Reload Profiling: 462ms
+	BeginReloadAssembly (84ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (30ms)
-	RebuildNativeTypeToScriptingClass (10ms)
-	initialDomainReloadingComplete (55ms)
-	LoadAllAssembliesAndSetupDomain (145ms)
-		LoadAssemblies (104ms)
+	RebuildCommonClasses (25ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (46ms)
+	LoadAllAssembliesAndSetupDomain (104ms)
+		LoadAssemblies (83ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (143ms)
-			TypeCache.Refresh (141ms)
-				TypeCache.ScanAssembly (128ms)
+		AnalyzeDomain (103ms)
+			TypeCache.Refresh (101ms)
+				TypeCache.ScanAssembly (90ms)
 			ScanForSourceGeneratedMonoScriptInfo (0ms)
 			ResolveRequiredComponents (0ms)
-	FinalizeReload (234ms)
+	FinalizeReload (195ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (177ms)
+		SetupLoadedEditorAssemblies (151ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (11ms)
-			SetLoadedEditorAssemblies (6ms)
+			InitializePlatformSupportModulesInManaged (7ms)
+			SetLoadedEditorAssemblies (4ms)
 			RefreshPlugins (0ms)
 			BeforeProcessingInitializeOnLoad (2ms)
-			ProcessInitializeOnLoadAttributes (115ms)
-			ProcessInitializeOnLoadMethodAttributes (43ms)
+			ProcessInitializeOnLoadAttributes (102ms)
+			ProcessInitializeOnLoadMethodAttributes (35ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -117,8 +117,8 @@ Domain Reload Profiling: 579ms
 ========================================================================
 Worker process is ready to serve import requests
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  0.849 seconds
-Refreshing native plugins compatible for Editor in 3.45 ms, found 3 plugins.
+- Loaded All Assemblies, in  0.504 seconds
+Refreshing native plugins compatible for Editor in 3.18 ms, found 3 plugins.
 Native extension for UWP target not found
 Native extension for WindowsStandalone target not found
 Package Manager log level set to [2]
@@ -126,76 +126,230 @@ Package Manager log level set to [2]
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.685 seconds
-Domain Reload Profiling: 1531ms
-	BeginReloadAssembly (204ms)
+- Finished resetting the current domain, in  0.488 seconds
+Domain Reload Profiling: 990ms
+	BeginReloadAssembly (120ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (6ms)
+		DisableScriptedObjects (4ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (32ms)
-	RebuildCommonClasses (42ms)
-	RebuildNativeTypeToScriptingClass (16ms)
-	initialDomainReloadingComplete (59ms)
-	LoadAllAssembliesAndSetupDomain (525ms)
-		LoadAssemblies (386ms)
+		CreateAndSetChildDomain (18ms)
+	RebuildCommonClasses (27ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (31ms)
+	LoadAllAssembliesAndSetupDomain (316ms)
+		LoadAssemblies (228ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (253ms)
-			TypeCache.Refresh (224ms)
-				TypeCache.ScanAssembly (200ms)
-			ScanForSourceGeneratedMonoScriptInfo (21ms)
-			ResolveRequiredComponents (6ms)
-	FinalizeReload (686ms)
+		AnalyzeDomain (156ms)
+			TypeCache.Refresh (137ms)
+				TypeCache.ScanAssembly (124ms)
+			ScanForSourceGeneratedMonoScriptInfo (14ms)
+			ResolveRequiredComponents (4ms)
+	FinalizeReload (488ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (495ms)
+		SetupLoadedEditorAssemblies (342ms)
 			LogAssemblyErrors (0ms)
 			InitializePlatformSupportModulesInManaged (7ms)
-			SetLoadedEditorAssemblies (6ms)
+			SetLoadedEditorAssemblies (5ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (78ms)
-			ProcessInitializeOnLoadAttributes (371ms)
-			ProcessInitializeOnLoadMethodAttributes (24ms)
-			AfterProcessingInitializeOnLoad (9ms)
+			BeforeProcessingInitializeOnLoad (52ms)
+			ProcessInitializeOnLoadAttributes (257ms)
+			ProcessInitializeOnLoadMethodAttributes (15ms)
+			AfterProcessingInitializeOnLoad (5ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (11ms)
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds
-Refreshing native plugins compatible for Editor in 6.31 ms, found 3 plugins.
+		AwakeInstancesAfterBackupRestoration (7ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
+Refreshing native plugins compatible for Editor in 5.48 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 3511 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 36 unused Assets / (100.4 KB). Loaded Objects now: 3995.
-Memory consumption went from 143.9 MB to 143.8 MB.
-Total: 7.842900 ms (FindLiveObjects: 0.718900 ms CreateObjectMapping: 0.528600 ms MarkObjects: 6.163100 ms  DeleteObjects: 0.429400 ms)
+Memory consumption went from 143.9 MB to 143.9 MB.
+Total: 5.966500 ms (FindLiveObjects: 0.851600 ms CreateObjectMapping: 0.280800 ms MarkObjects: 4.512300 ms  DeleteObjects: 0.320500 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
   custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
   custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
   custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
   custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 169760.611651 seconds.
-  path: Assets/TerrainData_2ffb5145-ee0c-46bb-8f01-255c0820fed0.asset
-  artifactKey: Guid(0a2b8e1d12086e64ebf419de076459ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/TerrainData_2ffb5145-ee0c-46bb-8f01-255c0820fed0.asset using Guid(0a2b8e1d12086e64ebf419de076459ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2069c8bea4230f551e042f715bbc459d') in 0.050654 seconds
+  Time since last request: 247367.195899 seconds.
+  path: Assets/StylizedGrass/Demo/Demo Post Process Settings.asset
+  artifactKey: Guid(b820f18c88d8da64c9a52f9c9591f9db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StylizedGrass/Demo/Demo Post Process Settings.asset using Guid(b820f18c88d8da64c9a52f9c9591f9db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cc59f6d9994be6190ff876cbdbfca586') in 0.004568 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 1
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000042 seconds.
-  path: Assets/TerrainData_3093b6ef-2587-4d81-a98f-d794583fac42.asset
-  artifactKey: Guid(bebcbe59d9085cf418f69989e8dc4c1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/TerrainData_3093b6ef-2587-4d81-a98f-d794583fac42.asset using Guid(bebcbe59d9085cf418f69989e8dc4c1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0a220551aab8a3b233d704a6608812a1') in 0.011996 seconds
+  Time since last request: 5.103867 seconds.
+  path: Assets/StylizedGrass/VFX Graphs/Grass
+  artifactKey: Guid(4b8dc4ed2e337084c9cf45b4ff45ef89) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StylizedGrass/VFX Graphs/Grass using Guid(4b8dc4ed2e337084c9cf45b4ff45ef89) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cfcceb78f260ad1f9eb2400f1e501f33') in 0.000527 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 1003.715938 seconds.
+  path: Assets/CasterExplorer/Prefabs/ObjectScen/Objects/Grss/Grass123.fbx
+  artifactKey: Guid(06a74daf2f1a3334fa18dd99e835bce3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CasterExplorer/Prefabs/ObjectScen/Objects/Grss/Grass123.fbx using Guid(06a74daf2f1a3334fa18dd99e835bce3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '793fe43eeefed8a769c7d5f1f233c637') in 0.131780 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 45.976430 seconds.
+  path: Assets/CasterExplorer/Prefabs/Characters/NPC/LivingArmor/Assets/Armor/Armor.fbx
+  artifactKey: Guid(bcbc483476bc8a84b94412b2792a5921) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CasterExplorer/Prefabs/Characters/NPC/LivingArmor/Assets/Armor/Armor.fbx using Guid(bcbc483476bc8a84b94412b2792a5921) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '913c1510279604daef9e9b74d5e74b0b') in 0.078128 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 60
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/CasterExplorer/Prefabs/DataPersistence/Prefabs/DataPersistenceManager.prefab
+  artifactKey: Guid(fa2ded8dd8aedfc4381dcfe9a5a2c5c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CasterExplorer/Prefabs/DataPersistence/Prefabs/DataPersistenceManager.prefab using Guid(fa2ded8dd8aedfc4381dcfe9a5a2c5c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '22b5142121ccda0f2abca6deb7a6ebee') in 0.002826 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 5
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/CasterExplorer/Prefabs/Characters/NPC/Magisteriya/Prefabs/FruitMagisteria.fbx
+  artifactKey: Guid(32e334e4547e3ac4fa26e5bd2d0eb94d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CasterExplorer/Prefabs/Characters/NPC/Magisteriya/Prefabs/FruitMagisteria.fbx using Guid(32e334e4547e3ac4fa26e5bd2d0eb94d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3e18497fa00a5435039b8a6b81bade13') in 0.021612 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 8
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/CasterExplorer/Prefabs/Spell/Prefabs/SpellObgect.prefab
+  artifactKey: Guid(d856f110f259ed84890187dabedd65df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CasterExplorer/Prefabs/Spell/Prefabs/SpellObgect.prefab using Guid(d856f110f259ed84890187dabedd65df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd7fba9ab79de592bad00f93792472295') in 0.017311 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 19
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/CasterExplorer/UI/PauseMenu/SaveSlotsMenu.prefab
+  artifactKey: Guid(51ec696b054c3114c9c7ba7b66030d4e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CasterExplorer/UI/PauseMenu/SaveSlotsMenu.prefab using Guid(51ec696b054c3114c9c7ba7b66030d4e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cf72782f0c58110933946643de6dc772') in 0.052851 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 208
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/CasterExplorer/Prefabs/Characters/NPC/Magisteriya/Prefabs/Magisteriya.prefab
+  artifactKey: Guid(8440c407500e41b4db3c3da13f45517b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CasterExplorer/Prefabs/Characters/NPC/Magisteriya/Prefabs/Magisteriya.prefab using Guid(8440c407500e41b4db3c3da13f45517b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd8d6cd4d9c2491188371b9e77bf2087e') in 0.011609 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 8
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/CasterExplorer/Prefabs/ObjectScen/Objects/WallsPrefabs/Tunnels/Tunnel(20)_3.prefab
+  artifactKey: Guid(b0040d3ebea70a642a50b72fa8fc129b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CasterExplorer/Prefabs/ObjectScen/Objects/WallsPrefabs/Tunnels/Tunnel(20)_3.prefab using Guid(b0040d3ebea70a642a50b72fa8fc129b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2202f63cd100d95c00c62ca2b95149b6') in 0.033953 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/CasterExplorer/Prefabs/Characters/NPC/Linesteria/Object/Linesteria.prefab
+  artifactKey: Guid(2c4462756d208044aa797b16b079ad48) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CasterExplorer/Prefabs/Characters/NPC/Linesteria/Object/Linesteria.prefab using Guid(2c4462756d208044aa797b16b079ad48) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6bd91e15ef5199e537a7f958041efde5') in 0.012359 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 19
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/CasterExplorer/UI/PauseMenu/ConfirmationPopupMenu.prefab
+  artifactKey: Guid(aaf8be23a05c1b24497d70582c112b6b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CasterExplorer/UI/PauseMenu/ConfirmationPopupMenu.prefab using Guid(aaf8be23a05c1b24497d70582c112b6b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6b44f07a5bc2a8f9a7024a9b11c5dbe8') in 0.016472 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 39
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/CasterExplorer/Prefabs/ObjectScen/Objects/WallsPrefabs/Rooms/Room(10x10x10).prefab
+  artifactKey: Guid(f12501352c0daf742905385838cd171f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CasterExplorer/Prefabs/ObjectScen/Objects/WallsPrefabs/Rooms/Room(10x10x10).prefab using Guid(f12501352c0daf742905385838cd171f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd8519a703a010f316cabee6670741ace') in 0.003360 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/CasterExplorer/Prefabs/Characters/NPC/Salamandra/ToxinsSalamandra/Object/ToxiinsSalamandra.fbx
+  artifactKey: Guid(25156a9b64d285145824cdf888a70681) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CasterExplorer/Prefabs/Characters/NPC/Salamandra/ToxinsSalamandra/Object/ToxiinsSalamandra.fbx using Guid(25156a9b64d285145824cdf888a70681) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aaf3ef5fe56b4a1c00d469f12d04b240') in 0.033785 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 80
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/CasterExplorer/Prefabs/DataPersistence/Prefabs/SaveSlot.prefab
+  artifactKey: Guid(497ff04909f2de04ca3cc6b69cc206f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CasterExplorer/Prefabs/DataPersistence/Prefabs/SaveSlot.prefab using Guid(497ff04909f2de04ca3cc6b69cc206f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4a3d7970980a199ddd95fb261a930054') in 0.015849 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 32
+========================================================================
+Received Import Request.
+  Time since last request: 0.000011 seconds.
+  path: Assets/CasterExplorer/Prefabs/ObjectScen/Objects/Cristell/Object/CristallClear.fbx
+  artifactKey: Guid(ec4db8011cc42c6479447acf44e17823) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CasterExplorer/Prefabs/ObjectScen/Objects/Cristell/Object/CristallClear.fbx using Guid(ec4db8011cc42c6479447acf44e17823) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '61e59a7e63e3af3fd048b78d61a4b8f2') in 0.013574 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/CasterExplorer/Prefabs/Objects/Staff/Staff.fbx
+  artifactKey: Guid(0aef892eba4ad574aa9933fc4b922b18) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CasterExplorer/Prefabs/Objects/Staff/Staff.fbx using Guid(0aef892eba4ad574aa9933fc4b922b18) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aa01ffc689c03038abe1b6a1ef58e737') in 0.022045 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/CasterExplorer/UI/SpellSystem/InventorySystem/Prefabs/Slot.prefab
+  artifactKey: Guid(2ca732b00ab710b45b7013906129c509) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CasterExplorer/UI/SpellSystem/InventorySystem/Prefabs/Slot.prefab using Guid(2ca732b00ab710b45b7013906129c509) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '87a8d1cc3888d96ccd345eec3cf796ab') in 0.002758 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 15
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/CasterExplorer/Prefabs/ObjectScen/Objects/WallsPrefabs/Tunnels/Tunnel(10)_1.prefab
+  artifactKey: Guid(f27c53797c2027446a6f269a918eb9bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CasterExplorer/Prefabs/ObjectScen/Objects/WallsPrefabs/Tunnels/Tunnel(10)_1.prefab using Guid(f27c53797c2027446a6f269a918eb9bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '80d92aeeb7a470592d25495977338c13') in 0.002355 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000011 seconds.
+  path: Assets/CasterExplorer/Prefabs/Objects/StoneHelp/Object/Stone.fbx
+  artifactKey: Guid(6206959aebc2d4842aecbefb8be96b63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CasterExplorer/Prefabs/Objects/StoneHelp/Object/Stone.fbx using Guid(6206959aebc2d4842aecbefb8be96b63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '17e144b99bee4fddf22897f7573a9343') in 0.031584 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/CasterExplorer/Prefabs/ObjectScen/Objects/WallsPrefabs/Tunnels/Tunnel(20)_2.prefab
+  artifactKey: Guid(c565a4f3665b4d542b2ae0740184df17) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CasterExplorer/Prefabs/ObjectScen/Objects/WallsPrefabs/Tunnels/Tunnel(20)_2.prefab using Guid(c565a4f3665b4d542b2ae0740184df17) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fea8112c7542ab2b9702a699eb03f81a') in 0.003480 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
 Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
 TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: ќпераци€ ввода/вывода была прервана из-за завершени€ потока команд или по запросу приложени€.
 AssetImportWorker is now disconnected from the server
