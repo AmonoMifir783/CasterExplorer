@@ -29,6 +29,8 @@ public class SalamdraAI : MonoBehaviour
     public AudioClip[] spitSounds;
     public AudioClip[] fearSounds;
     public AudioSource audioSource;
+    private bool hasPlayedSeePlayerSound = false;
+    private bool hasPlayedFearSound = false;
 
     private void Start()
     {
@@ -57,6 +59,7 @@ public class SalamdraAI : MonoBehaviour
                 {
                     LaunchProjectile();
                     nextDamageTime = Time.time + attackCooldown;
+                    hasPlayedFearSound = false;
                 }
                 
             }
@@ -69,21 +72,17 @@ public class SalamdraAI : MonoBehaviour
         else
         {
             isChasing = false; // Выключаем режим преследования
+            hasPlayedSeePlayerSound = false;
 
-            // Если игрок слишком близко, убегаем от него
-            
-                // Продолжаем патрулирование
-                Patrol();
+    // Если игрок слишком близко, убегаем от него
+
+    // Продолжаем патрулирование
+            Patrol();
             
         }
         if (distanceToPlayer < runRange)
         {
             RunAwayFromPlayer();
-            if (fearSounds.Length > 0)
-            {
-                int randomIndex = Random.Range(0, fearSounds.Length);
-                audioSource.PlayOneShot(fearSounds[randomIndex]);
-            }
         }
     }
 
@@ -123,11 +122,11 @@ public class SalamdraAI : MonoBehaviour
         Vector3 direction = (player.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
-        if (seePlayerSounds.Length > 0 && audioSource != null)
+        if (seePlayerSounds.Length > 0 && audioSource != null && !hasPlayedSeePlayerSound)
         {
             int randomIndex = Random.Range(0, seePlayerSounds.Length);
-            //audioSource.volume = 0.01f; // Set the volume to a lower value (e.g., 0.5f for 50% volume)
             audioSource.PlayOneShot(seePlayerSounds[randomIndex]);
+            hasPlayedSeePlayerSound = true; // Устанавливаем флаг в true, чтобы звук не проигрывался снова
         }
     }
 
@@ -138,8 +137,9 @@ public class SalamdraAI : MonoBehaviour
             int randomIndex = Random.Range(0, spitSounds.Length);
             audioSource.PlayOneShot(spitSounds[randomIndex]);
         }
+
         // Создаем экземпляр плевка
-        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        GameObject projectile = Instantiate(projectilePrefab, transform.position + Vector3.up * 0.75f, Quaternion.identity);
         Rigidbody projectileRigidbody = projectile.GetComponent<Rigidbody>();
 
         // Направляем плевок на игрока
@@ -155,7 +155,6 @@ public class SalamdraAI : MonoBehaviour
 
         // Нанесение урона игроку при столкновении с плевком
         projectileCollider.isTrigger = true;
-        //projectileCollider.gameObject.tag = "Projectile";
 
         // Добавьте скрипт, обрабатывающий столкновение плевка с игроком
         projectileCollider.gameObject.AddComponent<ProjectileCollision>();
@@ -163,7 +162,13 @@ public class SalamdraAI : MonoBehaviour
 
     private void RunAwayFromPlayer()
     {
-       
+        if (fearSounds.Length > 0 && audioSource != null && !hasPlayedFearSound)
+        {
+            int randomIndex = Random.Range(0, fearSounds.Length);
+            audioSource.PlayOneShot(fearSounds[randomIndex]);
+            hasPlayedFearSound = true;
+        }
+
         // Устанавливаем позицию, в которую нужно убежать
         runAwayPosition = transform.position + (transform.position - player.position).normalized;
 
@@ -172,7 +177,7 @@ public class SalamdraAI : MonoBehaviour
 
         // Поворачиваем противника в направлении точки, куда убегает
         Vector3 direction = (runAwayPosition - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(-direction.x, 0, -direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
 
         // Проверяем, если игрок стал далеко, прекращаем убегать

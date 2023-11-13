@@ -23,8 +23,14 @@ public class PlayerHealth : MonoBehaviour, IDataPersistence
     private bool isCharacterDead = false;
     public AudioClip[] damageSounds; // массив звуков получени€ урона
     public AudioClip[] deathSound;
+    public AudioClip[] cheatSound;
     public AudioSource audioSource;
     //public AudioSource deathAudioSource;
+
+    private bool cheatEnabled = false;
+
+    private bool hasCheatSound = false;
+
 
     void Start()
     {
@@ -38,6 +44,33 @@ public class PlayerHealth : MonoBehaviour, IDataPersistence
 
     void LateUpdate()
     {
+        if (Input.GetKeyDown(KeyCode.X) && Input.GetKeyDown(KeyCode.C))
+        {
+            cheatEnabled = !cheatEnabled; // ѕереключаем состо€ние чита при нажатии сочетани€ клавиш X и C
+            if (cheatEnabled)
+            {
+                maxHealth = 1000000; // ”станавливаем максимальное значение дл€ maxHealth
+                currentHealth = 1000000; // ”станавливаем максимальное значение дл€ currentHealth
+                if (cheatSound.Length > 0 && audioSource != null && !hasCheatSound)
+                {
+                    int randomIndex = UnityEngine.Random.Range(0, cheatSound.Length);
+                    audioSource.PlayOneShot(cheatSound[randomIndex]);
+                    hasCheatSound = true;
+                }
+            }
+            else
+            {
+                maxHealth = 100; // ¬озвращаем maxHealth к значению 100
+                currentHealth = 100; // ¬озвращаем currentHealth к значению 100
+                if (cheatSound.Length > 0 && audioSource != null && hasCheatSound)
+                {
+                    int randomIndex = UnityEngine.Random.Range(0, cheatSound.Length);
+                    audioSource.PlayOneShot(cheatSound[randomIndex]);
+                    hasCheatSound = false;
+                }
+            }
+            UpdateHealthUI();
+        }
         if (currentHealth <= 0)
         {
             currentHealth = 0;
