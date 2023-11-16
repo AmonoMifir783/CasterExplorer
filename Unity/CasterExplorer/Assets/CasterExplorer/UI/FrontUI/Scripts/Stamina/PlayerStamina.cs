@@ -39,6 +39,7 @@ public class PlayerStamina : MonoBehaviour
         {
             lastActionTime = Time.time;
             isRunningOrJumping = true;
+            recoveryTimer = 0f;
         }
 
         // If the player is not running or jumping, start the stamina recovery timer
@@ -76,7 +77,7 @@ public class PlayerStamina : MonoBehaviour
     IEnumerator RecoverStamina(float delay, int recoveryRate)
     {
         yield return new WaitForSeconds(delay);
-        while (true)
+        while (currentStamina < maxStamina)
         {
             if (currentStamina >= maxStamina)
             {
@@ -85,13 +86,20 @@ public class PlayerStamina : MonoBehaviour
             }
 
             // Check if the player is moving (running or jumping)
-            if (!isRunningOrJumping)
+            bool isRunning = Input.GetKey(KeyCode.LeftShift);
+            bool isJumping = Input.GetButton("Jump");
+
+            if (isRunning || isJumping)
             {
-                yield return new WaitForSeconds(3f); // Wait for 3 seconds if the player is not moving
-                                                     // Check again if the player is moving after the 3 seconds
+                yield return new WaitForSeconds(0.1f); // Wait for 0.1 second if the player is moving
+                recoveryTimer = 0f;
+                continue;
             }
 
-            if (!isRunningOrJumping)
+            yield return new WaitForSeconds(1f);
+            recoveryTimer += 1f;
+
+            if (recoveryTimer >= 3f)
             {
                 currentStamina += recoveryRate;
                 if (currentStamina > maxStamina)
@@ -99,9 +107,8 @@ public class PlayerStamina : MonoBehaviour
                     currentStamina = maxStamina;
                 }
                 UpdateStaminaUI();
+                recoveryTimer = 0f;
             }
-
-            yield return new WaitForSeconds(1f);
         }
     }
 }

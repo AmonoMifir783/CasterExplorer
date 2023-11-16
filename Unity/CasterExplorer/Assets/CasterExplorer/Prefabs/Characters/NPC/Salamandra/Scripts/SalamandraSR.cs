@@ -25,6 +25,7 @@ public class SalamandraSR : MonoBehaviour
     public AudioClip[] damageSounds;
     public AudioClip[] deathSounds;
     public AudioSource audioSource;
+    public bool salamandraDead = false;
     // Start is called before the first frame update
     private void Start()
     {
@@ -37,26 +38,26 @@ public class SalamandraSR : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
 
-            if (spellReaction.Temperature < 0)
-            {
-                k = 1 + (spellReaction.Temperature / minTemp);
-                TakeDamage(Mathf.Sqrt(spellReaction.Force) * k);
-                Debug.Log("FrozenDamage:" + Mathf.Sqrt(spellReaction.Force) * k);
-            }
+        if (spellReaction.Temperature < 0)
+        {
+            k = 1 + (spellReaction.Temperature / minTemp);
+            TakeDamage(Mathf.Sqrt(spellReaction.Force) * k);
+            Debug.Log("FrozenDamage:" + Mathf.Sqrt(spellReaction.Force) * k);
+        }
 
 
-            if (spellReaction.Force > 0)
-            {
-                TakeDamage(Mathf.Sqrt(spellReaction.Force));
-                //Debug.Log("2");
-            }
-            //на миро больше 500
-            if (spellReaction.Temperature > 20)
-            {
-                isBurning = true;
-                TakeDamage(Mathf.Sqrt(spellReaction.Force));
-                //Debug.Log("3");
-            }
+        if (spellReaction.Force > 0)
+        {
+            TakeDamage(Mathf.Sqrt(spellReaction.Force));
+            //Debug.Log("2");
+        }
+        //на миро больше 500
+        if (spellReaction.Temperature > 20)
+        {
+            isBurning = true;
+            TakeDamage(Mathf.Sqrt(spellReaction.Force));
+            //Debug.Log("3");
+        }
 
 
         if (isBurning)
@@ -72,7 +73,7 @@ public class SalamandraSR : MonoBehaviour
     }
 
 
-        // Update is called once per frame
+    // Update is called once per frame
     private void TakeDamage(float damageAmount)
     {
         if (damageSounds.Length > 0)
@@ -84,6 +85,7 @@ public class SalamandraSR : MonoBehaviour
 
         if (mobHealth <= 0)
         {
+            salamandraDead = true;
             if (deathSounds.Length > 0)
             {
                 int randomIndex = Random.Range(0, deathSounds.Length);
