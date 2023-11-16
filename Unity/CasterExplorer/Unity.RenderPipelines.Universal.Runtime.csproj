@@ -40,7 +40,6 @@
     <Analyzer Include="C:\Unity\2022.3.9f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\External\LibTessDotNet\PriorityHeap.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Overrides\ColorLookup.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\2D\UTess2D\UTess.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\2D\LightUtility.cs" />
@@ -103,14 +102,14 @@
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\ShadowUtils.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Debug\DebugHandler.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Decal\Entities\DecalDrawSystem.cs" />
-     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Passes\CapturePass.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Passes\PostProcessPass.cs" />
+     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Passes\CapturePass.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Passes\FinalBlitPass.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\UniversalAdditionalCameraData.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\2D\Light2DManager.cs" />
-     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Passes\ScriptableRenderPass.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Decal\DecalProjector.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\External\LibTessDotNet\Tess.cs" />
+     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Passes\ScriptableRenderPass.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Passes\MotionVectorRenderPass.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Decal\Entities\DecalCreateDrawCallSystem.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Overrides\ShadowsMidtonesHighlights.cs" />
@@ -140,14 +139,14 @@
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\2D\Light2DCullResult.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Tiling\TileRangeExpansionJob.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\TemporalAA.cs" />
-     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Data\UniversalRenderPipelineAsset.cs" />
-     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\XR\XRPassUniversal.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\2D\CinemachineUniversalPixelPerfect.cs" />
+     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\XR\XRPassUniversal.cs" />
+     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Data\UniversalRenderPipelineAsset.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Overrides\PaniniProjection.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Data\PostProcessData.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Debug\DebugDisplaySettingsCommon.cs" />
-     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\2D\PixelPerfectCamera.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\ShaderData.cs" />
+     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\2D\PixelPerfectCamera.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\2D\PixelPerfectCameraInternal.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Decal\Entities\DecalUpdateCachedSystem.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\UniversalRenderPipeline.cs" />
@@ -174,8 +173,8 @@
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Passes\HDRDebugViewPass.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Decal\Entities\DecalUpdateCulledSystem.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Decal\DBuffer\DecalForwardEmissivePass.cs" />
-     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Decal\DecalDrawErrorRenderPass.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Documentation.cs" />
+     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Decal\DecalDrawErrorRenderPass.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Passes\InvokeOnRenderObjectCallbackPass.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\2D\Shadows\CompositeShadowCaster2D.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\External\LibTessDotNet\Sweep.cs" />
@@ -192,15 +191,15 @@
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\2D\Passes\PixelPerfectBackgroundPass.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\RendererFeatures\RenderObjects.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Overrides\ChannelMixer.cs" />
-     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Debug\UniversalRenderPipelineDebugDisplaySettings.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\UniversalRendererData.cs" />
+     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Debug\UniversalRenderPipelineDebugDisplaySettings.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Decal\DBuffer\DBufferRenderPass.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\2D\Shadows\ShadowRendering.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Overrides\DepthOfField.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Passes\DeferredPass.cs" />
+     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Overrides\FilmGrain.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Debug\DebugRenderSetup.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\ScriptableRendererData.cs" />
-     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Overrides\FilmGrain.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\2D\UTess2D\Tessellator.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\PostProcessUtils.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\RenderTargetBufferSystem.cs" />
@@ -209,6 +208,7 @@
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Overrides\MotionBlur.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Overrides\LensDistortion.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Passes\AdditionalLightsShadowCasterPass.cs" />
+     <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\External\LibTessDotNet\PriorityHeap.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\DeferredLights.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Data\XRSystemData.cs" />
      <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Runtime\Decal\DBuffer\DBufferClear.shader" />
