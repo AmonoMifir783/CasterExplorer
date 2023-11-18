@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 
-public class PlayerStamina : MonoBehaviour
+public class PlayerStamina : MonoBehaviour, IDataPersistence
 {
     public int maxStamina = 100;
     public int currentStamina = 100;
@@ -17,6 +17,12 @@ public class PlayerStamina : MonoBehaviour
     private bool isRunningOrJumping = false; // Variable to track if the player is running or jumping
     private float lastActionTime = 0f; // Variable to track the last time the player performed an action (running or jumping)
     private float recoveryTimer;
+
+
+    private bool cheatEnabled = false;
+    public AudioClip[] cheatSound;
+    public AudioSource audioSource;
+    private bool hasCheatSound = false;
 
     void Start()
     {
@@ -30,6 +36,33 @@ public class PlayerStamina : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Z) && Input.GetKeyDown(KeyCode.C))
+        {
+            cheatEnabled = !cheatEnabled; // Переключаем состояние чита при нажатии сочетания клавиш X и C
+            if (cheatEnabled)
+            {
+                maxStamina = 1000000; // Устанавливаем максимальное значение для maxHealth
+                currentStamina = 1000000; // Устанавливаем максимальное значение для currentHealth
+                if (cheatSound.Length > 0 && audioSource != null && !hasCheatSound)
+                {
+                    int randomIndex = UnityEngine.Random.Range(0, cheatSound.Length);
+                    audioSource.PlayOneShot(cheatSound[randomIndex]);
+                    hasCheatSound = true;
+                }
+            }
+            else
+            {
+                maxStamina = 100; // Возвращаем maxHealth к значению 100
+                currentStamina = 100; // Возвращаем currentHealth к значению 100
+                if (cheatSound.Length > 0 && audioSource != null && hasCheatSound)
+                {
+                    int randomIndex = UnityEngine.Random.Range(0, cheatSound.Length);
+                    audioSource.PlayOneShot(cheatSound[randomIndex]);
+                    hasCheatSound = false;
+                }
+            }
+            UpdateStaminaUI();
+        }
         // Check if the player is running or jumping
         bool isRunning = Input.GetKey(KeyCode.LeftShift);
         bool isJumping = Input.GetButton("Jump");
@@ -110,5 +143,18 @@ public class PlayerStamina : MonoBehaviour
                 recoveryTimer = 0f;
             }
         }
+    }
+    public void LoadData(GameData data)
+    {
+        this.maxStamina = data.maxStamina;
+        this.currentStamina = data.currentStamina;
+        playerStaminaFront.fillAmount = data.playerStaminaFillAmount;
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.maxStamina = this.maxStamina;
+        data.currentStamina = this.currentStamina;
+        data.playerStaminaFillAmount = playerStaminaFront.fillAmount;
     }
 }

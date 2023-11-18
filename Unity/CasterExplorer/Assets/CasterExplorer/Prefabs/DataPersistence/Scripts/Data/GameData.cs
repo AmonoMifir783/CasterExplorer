@@ -12,7 +12,9 @@ public class GameData
     public int currentHealth;
     public int inventoryCount;
     public PlayerHealth playerHealthScript;
+    public PlayerStamina playerStaminaScript;
     public float playerHealthFillAmount;
+    public float playerStaminaFillAmount;
     public string MagisteriyaCount;
     public Vector3 playerPosition;
     public MagisteriyaFruitPickUp MagisterutaFruitPickUp;
@@ -21,13 +23,17 @@ public class GameData
     public List<int> SlotsSave;
     public int scrollCount;
     public string ScrollCount;
+    public int currentStamina;
+    public int maxStamina;
 
 
     public SerializableDictionary<string, bool> magisteriyaCollected;
     public SerializableDictionary<string, bool> deadSalamandras;
+    public SerializableDictionary<string, bool> pickedChests;
 
     public GameData()
     {
+        this.maxStamina = 100;
         this.maxHealth = 100;
         playerPosition = Vector3.one;
         this.inventoryCount = 0;
@@ -35,9 +41,12 @@ public class GameData
         this.scrollCount = 5;
         this.ScrollCount = scrollCount.ToString();
         this.playerHealthFillAmount = 0f;
+        this.playerStaminaFillAmount = 0f;
         this.currentHealth = 100;
+        this.currentStamina = 100;
         magisteriyaCollected = new SerializableDictionary<string, bool>();
         deadSalamandras = new SerializableDictionary<string, bool>();
+        pickedChests = new SerializableDictionary<string, bool>();
         SlotsSave = new List<int>();
 
     }
