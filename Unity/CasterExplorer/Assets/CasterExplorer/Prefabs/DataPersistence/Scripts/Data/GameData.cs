@@ -30,6 +30,7 @@ public class GameData
     public SerializableDictionary<string, bool> magisteriyaCollected;
     public SerializableDictionary<string, bool> deadSalamandras;
     public SerializableDictionary<string, bool> pickedChests;
+    public SerializableDictionary<string, bool> pickedFruits;
 
     public GameData()
     {
@@ -47,6 +48,7 @@ public class GameData
         magisteriyaCollected = new SerializableDictionary<string, bool>();
         deadSalamandras = new SerializableDictionary<string, bool>();
         pickedChests = new SerializableDictionary<string, bool>();
+        pickedFruits = new SerializableDictionary<string, bool>();
         SlotsSave = new List<int>();
 
     }

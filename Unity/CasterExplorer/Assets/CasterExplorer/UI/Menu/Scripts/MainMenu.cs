@@ -51,6 +51,7 @@ public class MainMenu : Menu
         DisableMenuButtons();
         DataPersistenceManager.instance.SaveGame();
         SceneManager.LoadSceneAsync("SampleScene");
+        Time.timeScale = 1f;
     }
 
     private void DisableMenuButtons()

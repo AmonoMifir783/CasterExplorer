@@ -21,7 +21,7 @@ public class SalamdraAI : MonoBehaviour
     private Transform player; // Ссылка на игрока
     private int currentPatrolIndex; // Индекс текущей точки патрулирования
     private float patrolTimer; // Таймер ожидания при патрулировании
-    private bool isChasing; // Флаг преследования игрока
+    public bool isChasing; // Флаг преследования игрока
     private bool isRunningAway; // Флаг убегания от игрока
     private Vector3 runAwayPosition; // Позиция, в которую нужно убежать
     private SpellReaction spellReaction;

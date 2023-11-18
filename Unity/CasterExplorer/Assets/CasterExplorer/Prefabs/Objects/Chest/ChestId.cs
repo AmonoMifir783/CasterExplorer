@@ -5,8 +5,8 @@ using UnityEngine.VFX;
 
 public class ChestId : MonoBehaviour, IDataPersistence
 {
-    
-    private ChestPickUp chestPickUp;
+
+    private PickChest pickChest;
     public bool chestPicked = false;
 
 
@@ -24,15 +24,15 @@ public class ChestId : MonoBehaviour, IDataPersistence
 
     private void Awake()
     {
-        chestPickUp = GetComponent<ChestPickUp>();
+        pickChest = GetComponent<PickChest>();
     }
 
 
 
     public void LoadData(GameData data)
     {
-        data.pickedChests.TryGetValue(id, out chestPickUp.chestPicked);
-        if (chestPickUp.chestPicked)
+        data.pickedChests.TryGetValue(id, out pickChest.chestPicked);
+        if (pickChest.chestPicked)
         {
             Chest.gameObject.SetActive(false);
         }
@@ -44,7 +44,7 @@ public class ChestId : MonoBehaviour, IDataPersistence
         {
             data.pickedChests.Remove(id);
         }
-        data.pickedChests.Add(id, chestPickUp.chestPicked);
+        data.pickedChests.Add(id, pickChest.chestPicked);
     }
 
 

@@ -16,6 +16,9 @@ public class PauseMenu : MonoBehaviour
     public MagisteriyaFruitPickUp magisteriyaFruitPickUp;
     public MagisteriyaFruitUse magisteriyaFruitUse;
     public ChestPickUp chestPickUp;
+    public SalamdraAI salamdraAi;
+    public Button saveGameButton;
+    public Button loadGameButton;
 
     public bool isPaused = false;
     public GameObject Player;
@@ -34,6 +37,7 @@ public class PauseMenu : MonoBehaviour
         magisteriyaFruitPickUp = GetComponent<MagisteriyaFruitPickUp>();
         magisteriyaFruitUse = GetComponent<MagisteriyaFruitUse>();
         chestPickUp = GetComponent<ChestPickUp>();
+        salamdraAi = FindObjectOfType<SalamdraAI>();
     }
 
     void Update()
@@ -66,15 +70,17 @@ public class PauseMenu : MonoBehaviour
                 }
             }
         }
+        DisableButtonsDependingOnData();
     }
 
     public void Resume()
     {
         Player.GetComponent<MouseLook>().enabled = true;
         Player.GetComponent<PlayerMovement>().enabled = true;
-        Player.GetComponent<MagisteriyaFruitPickUp>().enabled = true;
+        //Player.GetComponent<MagisteriyaFruitPickUp>().enabled = true;
+        Player.GetComponent<PickUp>().enabled = true;
         Player.GetComponent<MagisteriyaFruitUse>().enabled = true;
-        Player.GetComponent<ChestPickUp>().enabled = true;
+        //Player.GetComponent<ChestPickUp>().enabled = true;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         pauseMenuUI.SetActive(false);
@@ -89,9 +95,10 @@ public class PauseMenu : MonoBehaviour
     {
         Player.GetComponent<MouseLook>().enabled = false;
         Player.GetComponent<PlayerMovement>().enabled = false;
-        Player.GetComponent<MagisteriyaFruitPickUp>().enabled = false;
+        //Player.GetComponent<MagisteriyaFruitPickUp>().enabled = false;
+        Player.GetComponent<PickUp>().enabled = false;
         Player.GetComponent<MagisteriyaFruitUse>().enabled = false;
-        Player.GetComponent<ChestPickUp>().enabled = false;
+        //Player.GetComponent<ChestPickUp>().enabled = false;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         pauseMenuUI.SetActive(true);
@@ -134,6 +141,18 @@ public class PauseMenu : MonoBehaviour
         {
             //continueGameButton.interactable = false;
             //loadGameButton.interactable = false;
+        }
+        if (salamdraAi != null && salamdraAi.isChasing)
+        {
+            // Disable the save and load buttons
+            saveGameButton.interactable = false;
+            loadGameButton.interactable = false;
+        }
+        if (salamdraAi != null && !salamdraAi.isChasing)
+        {
+            // Disable the save and load buttons
+            saveGameButton.interactable = true;
+            loadGameButton.interactable = true;
         }
     }
 

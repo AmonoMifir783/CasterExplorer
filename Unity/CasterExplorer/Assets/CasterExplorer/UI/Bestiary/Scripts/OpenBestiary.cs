@@ -129,9 +129,10 @@ public class OpenBestiary : MonoBehaviour
             {
                 playerCamera.GetComponent<MouseLook>().enabled = true;
                 playerCamera.GetComponent<PlayerMovement>().enabled = true;
-                Player.GetComponent<MagisteriyaFruitPickUp>().enabled = true;
+               // Player.GetComponent<MagisteriyaFruitPickUp>().enabled = true;
+                Player.GetComponent<PickUp>().enabled = true;
                 Player.GetComponent<MagisteriyaFruitUse>().enabled = true;
-                Player.GetComponent<ChestPickUp>().enabled = true;
+                //Player.GetComponent<ChestPickUp>().enabled = true;
                 Cursor.lockState = CursorLockMode.Locked;
                 CloseImage();
             }
@@ -139,9 +140,10 @@ public class OpenBestiary : MonoBehaviour
             {
                 playerCamera.GetComponent<MouseLook>().enabled = false;
                 playerCamera.GetComponent<PlayerMovement>().enabled = false;
-                Player.GetComponent<MagisteriyaFruitPickUp>().enabled = false;
+                //Player.GetComponent<MagisteriyaFruitPickUp>().enabled = false;
                 Player.GetComponent<MagisteriyaFruitUse>().enabled = false;
-                Player.GetComponent<ChestPickUp>().enabled = false;
+                //Player.GetComponent<ChestPickUp>().enabled = false;
+                Player.GetComponent<PickUp>().enabled = false;
                 Cursor.lockState = CursorLockMode.None;
                 OpenImage();
             }

@@ -153,6 +153,8 @@ public class PlayerHealth : MonoBehaviour, IDataPersistence
     {
         Player.GetComponent<MouseLook>().enabled = false;
         Player.GetComponent<PlayerMovement>().enabled = false;
+        Player.GetComponent<MagisteriyaFruitUse>().enabled = false;
+        Player.GetComponent<PickUp>().enabled = false;
         playerMovement.enabled = false;
         gameOverPanel.SetActive(true);
         Time.timeScale = 0f;

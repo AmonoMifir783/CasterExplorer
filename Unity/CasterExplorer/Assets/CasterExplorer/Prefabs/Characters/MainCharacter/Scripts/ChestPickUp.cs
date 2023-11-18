@@ -45,7 +45,7 @@ public class ChestPickUp : MonoBehaviour, IDataPersistence
                     canPickUp = true;
                     pickedUpChest = hit.collider.gameObject;
                     chestPicked = true;
-                    PickUpItem();
+                   // PickUpItem();
                 }
             }
             else
@@ -55,45 +55,45 @@ public class ChestPickUp : MonoBehaviour, IDataPersistence
         }
     }
 
-    public void PickUpItem()
-    {
-        if (canPickUp && scrollCount < 1000)
-        {
-            int randomScrolls = UnityEngine.Random.Range(1, 4); // Generate a random number between 1 and 3
-            scrollCount += randomScrolls;
+    //public void PickUpItem()
+    //{
+    //    if (canPickUp && scrollCount < 1000)
+    //    {
+    //        int randomScrolls = UnityEngine.Random.Range(1, 4); // Generate a random number between 1 and 3
+    //        scrollCount += randomScrolls;
 
-            int remainingFruitCapacity = 10 - magisteriyaFruitPickUp.inventoryCount;
-            int randomFruits = UnityEngine.Random.Range(1, 4); // Generate a random number between 1 and 3
-            int pickedUpFruits = Mathf.Min(randomFruits, remainingFruitCapacity);
+    //        int remainingFruitCapacity = 10 - magisteriyaFruitPickUp.inventoryCount;
+    //        int randomFruits = UnityEngine.Random.Range(1, 4); // Generate a random number between 1 and 3
+    //        int pickedUpFruits = Mathf.Min(randomFruits, remainingFruitCapacity);
 
-            magisteriyaFruitPickUp.inventoryCount += pickedUpFruits;
-            magisteriyaFruitPickUp.MagisteriyaCount.text = magisteriyaFruitPickUp.inventoryCount.ToString();
+    //        magisteriyaFruitPickUp.inventoryCount += pickedUpFruits;
+    //        magisteriyaFruitPickUp.MagisteriyaCount.text = magisteriyaFruitPickUp.inventoryCount.ToString();
 
-            Debug.Log("Item picked up! Current inventory count: " + scrollCount);
+    //        Debug.Log("Item picked up! Current inventory count: " + scrollCount);
 
-            if (pickedUpChest.CompareTag("Chest"))
-            {
-                Destroy(pickedUpChest.GetComponent<Collider>());
-                pickedUpChest.GetComponent<Renderer>().enabled = false;
-                Destroy(pickedUpChest, 1f);
-                pickedUpChests.Add(pickedUpChest);
-            }
+    //        if (pickedUpChest.CompareTag("Chest"))
+    //        {
+    //            Destroy(pickedUpChest.GetComponent<Collider>());
+    //            pickedUpChest.GetComponent<Renderer>().enabled = false;
+    //            Destroy(pickedUpChest, 1f);
+    //            pickedUpChests.Add(pickedUpChest);
+    //        }
 
-            UpdateScrollCountUI();
-            isPickingUp = true;
-            lastPickedUpChest = pickedUpChest;
-            StartCoroutine(ResetPickUpFlag());
-            chestPicked = true;
-        }
-        else if (!canPickUp)
-        {
-            Debug.Log("Cannot pick up item. Move closer to the item.");
-        }
-        else if (scrollCount >= 1000)
-        {
-            Debug.Log("Inventory is full! Cannot pick up item.");
-        }
-    }
+    //        UpdateScrollCountUI();
+    //        isPickingUp = true;
+    //        lastPickedUpChest = pickedUpChest;
+    //        StartCoroutine(ResetPickUpFlag());
+    //        chestPicked = true;
+    //    }
+    //    else if (!canPickUp)
+    //    {
+    //        Debug.Log("Cannot pick up item. Move closer to the item.");
+    //    }
+    //    else if (scrollCount >= 1000)
+    //    {
+    //        Debug.Log("Inventory is full! Cannot pick up item.");
+    //    }
+    //}
 
     public void UpdateScrollCountUI()
     {

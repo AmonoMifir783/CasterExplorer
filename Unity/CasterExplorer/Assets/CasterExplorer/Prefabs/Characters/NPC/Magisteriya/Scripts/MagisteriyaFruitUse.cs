@@ -8,6 +8,7 @@ public class MagisteriyaFruitUse : MonoBehaviour
 {
     public int healthToAdd = 25;
     private MagisteriyaFruitPickUp magisteriyaPickUpScript;
+    private PickUp pickUp;
     public TextMeshProUGUI MagisteriyaCount;
     public AudioClip[] eatSounds; // Array of eat sounds
     public AudioSource audioSource;
@@ -17,7 +18,7 @@ public class MagisteriyaFruitUse : MonoBehaviour
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         if (playerObject != null)
         {
-            magisteriyaPickUpScript = playerObject.GetComponent<MagisteriyaFruitPickUp>();
+            pickUp = playerObject.GetComponent<PickUp>();
             // if (magisteriyaPickUpScript == null)
             // {
             //     Debug.LogError("MagisteriyaFruitPickUp script not found on Player object.");
@@ -31,9 +32,9 @@ public class MagisteriyaFruitUse : MonoBehaviour
 
     private void Update()
     {
-        if (magisteriyaPickUpScript != null)
+        if (pickUp != null)
         {
-            int inventoryCount = magisteriyaPickUpScript.inventoryCount;
+            int inventoryCount = pickUp.inventoryCount;
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 if (inventoryCount >= 0)
@@ -67,7 +68,7 @@ public class MagisteriyaFruitUse : MonoBehaviour
                     if (playerHealthScript.currentHealth < 100) // Check if the player's current health is less than 100
                     {
                         playerHealthScript.TakeHeal(healthToAdd);
-                        magisteriyaPickUpScript.inventoryCount = count;
+                        pickUp.inventoryCount = count;
                         Debug.Log("Item applied! Current inventory count: " + count);
                         // Add additional code for using the item or modifying player health here.
 
