@@ -80,6 +80,7 @@ public class PauseMenu : MonoBehaviour
         //Player.GetComponent<MagisteriyaFruitPickUp>().enabled = true;
         Player.GetComponent<PickUp>().enabled = true;
         Player.GetComponent<MagisteriyaFruitUse>().enabled = true;
+        Player.GetComponent<AudioListener>().enabled = true;
         //Player.GetComponent<ChestPickUp>().enabled = true;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -98,6 +99,7 @@ public class PauseMenu : MonoBehaviour
         //Player.GetComponent<MagisteriyaFruitPickUp>().enabled = false;
         Player.GetComponent<PickUp>().enabled = false;
         Player.GetComponent<MagisteriyaFruitUse>().enabled = false;
+        Player.GetComponent<AudioListener>().enabled = false;
         //Player.GetComponent<ChestPickUp>().enabled = false;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
