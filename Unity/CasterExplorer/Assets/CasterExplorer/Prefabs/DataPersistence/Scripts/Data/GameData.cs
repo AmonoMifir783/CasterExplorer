@@ -26,6 +26,8 @@ public class GameData
     public int currentStamina;
     public int maxStamina;
 
+    public List<string> spellNames;
+
 
     public SerializableDictionary<string, bool> magisteriyaCollected;
     public SerializableDictionary<string, bool> deadSalamandras;
@@ -50,7 +52,7 @@ public class GameData
         pickedChests = new SerializableDictionary<string, bool>();
         pickedFruits = new SerializableDictionary<string, bool>();
         SlotsSave = new List<int>();
-
+        spellNames = new List<string>();
     }
 
     public int GetLevelInfo() // информаци€ котора€ будет находитьс€ в слоте сохранени€
@@ -64,6 +66,18 @@ public class GameData
     {
         DateTime currentDateTime = DateTime.Now;
         return currentDateTime;
+    }
+
+    public void SaveSpellNames(List<string> names)
+    {
+        spellNames.Clear();
+        spellNames.AddRange(names);
+    }
+
+    // ћетод дл€ загрузки имен заклинаний
+    public List<string> LoadSpellNames()
+    {
+        return spellNames;
     }
 
 }

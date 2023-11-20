@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class CreateNewSlots : MonoBehaviour
 {
@@ -30,12 +31,13 @@ public class CreateNewSlots : MonoBehaviour
     public ChestPickUp chestPickUp;
     public AudioClip[] craftSounds;
     public AudioSource audioSource;
+    public PickUp pickUp;
 
 
     private void Start()
     {
         inventoryManager = FindObjectOfType<InventoryManager>();
-        chestPickUp = FindObjectOfType<ChestPickUp>();
+        pickUp = FindObjectOfType<PickUp>();
 
         //ImaheOnScenTest = GetComponent<Image>();
 
@@ -121,11 +123,11 @@ public class CreateNewSlots : MonoBehaviour
 
 
 
-        if(!CheckInventory(spellItem) && chestPickUp.scrollCount > 0)
+        if(!CheckInventory(spellItem) && pickUp.scrollCount > 0)
         {
             CountSpell++;
-            chestPickUp.scrollCount--;
-            chestPickUp.UpdateScrollCountUI();
+            pickUp.scrollCount--;
+            pickUp.ScrollCount.text = pickUp.scrollCount.ToString();
 
             spellItem.Icon = GenerateTexture();
             spellItem.ItemName = CountSpell;
@@ -232,6 +234,7 @@ public class CreateNewSlots : MonoBehaviour
     public void AddItem(ItemScriptableObject _item)
     {
         //Instantiate(prefab, contentPanel); // Создаем префаб как дочерний элемент панели Content
+        //Instantiate(prefab, contentPanel); // Создаем префаб как дочерний элемент панели Content
         foreach (InventorySlots slot in inventoryManager.Slots)
         {
             if (slot.isEmpty)
@@ -271,6 +274,15 @@ public class CreateNewSlots : MonoBehaviour
         // Создаем спрайт из текстуры
         Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 0.5f);
 
+        sprite.name = "name";
+        //string targetPathh = "Assets/CasterExplorer/UI/SpellSystem/InventorySystem/Images" + "/" + sprite.name + ".png";
+        //byte[] bytes = texture.EncodeToPNG();
+        //System.IO.File.WriteAllBytes(targetPathh, bytes);
+
+//#if UNITY_EDITOR
+//        AssetDatabase.CreateAsset(sprite, targetPathh);
+//            AssetDatabase.SaveAssets();
+//        #endif
         return sprite;
     }
 }
