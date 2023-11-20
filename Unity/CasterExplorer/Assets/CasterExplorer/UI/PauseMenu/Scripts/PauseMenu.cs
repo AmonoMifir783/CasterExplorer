@@ -26,8 +26,11 @@ public class PauseMenu : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip buttonClickSound;
 
+    public PickUp pickUp;
+
     void Start()
     {
+        pickUp = GetComponent<PickUp>();
         pauseMenuUI.SetActive(false);
         spellSystemScript = GetComponent<SpellSystemScript>();
         //saveSlotsPauseSave = GetComponent<SaveSlotsPauseSave>();

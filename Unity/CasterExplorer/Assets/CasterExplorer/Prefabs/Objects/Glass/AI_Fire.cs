@@ -5,8 +5,9 @@ using UnityEngine;
 public class AI_Fire : MonoBehaviour
 {
 
-    public int minTemp = 15;
-    public bool isFire = false;
+    public int minTemp = -5;
+    public int maxTemp = 15;
+    //public bool isFire = false;
     SpellReaction Link_SpellReaction; // (ссылка на класс SpellReaction)
    
 
@@ -27,16 +28,20 @@ public class AI_Fire : MonoBehaviour
         { 
             if (F1 <= minTemp)
             {
-                isFire = true;
-                StartCoroutine(ResetFireState());
+                Debug.Log("Цепь замкнулась. Объект поднялся");
             }
-        } 
-    } 
-   IEnumerator ResetFireState()
-    {
-        yield return new WaitForSeconds(5f);
-        isFire = false;
+            else if (F1 >= maxTemp)
+            {
+                Debug.Log("Цепь замкнулась. Объект опустился");
+            }
+            else
+            {
+            Debug.Log("Ничего");
+            }
+        }
     }
+
+   
 }
 
 
