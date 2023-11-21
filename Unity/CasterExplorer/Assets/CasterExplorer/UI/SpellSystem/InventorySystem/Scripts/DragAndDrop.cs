@@ -76,7 +76,7 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             }
         }
 
-        //Description.Description(oldSlot);
+        Description.Description(oldSlot);
         image.raycastTarget = true;
     }
     public void OnPointerEnter(PointerEventData eventData) // При наведении

@@ -14,11 +14,11 @@ public class DescriptionScript : MonoBehaviour
         if (slot.Item != null)
         {
             IconDescription.sprite = slot.Item.Icon;
-            TextDescription.text = slot.Item.Temperature + "\n" + 
-                                    slot.Item.Force + "\n" + 
-                                    slot.Item.Amperage + "\n" + 
-                                    slot.Item.Gravity + "\n" + 
-                                    slot.Item.Light;
+            TextDescription.text = "Temperature: " + slot.Item.Temperature + "\n" +
+                                    "Force: " + slot.Item.Force + "\n" +
+                                    "Amperage: " + slot.Item.Amperage + "\n";
+                                    //slot.Item.Gravity + "\n" + 
+                                    //slot.Item.Light;
         }
     }
 }
