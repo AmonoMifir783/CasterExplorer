@@ -30,7 +30,7 @@ public class SpellSystemScript : MonoBehaviour
         MurrorFastSlots = FastSlots.GetComponent<MurrorFastSlots>(); 
         inventoryManager = FindObjectOfType<InventoryManager>();
         pauseMenu = GetComponent<PauseMenu>();
-        openBestiary = GetComponent<OpenBestiary>();
+        //openBestiary = GetComponent<OpenBestiary>();
     }
 
     void Update()
@@ -75,7 +75,7 @@ public class SpellSystemScript : MonoBehaviour
             PauseGame = true;
             inventoryon = true;
             Cursor.visible = true;
-            openBestiary.enabled = false;
+            //openBestiary.enabled = false;
             FrontUI.SetActive(false);
         }
 
@@ -105,7 +105,7 @@ public class SpellSystemScript : MonoBehaviour
         inventoryon = false;
 
         MurrorFastSlots.CloseInventory();
-        openBestiary.enabled=true;
+       // openBestiary.enabled=true;
         FrontUI.SetActive(true);
     }
 

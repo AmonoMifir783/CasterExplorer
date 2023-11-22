@@ -26,6 +26,8 @@ public class SalamandraSR : MonoBehaviour
     public AudioClip[] deathSounds;
     public AudioSource audioSource;
     public bool salamandraDead = false;
+    public Animator animator;
+    public bool isTakingDamage;
     // Start is called before the first frame update
     private void Start()
     {
@@ -33,6 +35,7 @@ public class SalamandraSR : MonoBehaviour
         spellReaction = GetComponent<SpellReaction>();
         salamandraAi = GetComponent<SalamdraAI>();
         projectileCollision = GetComponent<ProjectileCollision>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -75,6 +78,16 @@ public class SalamandraSR : MonoBehaviour
     // Update is called once per frame
     private void TakeDamage(float damageAmount)
     {
+        isTakingDamage = true;
+        if (isTakingDamage)
+        {
+            isTakingDamage = false;
+            animator.SetBool("isRunning", false);
+            animator.SetBool("isResting", false);
+            animator.SetBool("isAttacking", false);
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isDamaging", true);
+        }
         if (damageSounds.Length > 0)
         {
             int randomIndex = Random.Range(0, damageSounds.Length);

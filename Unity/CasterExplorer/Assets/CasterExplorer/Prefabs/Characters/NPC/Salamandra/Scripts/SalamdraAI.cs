@@ -31,6 +31,11 @@ public class SalamdraAI : MonoBehaviour
     public AudioSource audioSource;
     private bool hasPlayedSeePlayerSound = false;
     private bool hasPlayedFearSound = false;
+    public Animator animator;
+    public SalamandraSR salamandraSr;
+    public bool isAttacking;
+    public bool isRunning;
+    //public GameObject ToxiinsSalamandra;
 
     private void Start()
     {
@@ -40,6 +45,8 @@ public class SalamdraAI : MonoBehaviour
         isChasing = false; // Инициализируем флаг преследования
         isRunningAway = false; // Инициализируем флаг убегания
         spellReaction = GetComponent<SpellReaction>();
+        animator = GetComponentInChildren<Animator>();
+        salamandraSr = GetComponent<SalamandraSR>();
     }
 
     private void Update()
@@ -49,36 +56,60 @@ public class SalamdraAI : MonoBehaviour
         // Проверяем нахождение игрока в области обзора противника
         if (distanceToPlayer <= chaseRange)
         {
+            if (!salamandraSr.isTakingDamage && !isAttacking)
+            {
+                animator.SetBool("isResting", false);
+                animator.SetBool("isAttacking", false);
+                animator.SetBool("isWalking", false);
+                animator.SetBool("isDamaging", false);
+                animator.SetBool("isRunning", true);
+            }
             isChasing = true; // Включаем режим преследования
             RotateTowardsPlayer();
             // Проверяем, если игрок находится в пределах атаки
             if (distanceToPlayer <= attackRange)
             {
+                isRunning = false;
                 // Атакуем игрока
                 if (Time.time >= nextDamageTime && distanceToPlayer > runRange)
                 {
+                    if (!salamandraSr.isTakingDamage && !isRunning && isAttacking)
+                    {
+                        animator.SetBool("isResting", false);
+                        animator.SetBool("isRunning", false);
+                        animator.SetBool("isDamaging", false);
+                        animator.SetBool("isWalking", false);
+                        animator.SetBool("isAttacking", true);
+                    }
                     LaunchProjectile();
                     nextDamageTime = Time.time + attackCooldown;
                     hasPlayedFearSound = false;
                 }
-                
+
             }
             else
             {
+                isAttacking = false;
                 // Подходим к игроку, чтобы находиться в пределах атаки
                 transform.position = Vector3.MoveTowards(transform.position, player.position, chaseSpeed * Time.deltaTime);
             }
         }
         else
         {
+            //animator.SetBool("isResting", false);
+            //animator.SetBool("isAttacking", false);
+            //animator.SetBool("isDamaging", false);
+            //animator.SetBool("isRunning", false);
+            //animator.SetBool("isWalking", true);
             isChasing = false; // Выключаем режим преследования
             hasPlayedSeePlayerSound = false;
+            isRunning = false;
 
-    // Если игрок слишком близко, убегаем от него
+            // Если игрок слишком близко, убегаем от него
 
-    // Продолжаем патрулирование
+            // Продолжаем патрулирование
             Patrol();
-            
+
         }
         if (distanceToPlayer < runRange)
         {
@@ -88,6 +119,11 @@ public class SalamdraAI : MonoBehaviour
 
     private void Patrol()
     {
+        animator.SetBool("isResting", false);
+        animator.SetBool("isRunning", false);
+        animator.SetBool("isAttacking", false);
+        animator.SetBool("isDamaging", false);
+        animator.SetBool("isWalking", true);
         // Если противник достиг текущей точки патрулирования, устанавливаем следующую точку и сбрасываем таймер ожидания
         if (transform.position == patrolPoints[currentPatrolIndex].position)
         {
@@ -119,6 +155,15 @@ public class SalamdraAI : MonoBehaviour
 
     private void RotateTowardsPlayer()
     {
+        isRunning = true;
+        if  (!salamandraSr.isTakingDamage && !isAttacking)
+        {
+            animator.SetBool("isResting", false);
+            animator.SetBool("isAttacking", false);
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isDamaging", false);
+            animator.SetBool("isRunning", true);
+        }
         Vector3 direction = (player.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
@@ -132,6 +177,15 @@ public class SalamdraAI : MonoBehaviour
 
     private void LaunchProjectile()
     {
+        isAttacking = true;
+        //if (!salamandraSr.isTakingDamage && !isRunning)
+        //{
+        //    animator.SetBool("isResting", false);
+        //    animator.SetBool("isRunning", false);
+        //    animator.SetBool("isDamaging", false);
+        //    animator.SetBool("isWalking", false);
+        //    animator.SetBool("isAttacking", true);
+        //}
         if (spitSounds.Length > 0)
         {
             int randomIndex = Random.Range(0, spitSounds.Length);
@@ -162,6 +216,11 @@ public class SalamdraAI : MonoBehaviour
 
     private void RunAwayFromPlayer()
     {
+        animator.SetBool("isResting", false);
+        animator.SetBool("isRunning", false);
+        animator.SetBool("isAttacking", false);
+        animator.SetBool("isDamaging", false);
+        animator.SetBool("isWalking", true);
         if (fearSounds.Length > 0 && audioSource != null && !hasPlayedFearSound)
         {
             int randomIndex = Random.Range(0, fearSounds.Length);

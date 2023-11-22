@@ -12,7 +12,7 @@ public class ShootSpell : MonoBehaviour
     public AudioClip[] shootSounds;
     private PlayerStamina playerStamina;
     public GameObject Player;
-
+    public bool isShooting;
 
     void Start()
     {
@@ -20,9 +20,10 @@ public class ShootSpell : MonoBehaviour
     }
     public void Shoot(int Temperature, int Force, int Amperage, int Gravity, int Light)
     {
-        if (playerStamina.currentStamina >= 15)
+        if (playerStamina.currentStamina >= 8)
         {
-            playerStamina.TakeFatigue(15);
+            isShooting = true;
+            playerStamina.TakeFatigue(8);
             Ray ray = mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
             RaycastHit hit;
             Vector3 targetPoint;

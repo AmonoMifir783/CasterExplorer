@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using Unity.VisualScripting;
 
 public class PlayerStamina : MonoBehaviour, IDataPersistence
 {
@@ -17,6 +18,7 @@ public class PlayerStamina : MonoBehaviour, IDataPersistence
     private bool isRunningOrJumping = false; // Variable to track if the player is running or jumping
     private float lastActionTime = 0f; // Variable to track the last time the player performed an action (running or jumping)
     private float recoveryTimer;
+    public ShootSpell spawnSpell;
 
 
     private bool cheatEnabled = false;
@@ -32,6 +34,7 @@ public class PlayerStamina : MonoBehaviour, IDataPersistence
             currentStamina = 100;
         }
         UpdateStaminaUI();
+        spawnSpell = FindAnyObjectByType<ShootSpell>();
     }
 
     void Update()
@@ -66,9 +69,10 @@ public class PlayerStamina : MonoBehaviour, IDataPersistence
         // Check if the player is running or jumping
         bool isRunning = Input.GetKey(KeyCode.LeftShift);
         bool isJumping = Input.GetButton("Jump");
+        bool isShooting = Input.GetButton("Fire1");
 
         // If the player is running or jumping, update the last action time and set isRunningOrJumping to true
-        if (isRunning || isJumping)
+        if (isRunning || isJumping || isShooting)
         {
             lastActionTime = Time.time;
             isRunningOrJumping = true;

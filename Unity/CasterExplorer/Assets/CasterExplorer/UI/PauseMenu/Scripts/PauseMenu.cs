@@ -36,7 +36,7 @@ public class PauseMenu : MonoBehaviour
         //saveSlotsPauseSave = GetComponent<SaveSlotsPauseSave>();
         //saveSlotsMenu = GetComponent<SaveSlotsMenu>();
         optionsOpen = GetComponent<OptionsOpen>();
-        openBestiary = GetComponent<OpenBestiary>();
+        //openBestiary = GetComponent<OpenBestiary>();
         magisteriyaFruitPickUp = GetComponent<MagisteriyaFruitPickUp>();
         magisteriyaFruitUse = GetComponent<MagisteriyaFruitUse>();
         chestPickUp = GetComponent<ChestPickUp>();
@@ -54,13 +54,13 @@ public class PauseMenu : MonoBehaviour
                 Player.GetComponent<MouseLook>().enabled = true;
                 Player.GetComponent<PlayerMovement>().enabled = true;
             }
-            else if (openBestiary.isOpened)
-            {
-                openBestiary.CloseImage();
-                // pauseMenuUI.SetActive(false);
-                Player.GetComponent<MouseLook>().enabled = true;
-                Player.GetComponent<PlayerMovement>().enabled = true;
-            }
+            //else if (openBestiary.isOpened)
+            //{
+            //    openBestiary.CloseImage();
+            //    // pauseMenuUI.SetActive(false);
+            //    Player.GetComponent<MouseLook>().enabled = true;
+            //    Player.GetComponent<PlayerMovement>().enabled = true;
+            //}
             else
             {
                 if (isPaused)
@@ -92,7 +92,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         isPaused = false;
         spellSystemScript.enabled = true;
-        openBestiary.enabled = true;
+       // openBestiary.enabled = true;
     }
 
     void Pause()
@@ -108,7 +108,7 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         pauseMenuUI.SetActive(true);
         spellSystemScript.InventoryOff();
-        openBestiary.CloseImage();
+        //openBestiary.CloseImage();
         Cursor.visible = true;
         Time.timeScale = 0f;
         //if (Time.timeScale == 0f)
@@ -116,7 +116,7 @@ public class PauseMenu : MonoBehaviour
         //    Time.timeScale = 0f;
         //}
         isPaused = true;
-        openBestiary.enabled = false;
+        //openBestiary.enabled = false;
     }
 
 
