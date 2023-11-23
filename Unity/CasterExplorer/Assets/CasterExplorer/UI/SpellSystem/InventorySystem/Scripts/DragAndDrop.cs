@@ -131,7 +131,7 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         else
         {
             oldSlot.Icon.GetComponent<Image>().color = Color.clear; // Скрываем иконку старого слота
-            oldSlot.Icon.GetComponent<Image>().sprite = null; // Устанавливаем пустую спрайт для иконки старого слота
+            //oldSlot.Icon.GetComponent<Image>().sprite = null; // Устанавливаем пустую спрайт для иконки старого слота
         }
 
         oldSlot.isEmpty = isEmpty; // Заменяем флаг пустоты старого слота на флаг пустоты нового слота
