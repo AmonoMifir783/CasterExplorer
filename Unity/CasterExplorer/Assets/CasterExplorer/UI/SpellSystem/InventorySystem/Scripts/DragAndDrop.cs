@@ -100,8 +100,8 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     {
         oldSlot.Item = null; // Обнуляем предмет в старом слоте
         oldSlot.isEmpty = true; // Устанавливаем флаг пустоты
-        oldSlot.Icon.GetComponent<Image>().color = Color.clear; // Скрываем иконку
-        oldSlot.Icon.GetComponent<Image>().sprite = null; // Устанавливаем пустой спрайт
+        //oldSlot.Icon.GetComponent<Image>().color = Color.clear; // Скрываем иконку
+        //oldSlot.Icon.GetComponent<Image>().sprite = null; // Устанавливаем пустой спрайт
     }
 
     private void ExchangeSlotData(InventorySlots newSlot)
@@ -126,12 +126,12 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
         if (isEmpty == false)
         {
-            oldSlot.SetIcon(icon.GetComponent<Image>().sprite); // Устанавливаем иконку старого слота из иконки нового слота
+           oldSlot.SetIcon(icon.GetComponent<Image>().sprite); // Устанавливаем иконку старого слота из иконки нового слота
         }
         else
         {
             oldSlot.Icon.GetComponent<Image>().color = Color.clear; // Скрываем иконку старого слота
-            //oldSlot.Icon.GetComponent<Image>().sprite = null; // Устанавливаем пустую спрайт для иконки старого слота
+            oldSlot.Icon.GetComponent<Image>().sprite = null; // Устанавливаем пустую спрайт для иконки старого слота
         }
 
         oldSlot.isEmpty = isEmpty; // Заменяем флаг пустоты старого слота на флаг пустоты нового слота
