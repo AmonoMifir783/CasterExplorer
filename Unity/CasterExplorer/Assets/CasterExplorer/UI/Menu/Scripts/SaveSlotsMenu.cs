@@ -15,6 +15,9 @@ public class SaveSlotsMenu : Menu
     [Header("Confirmation Popup")]
     [SerializeField] private ConfirmationPopupMenu confirmationPopupMenu;
 
+    public GameObject pauseMenuUI;
+
+
 
     private SaveSlot[] saveSlots;
     private bool isLoadingGame = false;
@@ -82,12 +85,14 @@ public class SaveSlotsMenu : Menu
     public void onBackClicked()
     {
         mainMenu.ActivateMenu();
+        //pauseMenuUI.SetActive(true);
         this.DeactivateMenu();
     }
 
     public void onBackPauseClicked()
     {
         pauseMenu.ActivateMenu();
+        pauseMenuUI.SetActive(true);
         this.DeactivateMenu();
         
     }

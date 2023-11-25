@@ -15,6 +15,9 @@ public class SettingsMenu : MonoBehaviour
     public Slider sensitivitySliderX;
     public Slider sensitivitySliderY;
 
+    public GameObject pauseMenuUI;
+
+
     void Start()
     {
         mouseLookScript = GetComponent<MouseLook>();
@@ -53,6 +56,7 @@ public class SettingsMenu : MonoBehaviour
     public void ExitSettings()
     {
         OptionsMenu.SetActive(false);
+        pauseMenuUI.SetActive(true);
     }
 
     public void SaveSettings()

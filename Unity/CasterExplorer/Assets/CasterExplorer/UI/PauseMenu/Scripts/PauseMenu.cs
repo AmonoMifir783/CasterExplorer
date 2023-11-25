@@ -28,8 +28,11 @@ public class PauseMenu : MonoBehaviour
 
     public PickUp pickUp;
 
+    public GameObject FrontUI;
+
     void Start()
     {
+        FrontUI.SetActive(true);
         pickUp = GetComponent<PickUp>();
         pauseMenuUI.SetActive(false);
         spellSystemScript = GetComponent<SpellSystemScript>();
@@ -47,6 +50,7 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            //FrontUI.SetActive(false);
             if (spellSystemScript.inventoryon)
             {
                 spellSystemScript.InventoryOff();
@@ -78,6 +82,8 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        FrontUI.SetActive(true);
+
         Player.GetComponent<MouseLook>().enabled = true;
         Player.GetComponent<PlayerMovement>().enabled = true;
         //Player.GetComponent<MagisteriyaFruitPickUp>().enabled = true;
@@ -97,6 +103,8 @@ public class PauseMenu : MonoBehaviour
 
     void Pause()
     {
+        
+
         Player.GetComponent<MouseLook>().enabled = false;
         Player.GetComponent<PlayerMovement>().enabled = false;
         //Player.GetComponent<MagisteriyaFruitPickUp>().enabled = false;
@@ -106,6 +114,9 @@ public class PauseMenu : MonoBehaviour
         //Player.GetComponent<ChestPickUp>().enabled = false;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+
+        FrontUI.SetActive(false);
+
         pauseMenuUI.SetActive(true);
         spellSystemScript.InventoryOff();
         //openBestiary.CloseImage();
@@ -123,6 +134,7 @@ public class PauseMenu : MonoBehaviour
     public void OnSaveGameClicked()
     {
         saveSlotsPauseSave.ActivateMenu(false);
+        pauseMenuUI.SetActive(false);
         //this.DeactivateMenu();
     }
 
@@ -131,6 +143,7 @@ public class PauseMenu : MonoBehaviour
     public void OnLoadGameClicked()
     {
         saveSlotsMenu.ActivateMenu(true);
+        pauseMenuUI.SetActive(false);
         //this.DeactivateMenu();
     }
 
@@ -169,6 +182,8 @@ public class PauseMenu : MonoBehaviour
     public void Settings()
     {
         // ��� �������� ��������
+        pauseMenuUI.SetActive(false);
+
     }
 
     public void MainMenu()

@@ -100,8 +100,8 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     {
         oldSlot.Item = null; // Обнуляем предмет в старом слоте
         oldSlot.isEmpty = true; // Устанавливаем флаг пустоты
-        //oldSlot.Icon.GetComponent<Image>().color = Color.clear; // Скрываем иконку
-        //oldSlot.Icon.GetComponent<Image>().sprite = null; // Устанавливаем пустой спрайт
+        oldSlot.Icon.GetComponent<Image>().color = Color.clear; // Скрываем иконку
+        oldSlot.Icon.GetComponent<Image>().sprite = null; // Устанавливаем пустой спрайт
     }
 
     private void ExchangeSlotData(InventorySlots newSlot)

@@ -11,9 +11,12 @@ public class OptionsOpen : MonoBehaviour
     public AudioClip buttonClickSound;
     public GameObject OptionsMenu;
 
+    public GameObject pauseMenuUI;
+
     public void OnOptionsClicked()
     {
         OptionsMenu.SetActive(true);
+        pauseMenuUI.SetActive(false);
     }
     public void PlayButtonClickSound()
     {

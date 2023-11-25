@@ -17,6 +17,8 @@ public class SaveSlotsPauseSave : Menu
     private SaveSlot[] saveSlots;
     private bool isSavingGame = false;
 
+    public GameObject pauseMenuUI;
+
     private void Awake()
     {
         saveSlots = GetComponentsInChildren<SaveSlot>();
@@ -75,6 +77,7 @@ public class SaveSlotsPauseSave : Menu
         if (isSavingGame)
         {
             pauseMenu.ActivateMenu();
+            //pauseMenuUI.SetActive(true);
         }
         else
         {
