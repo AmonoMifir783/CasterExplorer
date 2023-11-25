@@ -17,9 +17,16 @@ public class SettingsMenu : MonoBehaviour
 
     public GameObject pauseMenuUI;
 
+    private const float DisableVolume = -80;
+    [SerializeField] private Slider volumeSlider;
+    [SerializeField] private AudioMixer audioMixer;
+    [SerializeField] private string mixerParameter;
+    [SerializeField] private float minimumVolume;
+    //музыка слайдер пока отсутствует, но работает по той же схеме
 
     void Start()
     {
+        volumeSlider.SetValueWithoutNotify(GetMixerVolume());
         mouseLookScript = GetComponent<MouseLook>();
         List<string> options = new List<string>();
         resolutions = Screen.resolutions;
@@ -64,6 +71,7 @@ public class SettingsMenu : MonoBehaviour
         PlayerPrefs.SetInt("QualitySettingPreference", qualityDropdown.value);
         PlayerPrefs.SetInt("ResolutionPreference", resolutionDropdown.value);
         PlayerPrefs.SetInt("FullscreenPreference", System.Convert.ToInt32(Screen.fullScreen));
+        PlayerPrefs.SetFloat("VolumePreference", volumeSlider.value);
     }
 
     public void LoadSettings(int currentResolutionIndex)
@@ -82,5 +90,32 @@ public class SettingsMenu : MonoBehaviour
             Screen.fullScreen = System.Convert.ToBoolean(PlayerPrefs.GetInt("FullscreenPreference"));
         else
             Screen.fullScreen = true;
+        if (PlayerPrefs.HasKey("VolumePreference"))
+            volumeSlider.value = PlayerPrefs.GetFloat("VolumePreference");
+        else
+            volumeSlider.value = 1f;
+
+        SetMixerVolume(volumeSlider.value);
+    }
+    public void UpdateMixerVolume(float volumeValue)
+    {
+        SetMixerVolume(volumeValue);
+    }
+    private void SetMixerVolume(float volumeValue)
+    {
+        float mixerVolume;
+        if (volumeValue == 0)
+            mixerVolume = DisableVolume;
+        else
+            mixerVolume = Mathf.Lerp(minimumVolume, 0, volumeValue);
+        audioMixer.SetFloat(mixerParameter, mixerVolume);
+    }
+    private float GetMixerVolume()
+    {
+        audioMixer.GetFloat(mixerParameter, out float mixerVolume);
+        if (mixerVolume == DisableVolume)
+            return 0;
+        else
+            return Mathf.Lerp(1, 0, mixerVolume / minimumVolume);
     }
 }
