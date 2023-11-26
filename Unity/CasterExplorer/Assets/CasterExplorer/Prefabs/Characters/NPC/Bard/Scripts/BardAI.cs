@@ -9,10 +9,30 @@ public class BardAI : MonoBehaviour
     public float attackInterval = 3f;
     public int baseDamage = 100;
 
-    private float nextAttackTime = 0f;
+    private BardSR bardSr;
 
+    public AudioClip[] attackSounds;
+    public AudioClip[] songSounds;
+    public AudioSource audioSource;
+
+    public bool singsong = false;
+    public Animator animator;
+
+    private float nextAttackTime = 0f;
+    public bool isAttacking = false;
+
+    private void Start()
+    {
+        animator = GetComponentInChildren<Animator>();
+        bardSr = GetComponent<BardSR>();
+    }
     private void Update()
     {
+        //animator.SetBool("isDead", false);
+        //animator.SetBool("isResting", false);
+        //animator.SetBool("isAttacking", false);
+        //animator.SetBool("isElectro", false);
+        //animator.SetBool("isDamaging", false);
         // Calculate the distance between the enemy and the player
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
@@ -26,20 +46,43 @@ public class BardAI : MonoBehaviour
                 float damage = (attackRange - distanceToPlayer) / attackRange;
                 int finalDamage = Mathf.RoundToInt(baseDamage * damage);
                 //int damage = distanceToPlayer < (attackRange / 2) ? increasedDamage : baseDamage;
-                AttackPlayer(finalDamage);
 
+                    AttackPlayer(finalDamage);
+             
                 // Set the next attack time
                 nextAttackTime = Time.time + attackInterval;
             }
+            else
+            {
+                
+            }
         }
+        //if (distanceToPlayer <= 30 && !singsong) 
+        //{
+        //    singsong = true;
+        //    if (songSounds.Length > 0)
+        //    {
+        //        int randomIndex = Random.Range(0, songSounds.Length);
+        //        audioSource.PlayOneShot(songSounds[randomIndex]);
+        //    }
+        //}
     }
 
     private void AttackPlayer(int finalDamage)
     {
-        PlayerHealth playerHealthScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
-        playerHealthScript.TakeDamage(finalDamage);
-        // TODO: Implement your attack logic here
-        // You can apply damage to the player, trigger animations, or any other desired actions
-        Debug.Log("Enemy attacks player with damage: " + finalDamage);
+        
+            animator.SetBool("isResting", false);
+            animator.SetBool("isDead", false);
+            animator.SetBool("isElectro", false);
+            animator.SetBool("isDamaging", false);
+            animator.SetBool("isAttacking", true);
+            if (attackSounds.Length > 0)
+            {
+                int randomIndex = Random.Range(0, attackSounds.Length);
+                audioSource.PlayOneShot(attackSounds[randomIndex]);
+            }
+            PlayerHealth playerHealthScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+            playerHealthScript.TakeDamage(finalDamage);
+        
     }
 }
