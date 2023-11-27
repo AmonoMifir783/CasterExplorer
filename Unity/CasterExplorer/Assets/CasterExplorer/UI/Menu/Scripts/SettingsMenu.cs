@@ -19,14 +19,17 @@ public class SettingsMenu : MonoBehaviour
 
     private const float DisableVolume = -80;
     [SerializeField] private Slider volumeSlider;
+    [SerializeField] private Slider musicSlider;
     [SerializeField] private AudioMixer audioMixer;
-    [SerializeField] private string mixerParameter;
+    [SerializeField] private string mixerParameterone;
+    [SerializeField] private string mixerParametertwo;
     [SerializeField] private float minimumVolume;
     //музыка слайдер пока отсутствует, но работает по той же схеме
 
     void Start()
     {
         volumeSlider.SetValueWithoutNotify(GetMixerVolume());
+        musicSlider.SetValueWithoutNotify(GetMixerVolumeMusic());
         mouseLookScript = GetComponent<MouseLook>();
         List<string> options = new List<string>();
         resolutions = Screen.resolutions;
@@ -72,6 +75,7 @@ public class SettingsMenu : MonoBehaviour
         PlayerPrefs.SetInt("ResolutionPreference", resolutionDropdown.value);
         PlayerPrefs.SetInt("FullscreenPreference", System.Convert.ToInt32(Screen.fullScreen));
         PlayerPrefs.SetFloat("VolumePreference", volumeSlider.value);
+        PlayerPrefs.SetFloat("MusicPreference", musicSlider.value);
     }
 
     public void LoadSettings(int currentResolutionIndex)
@@ -96,10 +100,21 @@ public class SettingsMenu : MonoBehaviour
             volumeSlider.value = 1f;
 
         SetMixerVolume(volumeSlider.value);
+
+        if (PlayerPrefs.HasKey("MusicPreference"))
+            musicSlider.value = PlayerPrefs.GetFloat("MusicPreference");
+        else
+            musicSlider.value = 1f;
+
+        SetMixerVolumeMusic(musicSlider.value);
     }
     public void UpdateMixerVolume(float volumeValue)
     {
         SetMixerVolume(volumeValue);
+    }
+    public void UpdateMixerVolumeMusic(float volumeValuemusic)
+    {
+        SetMixerVolumeMusic(volumeValuemusic);
     }
     private void SetMixerVolume(float volumeValue)
     {
@@ -108,14 +123,31 @@ public class SettingsMenu : MonoBehaviour
             mixerVolume = DisableVolume;
         else
             mixerVolume = Mathf.Lerp(minimumVolume, 0, volumeValue);
-        audioMixer.SetFloat(mixerParameter, mixerVolume);
+        audioMixer.SetFloat(mixerParameterone, mixerVolume);
     }
     private float GetMixerVolume()
     {
-        audioMixer.GetFloat(mixerParameter, out float mixerVolume);
+        audioMixer.GetFloat(mixerParameterone, out float mixerVolume);
         if (mixerVolume == DisableVolume)
             return 0;
         else
             return Mathf.Lerp(1, 0, mixerVolume / minimumVolume);
+    }
+    private void SetMixerVolumeMusic(float volumeValuemusic)
+    {
+        float mixerVolumeMusic;
+        if (volumeValuemusic == 0)
+            mixerVolumeMusic = DisableVolume;
+        else
+            mixerVolumeMusic = Mathf.Lerp(minimumVolume, 0, volumeValuemusic);
+        audioMixer.SetFloat(mixerParametertwo, mixerVolumeMusic);
+    }
+    private float GetMixerVolumeMusic()
+    {
+        audioMixer.GetFloat(mixerParametertwo, out float mixerVolumeMusic);
+        if (mixerVolumeMusic == DisableVolume)
+            return 0;
+        else
+            return Mathf.Lerp(1, 0, mixerVolumeMusic / minimumVolume);
     }
 }

@@ -52,12 +52,12 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
         foreach (string spellName in data.spellNames)
         {
             string spellPath = "Assets/CasterExplorer/UI/SpellSystem/InventorySystem/Items/" + spellName + ".asset";
-            ItemScriptableObject spell = UnityEditor.AssetDatabase.LoadAssetAtPath<ItemScriptableObject>(spellPath);
-            if (spell != null)
-            {
-                spell.Icon = GenerateTexture();
-                AddItem(spell);
-            }
+            //ItemScriptableObject spell = UnityEditor.AssetDatabase.LoadAssetAtPath<ItemScriptableObject>(spellPath);
+            //if (spell != null)
+            //{
+            //    spell.Icon = GenerateTexture();
+            //    AddItem(spell);
+            //}
         }
     }
 
