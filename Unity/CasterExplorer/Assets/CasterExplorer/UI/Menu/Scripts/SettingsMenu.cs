@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class SettingsMenu : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class SettingsMenu : MonoBehaviour
     void Start()
     {
         volumeSlider.SetValueWithoutNotify(GetMixerVolume());
-        musicSlider.SetValueWithoutNotify(GetMixerVolumeMusic());
+        //musicSlider.SetValueWithoutNotify(GetMixerVolumeMusic());
         mouseLookScript = GetComponent<MouseLook>();
         List<string> options = new List<string>();
         resolutions = Screen.resolutions;
@@ -54,6 +55,7 @@ public class SettingsMenu : MonoBehaviour
 
     public void SetResolution(int resolutionIndex)
     {
+        var resolutions = Screen.resolutions.Select(resolution => new Resolution { width = resolution.width, height = resolution.height }).Distinct().ToArray();
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
@@ -75,7 +77,7 @@ public class SettingsMenu : MonoBehaviour
         PlayerPrefs.SetInt("ResolutionPreference", resolutionDropdown.value);
         PlayerPrefs.SetInt("FullscreenPreference", System.Convert.ToInt32(Screen.fullScreen));
         PlayerPrefs.SetFloat("VolumePreference", volumeSlider.value);
-        PlayerPrefs.SetFloat("MusicPreference", musicSlider.value);
+        //PlayerPrefs.SetFloat("MusicPreference", musicSlider.value);
     }
 
     public void LoadSettings(int currentResolutionIndex)
@@ -101,12 +103,12 @@ public class SettingsMenu : MonoBehaviour
 
         SetMixerVolume(volumeSlider.value);
 
-        if (PlayerPrefs.HasKey("MusicPreference"))
-            musicSlider.value = PlayerPrefs.GetFloat("MusicPreference");
-        else
-            musicSlider.value = 1f;
+        //if (PlayerPrefs.HasKey("MusicPreference"))
+        //    musicSlider.value = PlayerPrefs.GetFloat("MusicPreference");
+        //else
+        //    musicSlider.value = 1f;
 
-        SetMixerVolumeMusic(musicSlider.value);
+        //SetMixerVolumeMusic(musicSlider.value);
     }
     public void UpdateMixerVolume(float volumeValue)
     {

@@ -6,41 +6,52 @@ using UnityEngine.UI;
 
 public class AudioMixerSettings : MonoBehaviour
 {
-    private const float DisableVolume = -80;
-    [SerializeField] private Slider volumeSlider;
-    [SerializeField] private AudioMixer audioMixer;
-    [SerializeField] private string mixerParameter;
-    [SerializeField] private float minimumVolume;
-    // Start is called before the first frame update
-    void Start()
+    private const float DisabledVolume = -80;
+    [SerializeField] private Slider _volumeSlider;
+    [SerializeField] private AudioMixer _audioMixer;
+    [SerializeField] private string _mixerParameter;
+    [SerializeField] private float _minimumVolume;
+    private void Start()
     {
-        volumeSlider.SetValueWithoutNotify(GetMixerVolume());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        _volumeSlider.SetValueWithoutNotify(GetMixerVolume());
+        int currentResolutionIndex = 0;
+        LoadSettings(currentResolutionIndex);
     }
     public void UpdateMixerVolume(float volumeValue)
     {
         SetMixerVolume(volumeValue);
     }
+    public void SaveSettings()
+    {
+        PlayerPrefs.SetFloat("VolumePreference", _volumeSlider.value);
+    }
+    public void LoadSettings(int currentResolutionIndex)
+    {
+      
+        if (PlayerPrefs.HasKey("VolumePreference"))
+            _volumeSlider.value = PlayerPrefs.GetFloat("VolumePreference");
+        else
+            _volumeSlider.value = 1f;
+
+        SetMixerVolume(_volumeSlider.value);
+
+  
+    }
     private void SetMixerVolume(float volumeValue)
     {
         float mixerVolume;
         if (volumeValue == 0)
-            mixerVolume = DisableVolume;
-        else 
-        mixerVolume = Mathf.Lerp(minimumVolume, 0, volumeValue);
-        audioMixer.SetFloat(mixerParameter, mixerVolume);
+            mixerVolume = DisabledVolume;
+        else
+            mixerVolume = Mathf.Lerp(_minimumVolume, 0, volumeValue);
+        _audioMixer.SetFloat(_mixerParameter, mixerVolume);
     }
     private float GetMixerVolume()
     {
-        audioMixer.GetFloat(mixerParameter, out float mixerVolume);
-        if (mixerVolume == DisableVolume)
+        _audioMixer.GetFloat(_mixerParameter, out float mixerVolume);
+        if (mixerVolume == DisabledVolume)
             return 0;
         else
-            return Mathf.Lerp(1, 0, mixerVolume / minimumVolume);
+            return Mathf.Lerp(1, 0, mixerVolume / _minimumVolume);
     }
 }
