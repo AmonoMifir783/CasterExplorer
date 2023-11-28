@@ -11,6 +11,7 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     [SerializeField] private Transform player; // Ссылка на игрока
     [SerializeField] private Color normalColor = Color.white; // Цвет по умолчанию
     [SerializeField] private Color hoverColor = new Color(1f, 1f, 1f, 0.5f); // Цвет при наведении
+    [SerializeField] private Color ClearColor = new Color(1f, 1f, 1f, 0f); // Цвет пустой ячейки
     private Image image; // Компонент изображения
     private InventorySlots newSlot; // Ссылка на новый слот инвентаря
     private HighlightingSlot highlightingSlot; // Ссылка на скрипт HighlightingSlot
@@ -117,7 +118,7 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         }
         else
         {
-            newSlot.Icon.GetComponent<Image>().color = Color.clear; // Скрываем иконку нового слота
+            newSlot.Icon.GetComponent<Image>().color = ClearColor; //Color.clear; // Скрываем иконку нового слота
             newSlot.Icon.GetComponent<Image>().sprite = null; // Устанавливаем пустой спрайт для иконки нового слота
         }
 
@@ -130,10 +131,46 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         }
         else
         {
-            oldSlot.Icon.GetComponent<Image>().color = Color.clear; // Скрываем иконку старого слота
-            oldSlot.Icon.GetComponent<Image>().sprite = null; // Устанавливаем пустую спрайт для иконки старого слота
+            oldSlot.Icon.GetComponent<Image>().color = ClearColor; //Color.clear; // Скрываем иконку старого слота
+            //oldSlot.Icon.GetComponent<Image>().sprite = null; // Устанавливаем пустую спрайт для иконки старого слота
+
+            // Создание прозрачного спрайта
+            Texture2D texture = Texture2D.blackTexture;
+            Sprite transparentSprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+
+            // Установка прозрачного спрайта
+            oldSlot.Icon.GetComponent<Image>().sprite = transparentSprite;
         }
 
         oldSlot.isEmpty = isEmpty; // Заменяем флаг пустоты старого слота на флаг пустоты нового слота
+
+
+        // public Texture2D texture;
+        // texture = new Texture2D(width, height);
+
+        // // Заполняем все пиксели текстуры выбранным цветом
+        // Color32 color = new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), 255);
+        // Color32[] pixels = new Color32[width * height];
+        // for (int i = 0; i < pixels.Length; i++)
+        // {
+        //     pixels[i] = color;
+        // }
+
+        // // Заполняем текстуру пикселями
+        // texture.SetPixels32(pixels);
+
+        // // Применяем изменения к текстуре
+        // texture.Apply();
+
+        // // Создаем спрайт из текстуры
+        // Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 0.5f);
+
+        // sprite.name = "name";
+
+
+
+
+
+
     }
 }

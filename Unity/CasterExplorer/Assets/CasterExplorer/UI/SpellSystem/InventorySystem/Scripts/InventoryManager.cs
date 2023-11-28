@@ -14,18 +14,22 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
     public GameObject FastSlot3;
     public GameObject FastSlot4;
     //FastSlot1.GetComponent<InventorySlots>().Item; 
-    public CreateNewSlots createNewSlots;
+    //public CreateNewSlots createNewSlots;
     public Transform InventoryPanel;
     public List<InventorySlots> Slots = new List<InventorySlots>();
     public Dictionary<string, ItemScriptableObject> spellDictionary = new Dictionary<string, ItemScriptableObject>();
     public int i = 0;
 
-    public GameObject prefab; // Ссылка на префаб, который нужно создать
+    public GameObject prefab; // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     //public Transform contentPanel;
+
+
+    public GameObject CreateSlot;
 
     void Start()
     {
-        createNewSlots = FindObjectOfType<CreateNewSlots>();
+        //createNewSlots = CreateSlot.GetComponent<CreateNewSlots>();
+
         Inicialization();
 
     }
@@ -47,17 +51,44 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
         }
     }
 
+
+        int Temperature;
+        int Force;
+        int Amperage;
+        int Gravity;
+        int Light;
+
     public void LoadData(GameData data)
     {
+
+        int j = 0;
+
         foreach (string spellName in data.spellNames)
         {
-            string spellPath = "Assets/CasterExplorer/UI/SpellSystem/InventorySystem/Items/" + spellName + ".asset";
-            //ItemScriptableObject spell = UnityEditor.AssetDatabase.LoadAssetAtPath<ItemScriptableObject>(spellPath);
-            //if (spell != null)
-            //{
-            //    spell.Icon = GenerateTexture();
-            //    AddItem(spell);
-            //}
+            Debug.Log("Р Р°Р·РјРµСЂ - " + data.spellAtributs.Count);
+
+            Temperature = data.spellAtributs[j];
+            j++;
+
+            Force = data.spellAtributs[j];
+            j++;
+
+            Amperage = data.spellAtributs[j];
+            j++;
+
+            Gravity = data.spellAtributs[j];
+            j++;
+
+            Light = data.spellAtributs[j];
+            j++;
+
+            Debug.Log("Р’СЃС‘ РѕРє " + spellName);
+
+
+            CreateSpell(Temperature, Force, Amperage, Gravity, Light); 
+            
+
+            
         }
     }
 
@@ -68,14 +99,57 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
             if (slot.Item != null && !data.spellNames.Contains(slot.Item.name) && slot.Item.name != "1" && slot.Item.name != "2")
             {
                 data.spellNames.Add(slot.Item.name);
+
+                Debug.Log("РЇ СЂРѕРґРёР»СЃСЏ! - " + slot.Item.name);
+
+                data.spellAtributs.Add(slot.Item.Temperature);
+                data.spellAtributs.Add(slot.Item.Force);
+                data.spellAtributs.Add(slot.Item.Amperage);
+                data.spellAtributs.Add(slot.Item.Gravity);
+                data.spellAtributs.Add(slot.Item.Light);
             }
         }
     }
+
+
+    public int CountSpell = 0;
+
+    public void CreateSpell(int Temperature, int Force, int Amperage, int Gravity, int light)
+    {
+        SpellItem spellItem = ScriptableObject.CreateInstance<SpellItem>();
+
+        // РќР°СЃС‚СЂРѕР№РєР° СЃРІРѕР№СЃС‚РІ SpellItem 
+        spellItem.Temperature = Temperature;
+        spellItem.Force = Force;
+        spellItem.Amperage = Amperage;
+        spellItem.Gravity = Gravity;
+        spellItem.Light = light;
+
+        CountSpell++;
+
+        spellItem.Icon = GenerateTexture();
+        spellItem.ItemName = CountSpell;
+
+
+            string targetPath = "Assets/CasterExplorer/UI/SpellSystem/InventorySystem/Items" + "/" + CountSpell + ".asset";
+
+            #if UNITY_EDITOR
+                AssetDatabase.CreateAsset(spellItem, targetPath);
+                AssetDatabase.SaveAssets();
+            #endif
+
+            Inicialization();
+
+            Instantiate(prefab, InventoryPanel); // РЎРѕР·РґР°РµРј РїСЂРµС„Р°Р± РєР°Рє РґРѕС‡РµСЂРЅРёР№ СЌР»РµРјРµРЅС‚ РїР°РЅРµР»Рё Content
+            AddItem(spellItem);
+
+    }      
+
     public void AddItem(ItemScriptableObject _item)
     {
-        Instantiate(prefab, InventoryPanel); // Создаем префаб как дочерний элемент панели Content
+        Instantiate(prefab, InventoryPanel); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Content
         Inicialization();
-        //Instantiate(prefab, contentPanel); // Создаем префаб как дочерний элемент панели Content
+        //Instantiate(prefab, contentPanel); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Content
         foreach (InventorySlots slot in Slots)
         {
             if (slot.isEmpty)
@@ -88,15 +162,21 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
             }
         }
     }
+
+
+
     public int width = 256;
     public int height = 256;
     public Texture2D texture;
+
+
+
     public Sprite GenerateTexture()
     {
-        // Создаем новую текстуру с заданными размерами
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         texture = new Texture2D(width, height);
 
-        // Заполняем все пиксели текстуры выбранным цветом
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         Color32 color = new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), 255);
         Color32[] pixels = new Color32[width * height];
         for (int i = 0; i < pixels.Length; i++)
@@ -104,13 +184,13 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
             pixels[i] = color;
         }
 
-        // Заполняем текстуру пикселями
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         texture.SetPixels32(pixels);
 
-        // Применяем изменения к текстуре
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         texture.Apply();
 
-        // Создаем спрайт из текстуры
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 0.5f);
 
         sprite.name = "name";
@@ -122,7 +202,10 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
         //        AssetDatabase.CreateAsset(sprite, targetPathh);
         //            AssetDatabase.SaveAssets();
         //        #endif
-        Debug.Log("ИДИ НАХУЙ");
         return sprite;
     }
+
+
+
+    
 }

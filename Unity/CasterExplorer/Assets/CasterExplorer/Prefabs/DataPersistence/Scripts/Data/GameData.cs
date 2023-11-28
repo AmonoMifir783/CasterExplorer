@@ -28,6 +28,8 @@ public class GameData
 
     public List<string> spellNames;
 
+    public List<int> spellAtributs;
+
 
     public SerializableDictionary<string, bool> magisteriyaCollected;
     public SerializableDictionary<string, bool> deadSalamandras;
@@ -57,16 +59,17 @@ public class GameData
         saperNumbers = new SerializableDictionary<string, bool>();
         SlotsSave = new List<int>();
         spellNames = new List<string>();
+        spellAtributs = new List<int>();
     }
 
-    public int GetLevelInfo() // информация которая будет находиться в слоте сохранения
+    public int GetLevelInfo() // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     {
 
         int sceneNumber = SceneManager.GetActiveScene().buildIndex;
         PlayerPrefs.SetInt("SceneNumber", sceneNumber);
         return sceneNumber;
     }
-    public DateTime GetTimeInfo() // информация, которая будет находиться в слоте сохранения
+    public DateTime GetTimeInfo() // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     {
         DateTime currentDateTime = DateTime.Now;
         return currentDateTime;
@@ -78,7 +81,7 @@ public class GameData
         spellNames.AddRange(names);
     }
 
-    // Метод для загрузки имен заклинаний
+    // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     public List<string> LoadSpellNames()
     {
         return spellNames;
