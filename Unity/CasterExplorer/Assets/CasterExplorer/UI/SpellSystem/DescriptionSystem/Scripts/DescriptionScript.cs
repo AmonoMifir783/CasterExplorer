@@ -14,6 +14,8 @@ public class DescriptionScript : MonoBehaviour
         if (slot.Item != null)
         {
             IconDescription.sprite = slot.Item.Icon;
+            IconDescription.GetComponent<Image>().color = slot.Icon.GetComponent<Image>().color;
+
             TextDescription.text = "Temperature: " + slot.Item.Temperature + "\n" +
                                     "Force: " + slot.Item.Force + "\n" +
                                     "Amperage: " + slot.Item.Amperage + "\n";

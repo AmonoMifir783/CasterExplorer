@@ -25,7 +25,8 @@ public class HighlightingSlot : MonoBehaviour
         {
             if (slot.isHighlighting)
             {   
-                slot.Icon.GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
+                Color currentColor = slot.Icon.GetComponent<Image>().color;
+                slot.Icon.GetComponent<Image>().color =  new Color(currentColor.r, currentColor.b, currentColor.g, 1f);
                 slot.isHighlighting = false;
             }
         }
@@ -34,7 +35,8 @@ public class HighlightingSlot : MonoBehaviour
         {
             if (FastSlots.transform.GetChild(i).GetComponent<InventorySlots>().isHighlighting)
             {
-                FastSlots.transform.GetChild(i).GetComponent<InventorySlots>().Icon.GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
+                Color currentColor = FastSlots.transform.GetChild(i).GetComponent<InventorySlots>().Icon.GetComponent<Image>().color;
+                FastSlots.transform.GetChild(i).GetComponent<InventorySlots>().Icon.GetComponent<Image>().color = new Color(currentColor.r, currentColor.b, currentColor.g, 1f);
                 FastSlots.transform.GetChild(i).GetComponent<InventorySlots>().isHighlighting = false;
             }
         }
@@ -43,7 +45,8 @@ public class HighlightingSlot : MonoBehaviour
         {
             if (CreateSlots.transform.GetChild(i).GetComponent<InventorySlots>().isHighlighting)
             {
-                CreateSlots.transform.GetChild(i).GetComponent<InventorySlots>().Icon.GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
+                Color currentColor = CreateSlots.transform.GetChild(i).GetComponent<InventorySlots>().Icon.GetComponent<Image>().color;
+                CreateSlots.transform.GetChild(i).GetComponent<InventorySlots>().Icon.GetComponent<Image>().color = new Color(currentColor.r, currentColor.b, currentColor.g, 1f);
                 CreateSlots.transform.GetChild(i).GetComponent<InventorySlots>().isHighlighting = false;
             }
         }

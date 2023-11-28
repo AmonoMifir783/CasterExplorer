@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
 using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
+using Unity.VisualScripting;
 
 public class CreateNewSlots : MonoBehaviour
 {
@@ -33,6 +34,8 @@ public class CreateNewSlots : MonoBehaviour
     public AudioSource audioSource;
     public PickUp pickUp;
 
+
+    public Sprite SpellArt;
 
     private void Start()
     {
@@ -121,6 +124,19 @@ public class CreateNewSlots : MonoBehaviour
         spellItem.Gravity = Gravity_Slot1 + Gravity_Slot2 - Gravity_Slot3;
         spellItem.Light = light_Slot1 + light_Slot2 - light_Slot3;
 
+        if (spellItem.Temperature < -273)
+        {
+            spellItem.Temperature = -273;
+        }
+        if (spellItem.Force < 0)
+        {
+            spellItem.Force = 0;
+        }
+        if (spellItem.Amperage < 0)
+        {
+            spellItem.Amperage = 0;
+        }
+
 
 
         if(!CheckInventory(spellItem) && pickUp.scrollCount > 0)
@@ -129,7 +145,11 @@ public class CreateNewSlots : MonoBehaviour
             pickUp.scrollCount--;
             pickUp.ScrollCount.text = pickUp.scrollCount.ToString();
 
-            spellItem.Icon = GenerateTexture();
+            Color color = GenerateRandomColor();
+
+            //GenerateTexture();
+
+            spellItem.Icon = SpellArt;
             spellItem.ItemName = CountSpell;
 
             string targetPath = "Assets/CasterExplorer/UI/SpellSystem/InventorySystem/Items" + "/" + CountSpell + ".asset";
@@ -148,7 +168,8 @@ public class CreateNewSlots : MonoBehaviour
             }
 
             Instantiate(prefab, contentPanel); // Создаем префаб как дочерний элемент панели Content
-            AddItem(spellItem);
+            AddItem(spellItem, color);
+            
         }
         else
         {
@@ -231,7 +252,7 @@ public class CreateNewSlots : MonoBehaviour
         return false;
     }
 
-    public void AddItem(ItemScriptableObject _item)
+    public void AddItem(ItemScriptableObject _item, Color color)
     {
         //Instantiate(prefab, contentPanel); // Создаем префаб как дочерний элемент панели Content
         //Instantiate(prefab, contentPanel); // Создаем префаб как дочерний элемент панели Content
@@ -242,7 +263,11 @@ public class CreateNewSlots : MonoBehaviour
                 slot.Item = _item;
                 slot.isEmpty = false;
                 slot.isHighlighting = false;
+
+                //_item.Icon.GetComponent<Image>().color = color;
+
                 slot.SetIcon(_item.Icon);
+                slot.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().color = new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), 255);;
                 break;
             }
         }
@@ -252,11 +277,12 @@ public class CreateNewSlots : MonoBehaviour
     public int height = 256;
     public Texture2D texture;
 
-    public Sprite GenerateTexture()
+
+
+    public void GenerateTexture()
     {
         // Создаем новую текстуру с заданными размерами
         texture = new Texture2D(width, height);
-
         // Заполняем все пиксели текстуры выбранным цветом
         Color32 color = new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), 255);
         Color32[] pixels = new Color32[width * height];
@@ -264,25 +290,52 @@ public class CreateNewSlots : MonoBehaviour
         {
             pixels[i] = color;
         }
-
         // Заполняем текстуру пикселями
         texture.SetPixels32(pixels);
-
         // Применяем изменения к текстуре
         texture.Apply();
-
-        // Создаем спрайт из текстуры
-        Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 0.5f);
-
-        sprite.name = "name";
-        //string targetPathh = "Assets/CasterExplorer/UI/SpellSystem/InventorySystem/Images" + "/" + sprite.name + ".png";
-        //byte[] bytes = texture.EncodeToPNG();
-        //System.IO.File.WriteAllBytes(targetPathh, bytes);
-
-//#if UNITY_EDITOR
-//        AssetDatabase.CreateAsset(sprite, targetPathh);
-//            AssetDatabase.SaveAssets();
-//        #endif
-        return sprite;
+        
+        // Присваиваем текстуру переменной SpellArt
+        SpellArt = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 0.5f);
+        SpellArt.name = "name";
     }
+
+
+    public Color GenerateRandomColor()
+    {
+        
+        float r = Random.Range(0f, 255f);
+        float g = Random.Range(0f, 255f);
+        float b = Random.Range(0f, 255f);
+        float a = 255f;
+
+        return new Color(r, g, b, a);
+    }
+
 }
+
+
+        // // Создаем новый экземпляр спрайта
+        // Sprite generatedSprite = SpellArt;
+
+        // // Получаем доступ к текстуре спрайта
+        // Texture2D texture = generatedSprite.texture;
+
+        // // Получаем массив пикселей текстуры
+        // Color[] pixels = texture.GetPixels();
+
+        // // Генерируем случайный цвет
+        // Color randomColor = new Color(Random.value, Random.value, Random.value);
+
+        // // Присваиваем случайный цвет каждому пикселю текстуры
+        // for (int i = 0; i < pixels.Length; i++)
+        // {
+        //     pixels[i] = randomColor;
+        // }
+
+        // // Применяем изменения к текстуре
+        // texture.SetPixels(pixels);
+        // texture.Apply();
+
+        // // Возвращаем измененный спрайт
+        // return generatedSprite;

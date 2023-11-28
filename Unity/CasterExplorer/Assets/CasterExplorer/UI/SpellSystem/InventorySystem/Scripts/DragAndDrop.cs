@@ -41,8 +41,9 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     {
         if (oldSlot.isEmpty)
             return;
-
-        image.color = new Color(1f, 1f, 1f, 0.4f); // Изменяем цвет при нажатии
+            
+        Color currentColor = image.color;
+        image.color = new Color(currentColor.r, currentColor.b, currentColor.g, 0.4f); // Изменяем цвет при зажатии
         transform.SetParent(DragSpell.transform); // Изменяем родительский объект для возможности перемещения по экрану
         image.raycastTarget = false;
         oldSlot.isHighlighting = true;
@@ -55,7 +56,9 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         transform.SetParent(oldSlot.transform); // Возвращаем предмет на старый слот
         transform.position = oldSlot.transform.position; // Устанавливаем позицию предмета на позицию слота
         highlightingSlot.HighlightSlot();
-        oldSlot.Icon.GetComponent<Image>().color = hoverColor;
+
+        Color currentColor = oldSlot.Icon.GetComponent<Image>().color;
+        oldSlot.Icon.GetComponent<Image>().color = new Color(currentColor.r, currentColor.b, currentColor.g, 0.5f);// hoverColor;
         oldSlot.isHighlighting = true;
 
         if (eventData.pointerCurrentRaycast.gameObject.name == "SpellSystem")
@@ -70,9 +73,11 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             }
             else
             {
-                ExchangeSlotData(newSlot);
+                ExchangeSlotData(newSlot, oldSlot);
                 highlightingSlot.HighlightSlot();
-                newSlot.Icon.GetComponent<Image>().color = hoverColor;
+
+                currentColor = newSlot.Icon.GetComponent<Image>().color;
+                newSlot.Icon.GetComponent<Image>().color =  new Color(currentColor.r, currentColor.b, currentColor.g, 0.5f);// hoverColor;      
                 oldSlot.isHighlighting = true;
             }
         }
@@ -84,7 +89,9 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     {
         if (oldSlot.isEmpty)
             return;
-            image.color = hoverColor; // Изменяем цвет при наведении
+
+        Color currentColor = image.color;
+        image.color = new Color(currentColor.r, currentColor.b, currentColor.g, 0.5f);// hoverColor; // Изменяем цвет при наведении
     }
 
     public void OnPointerExit(PointerEventData eventData) // При денаведении
@@ -93,7 +100,8 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             return;
         if (!oldSlot.isHighlighting)
         {
-            image.color = normalColor; // Возвращаем цвет по умолчанию
+            Color currentColor = image.color;
+            image.color = new Color(currentColor.r, currentColor.b, currentColor.g, 1f); //normalColor; // Возвращаем цвет по умолчанию
         }
     }
 
@@ -105,33 +113,35 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         oldSlot.Icon.GetComponent<Image>().sprite = null; // Устанавливаем пустой спрайт
     }
 
-    private void ExchangeSlotData(InventorySlots newSlot)
+    private void ExchangeSlotData(InventorySlots newslot, InventorySlots oldslot)
     {
-        ItemScriptableObject item = newSlot.Item; // Сохраняем предмет нового слота
-        bool isEmpty = newSlot.isEmpty; // Сохраняем флаг пустоты нового слота
-        GameObject icon = newSlot.Icon; // Сохраняем иконку нового слота
-        newSlot.Item = oldSlot.Item; // Заменяем предмет нового слота на предмет старого слота
+        ItemScriptableObject item = newslot.Item; // Сохраняем предмет нового слота
+        bool isEmpty = newslot.isEmpty; // Сохраняем флаг пустоты нового слота
+        //GameObject icon = newslot.Icon; // Сохраняем иконку нового слота
+        newslot.Item = oldslot.Item; // Заменяем предмет нового слота на предмет старого слота
 
-        if (oldSlot.isEmpty == false)
+        if (oldslot.isEmpty == false)
         {
             newSlot.SetIcon(oldSlot.Icon.GetComponent<Image>().sprite); // Устанавливаем иконку нового слота из иконки старого слота
+            newslot.Icon.GetComponent<Image>().color = oldslot.Icon.GetComponent<Image>().color;
         }
         else
         {
-            newSlot.Icon.GetComponent<Image>().color = ClearColor; //Color.clear; // Скрываем иконку нового слота
-            newSlot.Icon.GetComponent<Image>().sprite = null; // Устанавливаем пустой спрайт для иконки нового слота
+            
+            newslot.Icon.GetComponent<Image>().color = ClearColor; //Color.clear; // Скрываем иконку нового слота
+            newslot.Icon.GetComponent<Image>().sprite = null; // Устанавливаем пустой спрайт для иконки нового слота
         }
 
-        newSlot.isEmpty = oldSlot.isEmpty; // Заменяем флаг пустоты нового слота на флаг пустоты старого слота
-        oldSlot.Item = item; // Заменяем предмет старого слота на предмет нового слота
+        newslot.isEmpty = oldslot.isEmpty; // Заменяем флаг пустоты нового слота на флаг пустоты старого слота
+        oldslot.Item = item; // Заменяем предмет старого слота на предмет нового слота
 
         if (isEmpty == false)
         {
-           oldSlot.SetIcon(icon.GetComponent<Image>().sprite); // Устанавливаем иконку старого слота из иконки нового слота
+           oldslot.SetIcon(newslot.Icon.GetComponent<Image>().sprite); // Устанавливаем иконку старого слота из иконки нового слота
         }
         else
         {
-            oldSlot.Icon.GetComponent<Image>().color = ClearColor; //Color.clear; // Скрываем иконку старого слота
+            oldslot.Icon.GetComponent<Image>().color = ClearColor; //Color.clear; // Скрываем иконку старого слота
             //oldSlot.Icon.GetComponent<Image>().sprite = null; // Устанавливаем пустую спрайт для иконки старого слота
 
             // Создание прозрачного спрайта
@@ -139,38 +149,8 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             Sprite transparentSprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
 
             // Установка прозрачного спрайта
-            oldSlot.Icon.GetComponent<Image>().sprite = transparentSprite;
+            oldslot.Icon.GetComponent<Image>().sprite = transparentSprite;
         }
-
-        oldSlot.isEmpty = isEmpty; // Заменяем флаг пустоты старого слота на флаг пустоты нового слота
-
-
-        // public Texture2D texture;
-        // texture = new Texture2D(width, height);
-
-        // // Заполняем все пиксели текстуры выбранным цветом
-        // Color32 color = new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), 255);
-        // Color32[] pixels = new Color32[width * height];
-        // for (int i = 0; i < pixels.Length; i++)
-        // {
-        //     pixels[i] = color;
-        // }
-
-        // // Заполняем текстуру пикселями
-        // texture.SetPixels32(pixels);
-
-        // // Применяем изменения к текстуре
-        // texture.Apply();
-
-        // // Создаем спрайт из текстуры
-        // Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 0.5f);
-
-        // sprite.name = "name";
-
-
-
-
-
-
+        oldslot.isEmpty = isEmpty; // Заменяем флаг пустоты старого слота на флаг пустоты нового слота
     }
 }
