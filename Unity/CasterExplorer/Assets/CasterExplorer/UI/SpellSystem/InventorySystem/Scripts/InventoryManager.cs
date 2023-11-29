@@ -20,10 +20,12 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
     public Dictionary<string, ItemScriptableObject> spellDictionary = new Dictionary<string, ItemScriptableObject>();
     public int i = 0;
 
+    public bool isLoading = false;
+
     public GameObject prefab; // ������ �� ������, ������� ����� �������
     //public Transform contentPanel;
 
-
+    public Sprite SpellArt;
     public GameObject CreateSlot;
 
     void Start()
@@ -87,8 +89,6 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
 
             CreateSpell(Temperature, Force, Amperage, Gravity, Light); 
             
-
-            
         }
     }
 
@@ -96,7 +96,7 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
     {
         foreach (InventorySlots slot in Slots)
         {
-            if (slot.Item != null && !data.spellNames.Contains(slot.Item.name) && slot.Item.name != "1" && slot.Item.name != "2")
+            if (slot.Item != null && !data.spellNames.Contains(slot.Item.name)) //&& slot.Item.name != "1" && slot.Item.name != "2")
             {
                 data.spellNames.Add(slot.Item.name);
 
@@ -127,29 +127,29 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
 
         CountSpell++;
 
-        spellItem.Icon = GenerateTexture();
+        spellItem.Icon = SpellArt;
         spellItem.ItemName = CountSpell;
 
 
-            string targetPath = "Assets/CasterExplorer/UI/SpellSystem/InventorySystem/Items" + "/" + CountSpell + ".asset";
+        string targetPath = "Assets/CasterExplorer/UI/SpellSystem/InventorySystem/Items" + "/" + CountSpell + ".asset";
 
-            #if UNITY_EDITOR
-                AssetDatabase.CreateAsset(spellItem, targetPath);
-                AssetDatabase.SaveAssets();
-            #endif
+        #if UNITY_EDITOR
+            AssetDatabase.CreateAsset(spellItem, targetPath);
+            AssetDatabase.SaveAssets();
+        #endif
 
-            Inicialization();
+        Inicialization();
 
-            Instantiate(prefab, InventoryPanel); // Создаем префаб как дочерний элемент панели Content
-            AddItem(spellItem);
+        Instantiate(prefab, InventoryPanel); // Создаем префаб как дочерний элемент панели Content
+        AddItem(spellItem);
 
     }      
 
     public void AddItem(ItemScriptableObject _item)
     {
-        Instantiate(prefab, InventoryPanel); // ������� ������ ��� �������� ������� ������ Content
+        //Instantiate(prefab, InventoryPanel); 
         Inicialization();
-        //Instantiate(prefab, contentPanel); // ������� ������ ��� �������� ������� ������ Content
+
         foreach (InventorySlots slot in Slots)
         {
             if (slot.isEmpty)
@@ -157,55 +157,12 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
                 slot.Item = _item;
                 slot.isEmpty = false;
                 slot.isHighlighting = false;
+
                 slot.SetIcon(_item.Icon);
+                slot.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().color = new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), 255);
                 break;
             }
         }
     }
 
-
-
-    public int width = 256;
-    public int height = 256;
-    public Texture2D texture;
-
-
-
-    public Sprite GenerateTexture()
-    {
-        // ������� ����� �������� � ��������� ���������
-        texture = new Texture2D(width, height);
-
-        // ��������� ��� ������� �������� ��������� ������
-        Color32 color = new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), 255);
-        Color32[] pixels = new Color32[width * height];
-        for (int i = 0; i < pixels.Length; i++)
-        {
-            pixels[i] = color;
-        }
-
-        // ��������� �������� ���������
-        texture.SetPixels32(pixels);
-
-        // ��������� ��������� � ��������
-        texture.Apply();
-
-        // ������� ������ �� ��������
-        Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 0.5f);
-
-        sprite.name = "name";
-        //string targetPathh = "Assets/CasterExplorer/UI/SpellSystem/InventorySystem/Images" + "/" + sprite.name + ".png";
-        //byte[] bytes = texture.EncodeToPNG();
-        //System.IO.File.WriteAllBytes(targetPathh, bytes);
-
-        //#if UNITY_EDITOR
-        //        AssetDatabase.CreateAsset(sprite, targetPathh);
-        //            AssetDatabase.SaveAssets();
-        //        #endif
-        return sprite;
-    }
-
-
-
-    
 }

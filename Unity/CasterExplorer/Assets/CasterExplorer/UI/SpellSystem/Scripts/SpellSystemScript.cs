@@ -112,7 +112,7 @@ public class SpellSystemScript : MonoBehaviour
     void ClearCreateSlots(GameObject CraftSlot)
     {
             CreateNewSlots createNewSlots = FindObjectOfType<CreateNewSlots>();
-            createNewSlots.AddItem(CraftSlot.GetComponent<InventorySlots>().Item, GenerateRandomColor());
+            createNewSlots.AddItem(CraftSlot.GetComponent<InventorySlots>().Item);
 
             CraftSlot.GetComponent<InventorySlots>().Icon.GetComponent<Image>().color = Color.clear;
             CraftSlot.GetComponent<InventorySlots>().Icon.GetComponent<Image>().sprite = null;
@@ -120,15 +120,5 @@ public class SpellSystemScript : MonoBehaviour
             CraftSlot.GetComponent<InventorySlots>().isEmpty = true;
             CraftSlot.GetComponent<InventorySlots>().isHighlighting = false;
             inventoryManager.Inicialization();
-    }
-
-    
-    public Color GenerateRandomColor()
-    {
-        float r = Random.Range(0f, 255f);
-        float g = Random.Range(0f, 255f);
-        float b = Random.Range(0f, 255f);
-        float a = 255f;
-        return new Color(r, g, b, a);
     }
 }

@@ -168,7 +168,7 @@ public class CreateNewSlots : MonoBehaviour
             }
 
             Instantiate(prefab, contentPanel); // Создаем префаб как дочерний элемент панели Content
-            AddItem(spellItem, color);
+            AddItem(spellItem);
             
         }
         else
@@ -252,7 +252,7 @@ public class CreateNewSlots : MonoBehaviour
         return false;
     }
 
-    public void AddItem(ItemScriptableObject _item, Color color)
+    public void AddItem(ItemScriptableObject _item)
     {
         //Instantiate(prefab, contentPanel); // Создаем префаб как дочерний элемент панели Content
         //Instantiate(prefab, contentPanel); // Создаем префаб как дочерний элемент панели Content
@@ -267,7 +267,7 @@ public class CreateNewSlots : MonoBehaviour
                 //_item.Icon.GetComponent<Image>().color = color;
 
                 slot.SetIcon(_item.Icon);
-                slot.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().color = new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), 255);;
+                slot.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().color = new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), 255);
                 break;
             }
         }
