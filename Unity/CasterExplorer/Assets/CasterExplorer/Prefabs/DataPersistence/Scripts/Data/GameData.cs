@@ -29,9 +29,8 @@ public class GameData
     public List<string> spellNames;
 
     public List<int> spellAtributs;
-
     public List<int> fastSlots;
-
+    public List<bool> fastSlotsEmpty;
 
     public SerializableDictionary<string, bool> magisteriyaCollected;
     public SerializableDictionary<string, bool> deadSalamandras;
@@ -63,6 +62,7 @@ public class GameData
         spellNames = new List<string>();
         spellAtributs = new List<int>();
         fastSlots = new List<int>();
+        fastSlotsEmpty = new List<bool>();
     }
 
     public int GetLevelInfo() // ���������� ������� ����� ���������� � ����� ����������

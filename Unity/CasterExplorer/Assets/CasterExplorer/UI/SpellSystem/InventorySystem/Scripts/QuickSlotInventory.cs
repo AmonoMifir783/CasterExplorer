@@ -12,6 +12,7 @@ public class QuickslotInventory : MonoBehaviour
     public Sprite selectedSprite;
     public Sprite notSelectedSprite;
     public ShootSpell ShootSpell;
+    public bool isShooted = false;
 
     public int Temperature;
     public int Force;
@@ -22,6 +23,13 @@ public class QuickslotInventory : MonoBehaviour
     private void Start()
     {
         ShootSpell = FindObjectOfType<ShootSpell>();
+        //for (int i = 0; i < 4; i++)
+        //{
+        //    if (Input.GetKeyDown(KeyCode.Alpha1 + i))
+        //    {
+        //        isShooted = true;
+        //    }
+        //}
     }
 
     void Update()
@@ -32,23 +40,24 @@ public class QuickslotInventory : MonoBehaviour
             // Если мы нажимаем на клавиши 1 по 4, то...
             if (Input.GetKeyDown(KeyCode.Alpha1 + i))
             {
-                    quickslotParent.GetChild(currentQuickslotID).GetComponent<Image>().sprite = notSelectedSprite;
-                    currentQuickslotID = i;
-                    quickslotParent.GetChild(currentQuickslotID).GetComponent<Image>().sprite = selectedSprite;
-                    
-                    if (quickslotParent.GetChild(currentQuickslotID).gameObject.GetComponent<InventorySlots>().Item != null)
-                    {
-                        Temperature = quickslotParent.GetChild(currentQuickslotID).gameObject.GetComponent<InventorySlots>().Item.Temperature;
-                        Force = quickslotParent.GetChild(currentQuickslotID).gameObject.GetComponent<InventorySlots>().Item.Force;
-                        Amperage = quickslotParent.GetChild(currentQuickslotID).gameObject.GetComponent<InventorySlots>().Item.Amperage;
-                        Gravity = quickslotParent.GetChild(currentQuickslotID).gameObject.GetComponent<InventorySlots>().Item.Gravity;
-                        Light = quickslotParent.GetChild(currentQuickslotID).gameObject.GetComponent<InventorySlots>().Item.Light;
-                    }
+                isShooted = true;
+                quickslotParent.GetChild(currentQuickslotID).GetComponent<Image>().sprite = notSelectedSprite;
+                currentQuickslotID = i;
+                quickslotParent.GetChild(currentQuickslotID).GetComponent<Image>().sprite = selectedSprite;
+
+                if (quickslotParent.GetChild(currentQuickslotID).gameObject.GetComponent<InventorySlots>().Item != null)
+                {
+                    Temperature = quickslotParent.GetChild(currentQuickslotID).gameObject.GetComponent<InventorySlots>().Item.Temperature;
+                    Force = quickslotParent.GetChild(currentQuickslotID).gameObject.GetComponent<InventorySlots>().Item.Force;
+                    Amperage = quickslotParent.GetChild(currentQuickslotID).gameObject.GetComponent<InventorySlots>().Item.Amperage;
+                    Gravity = quickslotParent.GetChild(currentQuickslotID).gameObject.GetComponent<InventorySlots>().Item.Gravity;
+                    Light = quickslotParent.GetChild(currentQuickslotID).gameObject.GetComponent<InventorySlots>().Item.Light;
+                }
             }
         }
 
         // Используем предмет по нажатию на левую кнопку мыши
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && isShooted)
         {
             if (Time.timeScale == 1)
             {

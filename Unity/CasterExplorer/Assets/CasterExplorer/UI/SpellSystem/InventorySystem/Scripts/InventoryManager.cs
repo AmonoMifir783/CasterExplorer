@@ -9,7 +9,7 @@ using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 using static UnityEditor.Progress;
 
 public class InventoryManager : MonoBehaviour, IDataPersistence
-    {
+{
     public GameObject FastSlot1;
     public GameObject FastSlot2;
     public GameObject FastSlot3;
@@ -25,7 +25,7 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
     public bool isLoading = false;
 
     public GameObject prefab; // ,
-    //public Transform contentPanel;
+                              //public Transform contentPanel;
 
     public Sprite SpellArt;
     public GameObject CreateSlot;
@@ -94,14 +94,30 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
         }
 
 
-        if(data.fastSlots != null && data.fastSlots.Count > 0)
+        if (data.fastSlots != null && data.fastSlots.Count > 0)
         {
-            CreateSpellFastSlots(data.fastSlots[0], data.fastSlots[1], data.fastSlots[2], data.fastSlots[3], data.fastSlots[4], FastSlot1);
-            CreateSpellFastSlots(data.fastSlots[5], data.fastSlots[6], data.fastSlots[7], data.fastSlots[8], data.fastSlots[9], FastSlot2);
-            CreateSpellFastSlots(data.fastSlots[10], data.fastSlots[11], data.fastSlots[12], data.fastSlots[13], data.fastSlots[14], FastSlot3);
-            CreateSpellFastSlots(data.fastSlots[15], data.fastSlots[16], data.fastSlots[17], data.fastSlots[18], data.fastSlots[19], FastSlot4);
+            if (!data.fastSlotsEmpty[0])
+            {
+                CreateSpellFastSlots(data.fastSlots[0], data.fastSlots[1], data.fastSlots[2], data.fastSlots[3], data.fastSlots[4], FastSlot1);
+            }
+            if (!data.fastSlotsEmpty[1])
+            {
+                CreateSpellFastSlots(data.fastSlots[5], data.fastSlots[6], data.fastSlots[7], data.fastSlots[8], data.fastSlots[9], FastSlot2);
+            }
+            if (!data.fastSlotsEmpty[2])
+            {
+                CreateSpellFastSlots(data.fastSlots[10], data.fastSlots[11], data.fastSlots[12], data.fastSlots[13], data.fastSlots[14], FastSlot3);
+            }
+            if (!data.fastSlotsEmpty[3])
+            {
+                CreateSpellFastSlots(data.fastSlots[15], data.fastSlots[16], data.fastSlots[17], data.fastSlots[18], data.fastSlots[19], FastSlot4);
+            }
+            //CreateSpellFastSlots(data.fastSlots[0], data.fastSlots[1], data.fastSlots[2], data.fastSlots[3], data.fastSlots[4], FastSlot1);
+            //CreateSpellFastSlots(data.fastSlots[5], data.fastSlots[6], data.fastSlots[7], data.fastSlots[8], data.fastSlots[9], FastSlot2);
+            //CreateSpellFastSlots(data.fastSlots[10], data.fastSlots[11], data.fastSlots[12], data.fastSlots[13], data.fastSlots[14], FastSlot3);
+            // CreateSpellFastSlots(data.fastSlots[15], data.fastSlots[16], data.fastSlots[17], data.fastSlots[18], data.fastSlots[19], FastSlot4);
         }
-        
+
     }
 
     public void SaveData(GameData data)
@@ -121,32 +137,82 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
                 data.spellAtributs.Add(slot.Item.Light);
             }
         }
-        
+
         //Debug.Log(FastSlot1.GetComponent<InventorySlots>().Item.Temperature);
+        if (!FastSlot1.GetComponent<InventorySlots>().isEmpty)
+        {
+            data.fastSlots.Add(FastSlot1.GetComponent<InventorySlots>().Item.Temperature);
+            data.fastSlots.Add(FastSlot1.GetComponent<InventorySlots>().Item.Force);
+            data.fastSlots.Add(FastSlot1.GetComponent<InventorySlots>().Item.Amperage);
+            data.fastSlots.Add(FastSlot1.GetComponent<InventorySlots>().Item.Gravity);
+            data.fastSlots.Add(FastSlot1.GetComponent<InventorySlots>().Item.Light);
+        }
+        else
+        {
+            data.fastSlots.Add(0);
+            data.fastSlots.Add(0);
+            data.fastSlots.Add(0);
+            data.fastSlots.Add(0);
+            data.fastSlots.Add(0);
+        }
 
-        data.fastSlots.Add(FastSlot1.GetComponent<InventorySlots>().Item.Temperature);
-        data.fastSlots.Add(FastSlot1.GetComponent<InventorySlots>().Item.Force);
-        data.fastSlots.Add(FastSlot1.GetComponent<InventorySlots>().Item.Amperage);
-        data.fastSlots.Add(FastSlot1.GetComponent<InventorySlots>().Item.Gravity);
-        data.fastSlots.Add(FastSlot1.GetComponent<InventorySlots>().Item.Light);
+        if (!FastSlot2.GetComponent<InventorySlots>().isEmpty)
+        {
+            data.fastSlots.Add(FastSlot2.GetComponent<InventorySlots>().Item.Temperature);
+            data.fastSlots.Add(FastSlot2.GetComponent<InventorySlots>().Item.Force);
+            data.fastSlots.Add(FastSlot2.GetComponent<InventorySlots>().Item.Amperage);
+            data.fastSlots.Add(FastSlot2.GetComponent<InventorySlots>().Item.Gravity);
+            data.fastSlots.Add(FastSlot2.GetComponent<InventorySlots>().Item.Light);
+        }
+        else
+        {
+            data.fastSlots.Add(0);
+            data.fastSlots.Add(0);
+            data.fastSlots.Add(0);
+            data.fastSlots.Add(0);
+            data.fastSlots.Add(0);
+        }
 
-        data.fastSlots.Add(FastSlot2.GetComponent<InventorySlots>().Item.Temperature);
-        data.fastSlots.Add(FastSlot2.GetComponent<InventorySlots>().Item.Force);
-        data.fastSlots.Add(FastSlot2.GetComponent<InventorySlots>().Item.Amperage);
-        data.fastSlots.Add(FastSlot2.GetComponent<InventorySlots>().Item.Gravity);
-        data.fastSlots.Add(FastSlot2.GetComponent<InventorySlots>().Item.Light);
 
-        data.fastSlots.Add(FastSlot3.GetComponent<InventorySlots>().Item.Temperature);
-        data.fastSlots.Add(FastSlot3.GetComponent<InventorySlots>().Item.Force);
-        data.fastSlots.Add(FastSlot3.GetComponent<InventorySlots>().Item.Amperage);
-        data.fastSlots.Add(FastSlot3.GetComponent<InventorySlots>().Item.Gravity);
-        data.fastSlots.Add(FastSlot3.GetComponent<InventorySlots>().Item.Light);
+        if (!FastSlot3.GetComponent<InventorySlots>().isEmpty)
+        {
+            data.fastSlots.Add(FastSlot3.GetComponent<InventorySlots>().Item.Temperature);
+            data.fastSlots.Add(FastSlot3.GetComponent<InventorySlots>().Item.Force);
+            data.fastSlots.Add(FastSlot3.GetComponent<InventorySlots>().Item.Amperage);
+            data.fastSlots.Add(FastSlot3.GetComponent<InventorySlots>().Item.Gravity);
+            data.fastSlots.Add(FastSlot3.GetComponent<InventorySlots>().Item.Light);
+        }
+        else
+        {
+            data.fastSlots.Add(0);
+            data.fastSlots.Add(0);
+            data.fastSlots.Add(0);
+            data.fastSlots.Add(0);
+            data.fastSlots.Add(0);
+        }
 
-        data.fastSlots.Add(FastSlot4.GetComponent<InventorySlots>().Item.Temperature);
-        data.fastSlots.Add(FastSlot4.GetComponent<InventorySlots>().Item.Force);
-        data.fastSlots.Add(FastSlot4.GetComponent<InventorySlots>().Item.Amperage);
-        data.fastSlots.Add(FastSlot4.GetComponent<InventorySlots>().Item.Gravity);
-        data.fastSlots.Add(FastSlot4.GetComponent<InventorySlots>().Item.Light);
+        if (!FastSlot4.GetComponent<InventorySlots>().isEmpty)
+        {
+            data.fastSlots.Add(FastSlot4.GetComponent<InventorySlots>().Item.Temperature);
+            data.fastSlots.Add(FastSlot4.GetComponent<InventorySlots>().Item.Force);
+            data.fastSlots.Add(FastSlot4.GetComponent<InventorySlots>().Item.Amperage);
+            data.fastSlots.Add(FastSlot4.GetComponent<InventorySlots>().Item.Gravity);
+            data.fastSlots.Add(FastSlot4.GetComponent<InventorySlots>().Item.Light);
+        }
+        else
+        {
+            data.fastSlots.Add(0);
+            data.fastSlots.Add(0);
+            data.fastSlots.Add(0);
+            data.fastSlots.Add(0);
+            data.fastSlots.Add(0);
+        }
+
+
+        data.fastSlotsEmpty.Add(FastSlot1.GetComponent<InventorySlots>().isEmpty);
+        data.fastSlotsEmpty.Add(FastSlot2.GetComponent<InventorySlots>().isEmpty);
+        data.fastSlotsEmpty.Add(FastSlot3.GetComponent<InventorySlots>().isEmpty);
+        data.fastSlotsEmpty.Add(FastSlot4.GetComponent<InventorySlots>().isEmpty);
     }
 
 
