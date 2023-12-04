@@ -68,8 +68,8 @@ public class SalamandraSR : MonoBehaviour
             K1 = spellReaction.Temperature;
             additionalFireDamage = 1 + (K1 / maxTemp);
             FireDamage = 20 * additionalFireDamage;
-            PlayerHealth playerHealthScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
-            playerHealthScript.TakeDamage(FireDamage);
+            //PlayerHealth playerHealthScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+            //playerHealthScript.TakeDamage(FireDamage);
             Debug.Log("Fire Damage:" + FireDamage);
         }
     }

@@ -21,10 +21,12 @@ public class ProjectileCollision : MonoBehaviour
             if (playerHealthScript)
             {
                 playerHealthScript.TakeDamage(damageAmount);
+                Debug.Log("я получил 20 урона");
             }
             if (playerHealthScript != null && salamandraSr != null && salamandraSr.isBurning)
             {
                 playerHealthScript.TakeDamage(salamandraSr.FireDamage);
+                Debug.Log("я получил 20 уронаогонь");
             }
 
             Destroy(gameObject); // ”ничтожаем плевок при столкновении с игроком
