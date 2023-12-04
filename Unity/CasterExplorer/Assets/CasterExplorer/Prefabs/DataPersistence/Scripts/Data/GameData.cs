@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 
 [System.Serializable]
@@ -65,16 +66,16 @@ public class GameData
         fastSlotsEmpty = new List<bool>();
     }
 
-    public int GetLevelInfo() // ���������� ������� ����� ���������� � ����� ����������
-    {
+    //public int GetLevelInfo() // ���������� ������� ����� ���������� � ����� ����������
+    //{
 
-        int sceneNumber = SceneManager.GetActiveScene().buildIndex;
-        PlayerPrefs.SetInt("SceneNumber", sceneNumber);
-        return sceneNumber;
-    }
+    //    int sceneNumber = SceneManager.GetActiveScene().buildIndex;
+    //    PlayerPrefs.SetInt("SceneNumber", sceneNumber);
+    //    return sceneNumber;
+    //}
     public DateTime GetTimeInfo() // ����������, ������� ����� ���������� � ����� ����������
     {
-        DateTime currentDateTime = DateTime.Now;
+        DateTime currentDateTime = DateTime.FromBinary(lastUpdated);
         return currentDateTime;
     }
 

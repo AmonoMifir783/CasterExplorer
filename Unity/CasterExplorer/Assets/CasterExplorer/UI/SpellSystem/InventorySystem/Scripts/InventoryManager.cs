@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+//using UnityEngine.Localization.SmartFormat.Utilities;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
@@ -29,6 +31,7 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
 
     public Sprite SpellArt;
     public GameObject CreateSlot;
+    public InventorySlots inventorySlots;
 
     void Start()
     {
@@ -64,7 +67,14 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-
+        //int s = 2;
+        //foreach (InventorySlots slot in Slots)
+        //{
+        //    if (!slot.isEmpty && slot.Item.name == null)
+        //    {
+        //        slot.Item.name = s.ToString();
+        //    }
+        //}
         int j = 0;
 
         foreach (string spellName in data.spellNames)
@@ -112,11 +122,8 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
             {
                 CreateSpellFastSlots(data.fastSlots[15], data.fastSlots[16], data.fastSlots[17], data.fastSlots[18], data.fastSlots[19], FastSlot4);
             }
-            //CreateSpellFastSlots(data.fastSlots[0], data.fastSlots[1], data.fastSlots[2], data.fastSlots[3], data.fastSlots[4], FastSlot1);
-            //CreateSpellFastSlots(data.fastSlots[5], data.fastSlots[6], data.fastSlots[7], data.fastSlots[8], data.fastSlots[9], FastSlot2);
-            //CreateSpellFastSlots(data.fastSlots[10], data.fastSlots[11], data.fastSlots[12], data.fastSlots[13], data.fastSlots[14], FastSlot3);
-            // CreateSpellFastSlots(data.fastSlots[15], data.fastSlots[16], data.fastSlots[17], data.fastSlots[18], data.fastSlots[19], FastSlot4);
         }
+
 
     }
 
@@ -124,7 +131,7 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
     {
         foreach (InventorySlots slot in Slots)
         {
-            if (slot.Item != null && !data.spellNames.Contains(slot.Item.name) && slot.Item.name != "1" && slot.Item.name != "2")
+            if (slot.Item != null && !data.spellNames.Contains(slot.Item.name) && slot.Item.name != "1000000" && slot.Item.name != "1000001" && slot.Item.name != "" && slot.Item.name != " ")
             {
                 data.spellNames.Add(slot.Item.name);
 
@@ -232,7 +239,8 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
         CountSpell++;
 
         spellItem.Icon = SpellArt;
-        spellItem.ItemName = CountSpell;
+        spellItem.ItemName = CountSpell - 2 + UnityEngine.Random.Range(100, 997);
+
 
 
         //string targetPath = "Assets/CasterExplorer/UI/SpellSystem/InventorySystem/Items" + "/" + CountSpell + ".asset";
@@ -295,9 +303,10 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
                 slot.Item = _item;
                 slot.isEmpty = false;
                 slot.isHighlighting = false;
+                slot.Item.name = CountSpell.ToString();
 
                 slot.SetIcon(_item.Icon);
-                slot.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().color = new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), 255);
+                slot.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().color = new Color32((byte)UnityEngine.Random.Range(0, 255), (byte)UnityEngine.Random.Range(0, 255), (byte)UnityEngine.Random.Range(0, 255), 255);
                 break;
             }
         }
@@ -314,7 +323,7 @@ public class InventoryManager : MonoBehaviour, IDataPersistence
             FS.GetComponent<InventorySlots>().isHighlighting = false;
 
             FS.GetComponent<InventorySlots>().SetIcon(_item.Icon);
-            FS.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().color = new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), 255);
+            FS.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().color = new Color32((byte)UnityEngine.Random.Range(0, 255), (byte)UnityEngine.Random.Range(0, 255), (byte)UnityEngine.Random.Range(0, 255), 255);
         }
     }
 

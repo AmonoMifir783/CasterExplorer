@@ -24,7 +24,7 @@ public class CreateNewSlots : MonoBehaviour
     public InventorySlots FastSlot3Script;
     public InventorySlots FastSlot4Script;
 
-    public int CountSpell = 2;
+    public int CountSpell = 0;
 
     public Transform InventoryPanel;
     public InventoryManager inventoryManager;
@@ -81,7 +81,7 @@ public class CreateNewSlots : MonoBehaviour
         {
             CreateSpell(ItemSlot1.Temperature, ItemSlot1.Force, ItemSlot1.Amperage, ItemSlot1.Gravity, ItemSlot1.Light,
                     ItemSlot2.Temperature, ItemSlot2.Force, ItemSlot2.Amperage, ItemSlot2.Gravity, ItemSlot2.Light,
-                    ItemSlot3.Temperature, ItemSlot3.Force, ItemSlot3.Amperage, ItemSlot3.Gravity, ItemSlot3.Light);            
+                    ItemSlot3.Temperature, ItemSlot3.Force, ItemSlot3.Amperage, ItemSlot3.Gravity, ItemSlot3.Light);
         }
         else if (!isEmptySlot1 && !isEmptySlot2 && isEmptySlot3) // если 1 и 2 слоты заполнены
         {
@@ -94,14 +94,14 @@ public class CreateNewSlots : MonoBehaviour
             CreateSpell(ItemSlot1.Temperature, ItemSlot1.Force, ItemSlot1.Amperage, ItemSlot1.Gravity, ItemSlot1.Light,
                         0, 0, 0, 0, 0,
                         ItemSlot3.Temperature, ItemSlot3.Force, ItemSlot3.Amperage, ItemSlot3.Gravity, ItemSlot3.Light);
-            
+
         }
         else if (isEmptySlot1 && !isEmptySlot2 && !isEmptySlot3) // если 2 и 3 слоты заполнены
         {
             CreateSpell(0, 0, 0, 0, 0,
                         ItemSlot2.Temperature, ItemSlot2.Force, ItemSlot2.Amperage, ItemSlot2.Gravity, ItemSlot2.Light,
                         ItemSlot3.Temperature, ItemSlot3.Force, ItemSlot3.Amperage, ItemSlot3.Gravity, ItemSlot3.Light);
-            
+
         }
         else // в остальных случаях
         {
@@ -113,7 +113,7 @@ public class CreateNewSlots : MonoBehaviour
                             int Temperature_Slot2, int Force_Slot2, int Amperage_Slot2, int Gravity_Slot2, int light_Slot2,
                             int Temperature_Slot3, int Force_Slot3, int Amperage_Slot3, int Gravity_Slot3, int light_Slot3)
     {
-        
+
 
         SpellItem spellItem = ScriptableObject.CreateInstance<SpellItem>();
 
@@ -139,7 +139,7 @@ public class CreateNewSlots : MonoBehaviour
 
 
 
-        if(!CheckInventory(spellItem) && pickUp.scrollCount > 0)
+        if (!CheckInventory(spellItem) && pickUp.scrollCount > 0)
         {
             CountSpell++;
             pickUp.scrollCount--;
@@ -150,14 +150,14 @@ public class CreateNewSlots : MonoBehaviour
             //GenerateTexture();
 
             spellItem.Icon = SpellArt;
-            spellItem.ItemName = CountSpell;
+            spellItem.ItemName = CountSpell - 2 + Random.Range(100, 999999);
 
-            string targetPath = "Assets/CasterExplorer/UI/SpellSystem/InventorySystem/Items" + "/" + CountSpell + ".asset";
+            string targetPath = "Assets/CasterExplorer/UI/SpellSystem/InventorySystem/Items" + "/" + (CountSpell - 2 + Random.Range(100, 999999)) + ".asset";
 
-            #if UNITY_EDITOR
-                AssetDatabase.CreateAsset(spellItem, targetPath);
-                AssetDatabase.SaveAssets();
-            #endif
+#if UNITY_EDITOR
+            AssetDatabase.CreateAsset(spellItem, targetPath);
+            AssetDatabase.SaveAssets();
+#endif
 
             inventoryManager.Inicialization();
 
@@ -169,29 +169,29 @@ public class CreateNewSlots : MonoBehaviour
 
             Instantiate(prefab, contentPanel); // Создаем префаб как дочерний элемент панели Content
             AddItem(spellItem);
-            
+
         }
         else
         {
             Debug.Log("I dont have enough scrolls!");
         }
-    }      
+    }
 
     public bool CheckInventory(ItemScriptableObject _item)
     {
         foreach (InventorySlots slot in inventoryManager.Slots)
-        {  
+        {
             if (!slot.isEmpty)
             {
-                
+
                 if (slot.Item.Temperature == _item.Temperature &&
                     slot.Item.Force == _item.Force &&
                     slot.Item.Amperage == _item.Amperage &&
                     slot.Item.Gravity == _item.Gravity &&
                     slot.Item.Light == _item.Light)
-                {    
+                {
                     return true;
-                    
+
                 }
             }
         }
@@ -199,52 +199,52 @@ public class CreateNewSlots : MonoBehaviour
 
         if (!FastSlot1Script.isEmpty)
         {
-            
+
             if (FastSlot1Script.Item.Temperature == _item.Temperature &&
                 FastSlot1Script.Item.Force == _item.Force &&
                 FastSlot1Script.Item.Amperage == _item.Amperage &&
                 FastSlot1Script.Item.Gravity == _item.Gravity &&
                 FastSlot1Script.Item.Light == _item.Light)
-            {    
+            {
                 return true;
             }
         }
 
         if (!FastSlot2Script.isEmpty)
         {
-            
+
             if (FastSlot2Script.Item.Temperature == _item.Temperature &&
                 FastSlot2Script.Item.Force == _item.Force &&
                 FastSlot2Script.Item.Amperage == _item.Amperage &&
                 FastSlot2Script.Item.Gravity == _item.Gravity &&
                 FastSlot2Script.Item.Light == _item.Light)
-            {    
+            {
                 return true;
             }
         }
 
         if (!FastSlot3Script.isEmpty)
         {
-            
+
             if (FastSlot3Script.Item.Temperature == _item.Temperature &&
                 FastSlot3Script.Item.Force == _item.Force &&
                 FastSlot3Script.Item.Amperage == _item.Amperage &&
                 FastSlot3Script.Item.Gravity == _item.Gravity &&
                 FastSlot3Script.Item.Light == _item.Light)
-            {    
+            {
                 return true;
             }
         }
 
         if (!FastSlot4Script.isEmpty)
         {
-            
+
             if (FastSlot4Script.Item.Temperature == _item.Temperature &&
                 FastSlot4Script.Item.Force == _item.Force &&
                 FastSlot4Script.Item.Amperage == _item.Amperage &&
                 FastSlot4Script.Item.Gravity == _item.Gravity &&
                 FastSlot4Script.Item.Light == _item.Light)
-            {    
+            {
                 return true;
             }
         }
@@ -294,7 +294,7 @@ public class CreateNewSlots : MonoBehaviour
         texture.SetPixels32(pixels);
         // Применяем изменения к текстуре
         texture.Apply();
-        
+
         // Присваиваем текстуру переменной SpellArt
         SpellArt = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 0.5f);
         SpellArt.name = "name";
@@ -303,7 +303,7 @@ public class CreateNewSlots : MonoBehaviour
 
     public Color GenerateRandomColor()
     {
-        
+
         float r = Random.Range(0f, 255f);
         float g = Random.Range(0f, 255f);
         float b = Random.Range(0f, 255f);
@@ -315,27 +315,27 @@ public class CreateNewSlots : MonoBehaviour
 }
 
 
-        // // Создаем новый экземпляр спрайта
-        // Sprite generatedSprite = SpellArt;
+// // Создаем новый экземпляр спрайта
+// Sprite generatedSprite = SpellArt;
 
-        // // Получаем доступ к текстуре спрайта
-        // Texture2D texture = generatedSprite.texture;
+// // Получаем доступ к текстуре спрайта
+// Texture2D texture = generatedSprite.texture;
 
-        // // Получаем массив пикселей текстуры
-        // Color[] pixels = texture.GetPixels();
+// // Получаем массив пикселей текстуры
+// Color[] pixels = texture.GetPixels();
 
-        // // Генерируем случайный цвет
-        // Color randomColor = new Color(Random.value, Random.value, Random.value);
+// // Генерируем случайный цвет
+// Color randomColor = new Color(Random.value, Random.value, Random.value);
 
-        // // Присваиваем случайный цвет каждому пикселю текстуры
-        // for (int i = 0; i < pixels.Length; i++)
-        // {
-        //     pixels[i] = randomColor;
-        // }
+// // Присваиваем случайный цвет каждому пикселю текстуры
+// for (int i = 0; i < pixels.Length; i++)
+// {
+//     pixels[i] = randomColor;
+// }
 
-        // // Применяем изменения к текстуре
-        // texture.SetPixels(pixels);
-        // texture.Apply();
+// // Применяем изменения к текстуре
+// texture.SetPixels(pixels);
+// texture.Apply();
 
-        // // Возвращаем измененный спрайт
-        // return generatedSprite;
+// // Возвращаем измененный спрайт
+// return generatedSprite;
