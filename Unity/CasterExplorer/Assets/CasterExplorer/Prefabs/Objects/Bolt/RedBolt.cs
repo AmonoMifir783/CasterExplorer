@@ -6,6 +6,8 @@ public class RedBolt : MonoBehaviour
 {
     public int minForce = 15;
     public GameObject rotatingObject;
+
+    Manager manager;
     
     private float rotationSpeed = 30f; // Скорость вращения
     private float targetRotation = 180f; // Целевой угол поворота
@@ -16,12 +18,13 @@ public class RedBolt : MonoBehaviour
     void Start()
     {
         Link_SpellReaction = GetComponent<SpellReaction>(); // GetComponent - поиск компонента
+        manager =  transform.parent.transform.parent.GetComponent<Manager>();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         int Fo1 = Link_SpellReaction.Force;
-        if (collision.gameObject.CompareTag("Spell") && transform.parent.GetComponent<Manager>().isRedFlag)
+        if (collision.gameObject.CompareTag("Spell") && transform.parent.GetComponent<AI_Bolt>().isRedFlag)
         {
             if (Fo1 >= minForce)
             {
@@ -47,8 +50,10 @@ public class RedBolt : MonoBehaviour
             yield return null;
         }
         
-        transform.parent.GetComponent<Manager>().isGreenFlag = true;
-        transform.parent.GetComponent<Manager>().isRedFlag = false;
+        transform.parent.GetComponent<AI_Bolt>().isGreenFlag = true;
+        transform.parent.GetComponent<AI_Bolt>().isRedFlag = false;
+        manager.VentilAnalitics(); 
+
     }
 
     IEnumerator MoveTargetDown()

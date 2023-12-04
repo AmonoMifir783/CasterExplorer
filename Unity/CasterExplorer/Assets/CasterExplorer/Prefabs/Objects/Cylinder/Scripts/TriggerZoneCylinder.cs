@@ -21,7 +21,7 @@ public class TriggerZoneCylinder : MonoBehaviour
              // Получение дочернего элемента с индексом 2 
             childTransform.Rotate(Vector3.forward, 0.5f); // Вращение дочернего элемента по оси Z на 1 градусов 
             angle = childTransform.localEulerAngles.y;
-            Debug.Log("Угол поворота: " + angle);
+            //Debug.Log("Угол поворота: " + angle);
         } 
 
         if (other.CompareTag("Player") && angle >= 300 && angle <= 360 && aI_Freeze.isFreeze)

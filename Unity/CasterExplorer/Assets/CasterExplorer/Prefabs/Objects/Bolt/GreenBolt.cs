@@ -7,7 +7,7 @@ public class GreenBolt : MonoBehaviour
     public int minForce = 15;
     public GameObject rotatingObject;
     
-   
+    Manager manager;
     private float rotationSpeed = -30f; // Скорость вращения с измененным знаком для против часовой стрелки
     private float targetRotation = -180f; // Целевой угол поворота с измененным знаком для против часовой стрелки
     private float currentRotation = 0f; // Текущий угол поворота
@@ -18,12 +18,13 @@ public class GreenBolt : MonoBehaviour
     void Start()
     {
         Link_SpellReaction = GetComponent<SpellReaction>(); // GetComponent - поиск компонента
+        manager =  transform.parent.transform.parent.GetComponent<Manager>();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         int Fo1 = Link_SpellReaction.Force;
-        if (collision.gameObject.CompareTag("Spell") && transform.parent.GetComponent<Manager>().isGreenFlag)
+        if (collision.gameObject.CompareTag("Spell") && transform.parent.GetComponent<AI_Bolt>().isGreenFlag)
         {
             if (Fo1 >= minForce)
             {
@@ -47,8 +48,10 @@ public class GreenBolt : MonoBehaviour
             yield return null;
         }
        
-        transform.parent.GetComponent<Manager>().isGreenFlag = false;
-        transform.parent.GetComponent<Manager>().isRedFlag = true;
+        transform.parent.GetComponent<AI_Bolt>().isGreenFlag = false;
+        transform.parent.GetComponent<AI_Bolt>().isRedFlag = true;
+        manager.VentilAnalitics(); 
+
     }
 
     
