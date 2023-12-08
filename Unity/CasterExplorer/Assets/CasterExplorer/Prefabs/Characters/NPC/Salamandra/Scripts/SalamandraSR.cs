@@ -54,7 +54,7 @@ public class SalamandraSR : MonoBehaviour
             TakeDamage(Mathf.Sqrt(spellReaction.Force));
             //Debug.Log("2");
         }
-        //на миро больше 500
+        //пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 500
         if (spellReaction.Temperature > 20)
         {
             isBurning = true;
@@ -97,6 +97,7 @@ public class SalamandraSR : MonoBehaviour
 
         if (mobHealth <= 0)
         {
+            salamandraAi.isChasing = false;
             salamandraDead = true;
             if (deathSounds.Length > 0)
             {

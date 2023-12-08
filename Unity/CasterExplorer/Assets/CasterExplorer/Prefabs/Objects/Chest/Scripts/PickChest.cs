@@ -61,11 +61,11 @@ public class PickChest : MonoBehaviour
     {
         if (pickUp.scrollCount < 1000)
         {
-            int randomScrolls = UnityEngine.Random.Range(1, 4); // Generate a random number between 1 and 3
+            int randomScrolls = UnityEngine.Random.Range(1, 3); // Generate a random number between 1 and 3
             pickUp.scrollCount += randomScrolls;
 
             int remainingFruitCapacity = 10 - pickUp.inventoryCount;
-            int randomFruits = UnityEngine.Random.Range(1, 4); // Generate a random number between 1 and 3
+            int randomFruits = UnityEngine.Random.Range(1, 3); // Generate a random number between 1 and 3
             int pickedUpFruits = Mathf.Min(randomFruits, remainingFruitCapacity);
 
             pickUp.inventoryCount += pickedUpFruits;
