@@ -44,6 +44,11 @@ public class ShootSpell : MonoBehaviour
             var emission = Spell.transform.GetChild(0).GetComponent<ParticleSystem>().emission; // влияние на "хвост"
             emission.rateOverTime = new ParticleSystem.MinMaxCurve(Temperature + Force + Amperage + Gravity + Light);
 
+            if((Temperature + Force + Amperage + Gravity + Light) == 0)
+            {
+                emission.rateOverTime = new ParticleSystem.MinMaxCurve(40);
+            }
+
 
             Color newColor1 = new Color(Temperature / 255f, Force / 255f, Amperage / 255f);
             Color newColor2 = new Color(Temperature + 100 / 255f, Force + 100 / 255f, Amperage + 100 / 255f);
