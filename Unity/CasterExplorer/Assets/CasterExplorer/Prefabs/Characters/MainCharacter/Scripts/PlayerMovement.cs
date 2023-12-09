@@ -61,11 +61,11 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         if (Input.GetButton("Jump") && canMove && characterController.isGrounded && Time.time - lastJumpTime >= 0.5f)
         {
             // Check if there is enough stamina for jumping
-            if (playerStamina.currentStamina >= 15)
+            if (playerStamina.currentStamina >= 10)
             {
                 moveDirection.y = jumpSpeed;
                 lastJumpTime = Time.time;
-                playerStamina.TakeFatigue(15); // Consume stamina for jumping
+                playerStamina.TakeFatigue(10); // Consume stamina for jumping
 
                 // Play a random jump sound
                 if (jumpSounds.Length > 0 && audioSource != null)

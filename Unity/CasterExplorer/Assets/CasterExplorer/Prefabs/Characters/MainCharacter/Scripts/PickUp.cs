@@ -11,6 +11,9 @@ public class PickUp : MonoBehaviour, IDataPersistence
     public TextMeshProUGUI ScrollCount;
     public int inventoryCount = 0;
     public TextMeshProUGUI MagisteriyaCount;
+    public bool pickHelp = false;
+    public bool isOpen = false;
+    //public HelpMenu helpMenu;
 
     // Update вызывается каждый кадр
     void Update()
@@ -28,7 +31,7 @@ public class PickUp : MonoBehaviour, IDataPersistence
                 // Получаем ссылку на компонент объекта, который можно подобрать
                 PickChest pickableChest = hit.collider.GetComponent<PickChest>();
                 PickMagisteriya pickableFruit = hit.collider.GetComponent<PickMagisteriya>();
-
+                HelpMenu helpMenu = hit.collider.GetComponent<HelpMenu>();
                 // Проверяем, есть ли компонент PickableObject
                 if (pickableChest != null)
                 {
@@ -41,7 +44,21 @@ public class PickUp : MonoBehaviour, IDataPersistence
                     pickableFruit.PickUpItem();
                     Debug.Log("12312");
                 }
+                if (helpMenu != null && !helpMenu.isHelpMenuVisible)
+                {
+                    isOpen = true;
+                    pickHelp = true;
+                    helpMenu.GetHelp();
+                    Debug.Log("vizhu");
+                }
+                //if (helpMenu != null && helpMenu.isHelpMenuVisible)
+                //{
+                //    pickHelp = false;
+                //    helpMenu.OffHelp();
+                //    Debug.Log("nevizhu");
+                //}
             }
+
         }
     }
     public void LoadData(GameData data)

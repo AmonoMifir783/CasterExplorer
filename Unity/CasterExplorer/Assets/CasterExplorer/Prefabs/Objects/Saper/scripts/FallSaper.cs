@@ -20,7 +20,7 @@ public class FallSaper : MonoBehaviour
 
     private IEnumerator FallDown()  
     {
-        float speed = 100f; // Скорость падения
+        float speed = 1f; // Скорость падения
         float distance = 100f; // Расстояние падения
         float time = distance / speed; // Время падения
 

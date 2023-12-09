@@ -20,10 +20,10 @@ public class ShootSpell : MonoBehaviour
     }
     public void Shoot(int Temperature, int Force, int Amperage, int Gravity, int Light)
     {
-        if (playerStamina.currentStamina >= 8)
+        if (playerStamina.currentStamina >= 5)
         {
             isShooting = true;
-            playerStamina.TakeFatigue(8);
+            playerStamina.TakeFatigue(5);
             Ray ray = mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
             RaycastHit hit;
             Vector3 targetPoint;

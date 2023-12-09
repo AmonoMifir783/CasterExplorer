@@ -136,7 +136,7 @@ public class PlayerStamina : MonoBehaviour, IDataPersistence
             yield return new WaitForSeconds(1f);
             recoveryTimer += 1f;
 
-            if (recoveryTimer >= 3f)
+            if (recoveryTimer >= 2.5f)
             {
                 currentStamina += recoveryRate;
                 if (currentStamina > maxStamina)
