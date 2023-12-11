@@ -7,11 +7,13 @@ public class TriggerTextDisplay : MonoBehaviour
 {
     public TextMeshProUGUI text1;
     public TextMeshProUGUI text2;
+    public bool isShown = false;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !isShown)
         {
+            isShown = true;
             StartCoroutine(ShowText1());
         }
     }
