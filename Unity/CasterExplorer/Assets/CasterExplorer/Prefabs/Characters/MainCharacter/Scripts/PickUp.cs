@@ -13,34 +13,34 @@ public class PickUp : MonoBehaviour, IDataPersistence
     public TextMeshProUGUI MagisteriyaCount;
     public bool pickHelp = false;
     public bool isOpen = false;
-    //public HelpMenu helpMenu;
+    public GameObject notificationText; // Reference to the notification text object
 
-    // Update вызывается каждый кадр
     void Update()
     {
-        // Проверяем, нажата ли кнопка подбора (например, "E")
+        // Создаем луч, направленный от позиции игрока вперед 
+        Ray ray = new Ray(transform.position, transform.forward);
+        RaycastHit hit;
+        bool isHit = Physics.Raycast(ray, out hit, pickupRange, pickupLayer); // Check if the raycast hit a pickable object 
+
+        // Проверяем, нажата ли кнопка подбора (например, "E") 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            // Создаем луч, направленный от позиции игрока вперед
-            Ray ray = new Ray(transform.position, transform.forward);
-            RaycastHit hit;
-
-            // Проверяем, столкнулся ли луч с объектом, который можно подобрать
-            if (Physics.Raycast(ray, out hit, pickupRange, pickupLayer))
+            if (isHit)
             {
-                // Получаем ссылку на компонент объекта, который можно подобрать
+                // Получаем ссылку на компонент объекта, который можно подобрать 
                 PickChest pickableChest = hit.collider.GetComponent<PickChest>();
                 PickMagisteriya pickableFruit = hit.collider.GetComponent<PickMagisteriya>();
                 HelpMenu helpMenu = hit.collider.GetComponent<HelpMenu>();
-                // Проверяем, есть ли компонент PickableObject
+
+                // Проверяем, есть ли компонент PickableObject 
                 if (pickableChest != null)
                 {
-                    // Вызываем метод подбора предмета
+                    // Вызываем метод подбора предмета 
                     pickableChest.PickUpItem();
                 }
                 if (pickableFruit != null)
                 {
-                    // Вызываем метод подбора предмета
+                    // Вызываем метод подбора предмета 
                     pickableFruit.PickUpItem();
                     Debug.Log("12312");
                 }
@@ -51,16 +51,20 @@ public class PickUp : MonoBehaviour, IDataPersistence
                     helpMenu.GetHelp();
                     Debug.Log("vizhu");
                 }
-                //if (helpMenu != null && helpMenu.isHelpMenuVisible)
-                //{
-                //    pickHelp = false;
-                //    helpMenu.OffHelp();
-                //    Debug.Log("nevizhu");
-                //}
             }
+        }
 
+        // Show or hide the notification text based on raycast hit 
+        if (isHit)
+        {
+            notificationText.gameObject.SetActive(true); // Show the notification text 
+        }
+        else
+        {
+            notificationText.gameObject.SetActive(false); // Hide the notification text 
         }
     }
+
     public void LoadData(GameData data)
     {
         this.scrollCount = data.scrollCount;

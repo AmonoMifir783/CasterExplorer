@@ -29,6 +29,7 @@ public class PauseMenu : MonoBehaviour
     public PickUp pickUp;
 
     public GameObject FrontUI;
+    public GameObject HelpMenus;
 
     void Start()
     {
@@ -83,7 +84,7 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         FrontUI.SetActive(true);
-
+        HelpMenus.SetActive(true);
         Player.GetComponent<MouseLook>().enabled = true;
         Player.GetComponent<PlayerMovement>().enabled = true;
         //Player.GetComponent<MagisteriyaFruitPickUp>().enabled = true;
@@ -114,7 +115,7 @@ public class PauseMenu : MonoBehaviour
         //Player.GetComponent<ChestPickUp>().enabled = false;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-
+        HelpMenus.SetActive(false);
         FrontUI.SetActive(false);
 
         pauseMenuUI.SetActive(true);

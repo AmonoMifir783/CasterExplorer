@@ -83,6 +83,12 @@ public class BardAI : MonoBehaviour
             }
             PlayerHealth playerHealthScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
             playerHealthScript.TakeDamage(finalDamage);
-        
+            Invoke("SetIsAttackingFalse", 1.5f);
+    }
+
+    private void SetIsAttackingFalse()
+    {
+        animator.SetBool("isAttacking", false);
+        animator.SetBool("isResting", true);
     }
 }

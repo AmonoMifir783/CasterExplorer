@@ -79,6 +79,7 @@ public class BardSR : MonoBehaviour
             bardDead = true;
             Destroy(gameObject);
         }
+        Invoke("SetIsDamagingFalse", 0.1f);
     }
     private void Electric()
     {
@@ -110,5 +111,10 @@ public class BardSR : MonoBehaviour
             isTakingDamage = false;
             bardAi.enabled = true;
         }
+    }
+    private void SetIsDamagingFalse()
+    {
+        animator.SetBool("isDamaging", false);
+        animator.SetBool("isResting", true);
     }
 }

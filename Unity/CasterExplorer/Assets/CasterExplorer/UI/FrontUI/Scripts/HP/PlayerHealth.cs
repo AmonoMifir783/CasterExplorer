@@ -155,6 +155,7 @@ public class PlayerHealth : MonoBehaviour, IDataPersistence
         Player.GetComponent<PlayerMovement>().enabled = false;
         Player.GetComponent<MagisteriyaFruitUse>().enabled = false;
         Player.GetComponent<PickUp>().enabled = false;
+        Player.GetComponent<AudioListener>().enabled = false;
         playerMovement.enabled = false;
         gameOverPanel.SetActive(true);
         Time.timeScale = 0f;
