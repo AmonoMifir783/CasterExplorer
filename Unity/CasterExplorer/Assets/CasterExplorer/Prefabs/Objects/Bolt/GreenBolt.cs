@@ -6,7 +6,10 @@ public class GreenBolt : MonoBehaviour
 {
     public int minForce = 15;
     public GameObject rotatingObject;
-    
+    public GameObject lamp;
+
+    private Material material;
+
     Manager manager;
     private float rotationSpeed = -30f; // Скорость вращения с измененным знаком для против часовой стрелки
     private float targetRotation = -180f; // Целевой угол поворота с измененным знаком для против часовой стрелки
@@ -18,7 +21,9 @@ public class GreenBolt : MonoBehaviour
     void Start()
     {
         Link_SpellReaction = GetComponent<SpellReaction>(); // GetComponent - поиск компонента
-        manager =  transform.parent.transform.parent.GetComponent<Manager>();
+        manager = transform.parent.transform.parent.GetComponent<Manager>();
+        Renderer objectRenderer = lamp.GetComponent<Renderer>();
+        material = objectRenderer.material;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -29,8 +34,8 @@ public class GreenBolt : MonoBehaviour
             if (Fo1 >= minForce)
             {
                 StartCoroutine(RotateObject());
-                StartCoroutine( MoveTargetUp());
-                
+                StartCoroutine(MoveTargetUp());
+
             }
         }
     }
@@ -38,7 +43,7 @@ public class GreenBolt : MonoBehaviour
     IEnumerator RotateObject()
     {
         Debug.Log("Зелёный болт!");
-       
+
         currentRotation = 0f;
         while (currentRotation > targetRotation) // Изменено условие на currentRotation > targetRotation для против часовой стрелки
         {
@@ -47,31 +52,36 @@ public class GreenBolt : MonoBehaviour
             currentRotation += rotationAmount;
             yield return null;
         }
-       
+
         transform.parent.GetComponent<AI_Bolt>().isGreenFlag = false;
         transform.parent.GetComponent<AI_Bolt>().isRedFlag = true;
-        manager.VentilAnalitics(); 
+        manager.VentilAnalitics();
+
+        Color baseColor = material.GetColor("_BaseColor");
+        baseColor.g = 0f / 255f; // Присваиваем значение 200 в синий канал (диапазон от 0 до 1)
+        material.SetColor("_BaseColor", baseColor);
+
 
     }
 
-    
+
     IEnumerator MoveTargetUp()
     {
-   
-    float elapsedTime = 0f;
-    Vector3 startPosition = rotatingObject.transform.position; // Запоминаем текущую позицию перед началом движения
-    float targetHeight = 1.2f; // Высота, на которую нужно поднять объект
-    float speed = 0.2f; // Скорость движения вверх
 
-    while (elapsedTime < targetHeight / speed)
-    {
-        float fractionOfJourney = elapsedTime / (targetHeight / speed);
-        Vector3 targetPosition = startPosition + Vector3.up * targetHeight; // Поднимаем объект вверх, меняя знак на "+"
-        rotatingObject.transform.position = Vector3.Lerp(startPosition, targetPosition, fractionOfJourney);
-        elapsedTime += Time.deltaTime;
-        yield return null;
-    }
+        float elapsedTime = 0f;
+        Vector3 startPosition = rotatingObject.transform.position; // Запоминаем текущую позицию перед началом движения
+        float targetHeight = 1.2f; // Высота, на которую нужно поднять объект
+        float speed = 0.2f; // Скорость движения вверх
 
-    
+        while (elapsedTime < targetHeight / speed)
+        {
+            float fractionOfJourney = elapsedTime / (targetHeight / speed);
+            Vector3 targetPosition = startPosition + Vector3.up * targetHeight; // Поднимаем объект вверх, меняя знак на "+"
+            rotatingObject.transform.position = Vector3.Lerp(startPosition, targetPosition, fractionOfJourney);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+
     }
 }

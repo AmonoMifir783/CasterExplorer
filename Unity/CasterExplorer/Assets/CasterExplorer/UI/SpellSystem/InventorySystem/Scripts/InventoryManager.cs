@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
-using static UnityEditor.Progress;
+//using static UnityEditor.Progress;
 
 public class InventoryManager : MonoBehaviour, IDataPersistence
 {

@@ -45,7 +45,7 @@ public class SpellSystemScript : MonoBehaviour
                 playerCamera.GetComponent<PlayerMovement>().enabled = false;
                // Player.GetComponent<MagisteriyaFruitPickUp>().enabled = false;
                 Player.GetComponent<MagisteriyaFruitUse>().enabled = false;
-                Player.GetComponent<AudioListener>().enabled = false;
+                //Player.GetComponent<AudioListener>().enabled = false;
                 //Player.GetComponent<ChestPickUp>().enabled = false;
                 Player.GetComponent<PickUp>().enabled = false;
                 Cursor.lockState = CursorLockMode.None;
@@ -58,7 +58,7 @@ public class SpellSystemScript : MonoBehaviour
                 playerCamera.GetComponent<PlayerMovement>().enabled = true;
                 //Player.GetComponent<MagisteriyaFruitPickUp>().enabled = true;
                 Player.GetComponent<MagisteriyaFruitUse>().enabled = true;
-                Player.GetComponent<AudioListener>().enabled = true;
+                //Player.GetComponent<AudioListener>().enabled = true;
                 //Player.GetComponent<ChestPickUp>().enabled = true;
                 Player.GetComponent<PickUp>().enabled = true;
                 Cursor.lockState = CursorLockMode.Locked;
