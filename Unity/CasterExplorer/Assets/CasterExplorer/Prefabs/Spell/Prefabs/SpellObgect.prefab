@@ -870,7 +870,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 129
+      scalar: 28
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -1308,8 +1308,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.13725491, g: 0.27450982, b: 0.0627451, a: 1}
-        key1: {r: 35.39216, g: 70.39216, b: 16.392157, a: 1}
+        key0: {r: -0.011764706, g: 0.101960786, b: 0.011764706, a: 1}
+        key1: {r: -2.6078432, g: 26.392157, b: 3.3921568, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -4929,11 +4929,11 @@ MonoBehaviour:
   audioSource: {fileID: -7199310832059238514}
   explosionSounds:
   - {fileID: 8300000, guid: 0bef2db8633d23e4695ffa54735322bd, type: 3}
-  Temperature: 35
-  Force: 70
-  Amperage: 16
-  Gravity: 4
-  Light: 4
+  Temperature: -3
+  Force: 26
+  Amperage: 3
+  Gravity: 1
+  Light: 1
 --- !u!82 &-7199310832059238514
 AudioSource:
   m_ObjectHideFlags: 0
